@@ -1,9 +1,7 @@
 
 
-
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -34,7 +32,7 @@ public DashBoard() {
 //Initialize OR Instantiate the Components
 frame = new JFrame("DashBoard");
 dashBoardLabel = new JLabel("DashBoard");
-dashBoardPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+dashBoardPanel = new JPanel();
 logoutButton = new JButton("Logout");
 customerDatabaseButton = new JButton("Customer Database");
 staffDatabaseButton = new JButton("Staff Database");
