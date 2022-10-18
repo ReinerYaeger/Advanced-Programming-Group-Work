@@ -1,8 +1,12 @@
 package View;
 
+
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -10,9 +14,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 
+
 public class RegisterCustomer {
 //Create variables
 private JFrame frame;
+private JLabel registerCustomerLabel;
 private JLabel firstNameLabel;
 private JLabel lastNameLabel;
 private JLabel dateOfBirthLabel;
@@ -39,9 +45,12 @@ private JPanel emailPanel;
 private JPanel dateOfMembershipPanel;
 private JPanel dateOfMembershipExpirePanel;
 private JPanel buttonPanel;
+private JPanel registerCustomerPanel;
+
 
 public RegisterCustomer() {
-frame = new JFrame("GridLayout Example");
+frame = new JFrame("Register Customer");
+registerCustomerLabel = new JLabel("Register Customer");
 firstNameLabel = new JLabel("First Name: ");
 lastNameLabel = new JLabel("Last Name: ");
 dateOfBirthLabel = new JLabel("Date of Birth:");
@@ -63,7 +72,7 @@ dateOfMembershipExpireTextField = new JTextField(20);
 
 button = new JButton("Save");
 button.setSize(new Dimension(400, 30));
-
+registerCustomerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 firstNamePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 lastNamePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 dateOfBirthPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -79,6 +88,8 @@ layoutComponents();
 
 private void layoutComponents() {
 frame.setLayout(new GridLayout(0,1 , 0, 0));
+registerCustomerPanel.add(registerCustomerLabel);
+frame.add(registerCustomerPanel);
 
 firstNamePanel.setSize(new Dimension(400, 30));
 firstNamePanel.add(firstNameLabel);
@@ -124,10 +135,16 @@ frame.add(dateOfMembershipExpirePanel);
 buttonPanel.setSize(400, 30);
 buttonPanel.add(button);
 frame.add(buttonPanel);
+
+
+frame.getRootPane().setBorder(
+        BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLUE)
+);
 frame.setSize(new Dimension(600, 600));
 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 frame.setVisible(true);
 }
+
 
 public static void main(String[] args) {
 	new RegisterCustomer();
