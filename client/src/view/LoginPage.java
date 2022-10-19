@@ -1,10 +1,13 @@
 package view;
 
 
+import controller.Client;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -89,6 +92,15 @@ public class LoginPage {
 
         buttonPanel.setSize(400, 30);
         buttonPanel.add(button);
+
+        button.addActionListener((ActionListener)  e -> {
+            String username = usernameTextField.getText();
+            String password = passwordField.getPassword().toString();
+
+            Client client = new Client();
+            client.sendLoginResponse(username, password);
+
+        });
         frame.add(buttonPanel);
 
         frame.getRootPane().setBorder(

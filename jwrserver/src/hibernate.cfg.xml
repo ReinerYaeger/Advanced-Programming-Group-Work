@@ -6,9 +6,9 @@
    
       <!--JDBC Database Connection Settings-->
       <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-      <property name="connection.url">jdbc:mysql://localhost:3306/APDB_Test</property>
-      <property name="connection.username">root</property>
-      <property name="connection.password">wWlwxxSddD</property>
+      <property name="connection.url">jdbc:mysql://remotemysql.com:3306/Ee1ZADuysl</property>
+      <property name="connection.username">Ee1ZADuysl</property>
+      <property name="connection.password">wEcA1u5VsF</property>
       
       <!--JDBC Database Pool Settings-->
       <property name="connection.pool_size">1</property>
