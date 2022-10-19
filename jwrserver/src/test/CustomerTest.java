@@ -13,13 +13,10 @@ public class CustomerTest {
 		Session sesh = new HBFactory().getSession();
 
 		sesh.beginTransaction();
-
 		Customer customer = new Customer("Anthony Miller", LocalDate.of(2003, 6, 23), "Hannings Road", 8761234536L,
-				"Anthony1@gmail.com", LocalDate.of(2022, 10, 16));
-
+				"AnthonyTest1@gmail.com");
 		sesh.save(customer);
 		sesh.getTransaction().commit();
-
 		System.out.println("Customer Saved\n" + customer);
 	}
 
