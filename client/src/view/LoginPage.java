@@ -2,6 +2,7 @@ package view;
 
 
 import controller.Client;
+import controller.Controller;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -97,8 +98,8 @@ public class LoginPage {
             String username = usernameTextField.getText();
             String password = passwordField.getPassword().toString();
 
-            Client client = new Client();
-            client.sendLoginResponse(username, password);
+            Controller controller = new Controller();
+            controller.loginStaff(username, password);
 
         });
         frame.add(buttonPanel);

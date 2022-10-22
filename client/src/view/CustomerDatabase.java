@@ -28,7 +28,7 @@ public class CustomerDatabase extends JPanel {
     private JScrollPane jsp;
 
     public CustomerDatabase() {
-        frame = new JFrame("Login Page");
+        frame = new JFrame("Customer View");
         logoutButton = new JButton("Logout");
         navigationButton = new JButton("Navigation");
         customerDatabaseLabel = new JLabel("Customer Database");
