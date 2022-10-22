@@ -1,4 +1,6 @@
-package model;
+package model.staff;
+
+import model.department.Department;
 
 import java.io.Serializable;
 import java.time.LocalDate;

@@ -7,41 +7,38 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 
 public class LoginPage {
     //Create variables
-    private final JFrame frame;
-    private final JLabel mainLabel;
-    private final JLabel usernameLabel;
-    private final JLabel passwordLabel;
-    private final JLabel typeOfEmployeeLabel;
-    private final JTextField usernameTextField;
-    private final JPasswordField passwordField;
-    private final JButton button;
-    private final JPanel mainPanel;
-    private final JPanel namePanel;
-    private final JPanel passwordPanel;
-    private final JPanel buttonPanel;
-    private final JRadioButton rbtnManagement;
-    private final JRadioButton rbtnInventory;
-    private final JRadioButton rbtnAccountingAndSales;
+    private JFrame frame;
+    private JLabel mainLabel;
+    private JLabel usernameLabel;
+    private JLabel passwordLabel;
+    private JLabel typeOfEmployeeLabel;
+    private JTextField usernameTextField;
+    private JPasswordField passwordField;
+    private JButton button;
+    private JPanel mainPanel;
+    private JPanel namePanel;
+    private JPanel passwordPanel;
+    private JPanel buttonPanel;
+    private JPanel radioButton1Panel;
+    private JPanel radioButton2Panel;
+    private JPanel radioButton3Panel;
+    private JPanel typeOfEmployeePanel;
+    private JRadioButton rbtnManagement;
+    private JRadioButton rbtnInventory;
+    private JRadioButton rbtnAccountingAndSales;
 
 
-    public LoginPage() {
+    public LoginPage( ) {
         frame = new JFrame("Login Page");
-        mainLabel = new JLabel("Main");
+        mainLabel = new JLabel("Login Page");
         usernameLabel = new JLabel("Username: ");
         passwordLabel = new JLabel();
         typeOfEmployeeLabel = new JLabel("Type of Employee: ");
@@ -53,6 +50,10 @@ public class LoginPage {
         namePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         passwordPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        typeOfEmployeePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        radioButton1Panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        radioButton2Panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        radioButton3Panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
 
         rbtnManagement = new JRadioButton("Management");
@@ -63,14 +64,14 @@ public class LoginPage {
         rbtnAccountingAndSales.setBounds(100, 100, 100, 30);
 
         ButtonGroup bg = new ButtonGroup();
-        //Add the Radio Buttons to the Button Group
+//Add the Radio Buttons to the Button Group
         bg.add(rbtnManagement);
         bg.add(rbtnInventory);
         bg.add(rbtnAccountingAndSales);
         layoutComponents();
     }
 
-    private void layoutComponents() {
+    private void layoutComponents( ) {
         frame.setLayout(new GridLayout(0, 1, 0, 0));
         mainPanel.add(mainLabel);
         frame.add(mainPanel);
@@ -84,27 +85,41 @@ public class LoginPage {
         passwordPanel.add(passwordField);
         frame.add(passwordPanel);
 
-        /*frame.add(typeOfEmployeeLabel);
-        frame.add(rbtnManagement);
-        frame.add(rbtnInventory);
-        frame.add(rbtnAccountingAndSales);*/
+        typeOfEmployeePanel.add(typeOfEmployeeLabel);
+        //frame.add(typeOfEmployeePanel);
+
+        radioButton1Panel.add(rbtnManagement);
+        //frame.add(radioButton1Panel);
+
+        radioButton2Panel.add(rbtnInventory);
+        //frame.add(radioButton2Panel);
+
+        radioButton3Panel.add(rbtnAccountingAndSales);
+        //frame.add(radioButton3Panel);
+
         frame.add(button);
 
         buttonPanel.setSize(400, 30);
-        buttonPanel.add(button);
 
-        button.addActionListener((ActionListener)  e -> {
-            String username = usernameTextField.getText();
-            String password = passwordField.getPassword().toString();
+        //Addion button action Listener
 
-            Client client = new Client();
-            client.sendLoginResponse(username, password);
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String username = usernameTextField.getText();
+                String password = String.valueOf(passwordField.getPassword());
 
+                Client client = new Client();
+                client.sendLoginResponse(username, password);
+
+
+            }
         });
+
+        buttonPanel.add(button);
         frame.add(buttonPanel);
 
         frame.getRootPane().setBorder(
-            BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLUE)
+                BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLUE)
         );
         frame.setSize(new Dimension(450, 450));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,5 +1,7 @@
 package model;
 
+import model.staff.Staff;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;

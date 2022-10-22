@@ -5,6 +5,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import model.*;
+import model.department.Department;
+import model.staff.Staff;
 
 public class Client {
     private ObjectInputStream objIn;
