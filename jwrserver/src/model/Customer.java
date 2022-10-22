@@ -63,8 +63,11 @@ public class Customer implements Serializable {
 		this.address = address;
 		this.telephone = telephone;
 		this.email = email;
-		this.dateOfMembership.getToday();
-		this.dateOfMembershipExp.getToday().plusYears(4);
+		this.dateOfMembership = new Date();
+		dateOfMembership.now();
+
+		this.dateOfMembershipExp = new Date();
+		this.dateOfMembershipExp.now().plusYears(4);
 	}
 
 	public Customer(String name, Date dob, String address,
