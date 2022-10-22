@@ -1,9 +1,13 @@
 package view;
 
+import controller.Controller;
+import model.Customer;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.time.LocalDate;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -123,15 +127,31 @@ public class RegisterCustomer {
         dateOfMembershipPanel.setSize(new Dimension(400, 30));
         dateOfMembershipPanel.add(dateOfMembershipLabel);
         dateOfMembershipPanel.add(dateOfMembershipTextField);
-        frame.add(dateOfMembershipPanel);
+        //frame.add(dateOfMembershipPanel);
 
         dateOfMembershipExpirePanel.setSize(new Dimension(400, 30));
         dateOfMembershipExpirePanel.add(dateOfMembershipExpireLabel);
         dateOfMembershipExpirePanel.add(dateOfMembershipExpireTextField);
-        frame.add(dateOfMembershipExpirePanel);
+        //frame.add(dateOfMembershipExpirePanel);
 
 
         buttonPanel.setSize(400, 30);
+
+        button.addActionListener(e->{
+            String name = firstNameTextField.getText() + " " + lastNameTextField.getText();
+            String lastName = lastNameTextField.getText();
+
+            //Change Here
+            //LocalDate dateOfBirth = dateOfBirthTextField.getText();
+            String address = addressTextField.getText();
+            Long telephone = Long.parseLong(telephoneTextField.getText().toString());
+            String email = emailTextField.getText();
+
+            new Controller().registerCustomer(new Customer(name, LocalDate.now() , address, telephone, email));
+
+
+        });
+
         buttonPanel.add(button);
         frame.add(buttonPanel);
 

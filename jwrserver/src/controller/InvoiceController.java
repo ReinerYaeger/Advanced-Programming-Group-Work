@@ -29,15 +29,14 @@ public class InvoiceController {
 
 		try {
 			session.beginTransaction();
-
 			invoice = new Invoice(staff);
-
 			session.save(invoice);
-
 			session.getTransaction().commit();
 
 		} catch (HibernateException e) {
 			System.out.println("Error with session, Invoice Controller");
+			e.printStackTrace();
+		}catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();

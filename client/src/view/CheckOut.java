@@ -1,13 +1,9 @@
+package view;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class CheckOut {
 
@@ -35,6 +31,7 @@ public class CheckOut {
 	private JTextField recievedTextField;
 	private JRadioButton yesMemberRadioButton;
 	private JRadioButton noMemberRadioButton;
+	private ButtonGroup buttonGroup;
 	private GridBagConstraints gbc;
 	private JButton button;
 	private JLabel navigationLabel;
@@ -68,6 +65,10 @@ String navigation[]= {" ","Dashboard","Customer Database","Staff Database","Stoc
 		yesMemberRadioButton.setBounds(100,50,100,30);
 		noMemberRadioButton=new JRadioButton("No");
 		noMemberRadioButton.setBounds(100,100,100,30);
+
+		buttonGroup=new ButtonGroup();
+		buttonGroup.add(yesMemberRadioButton);
+		buttonGroup.add(noMemberRadioButton);
 		discountLabel=new JLabel("Discount");
 		
 		taxLabel=new JLabel("Tax");

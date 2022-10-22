@@ -59,6 +59,8 @@ public class Client {
             throw new RuntimeException(e);
         }catch (Exception e){
             throw new RuntimeException(e);
+        }finally {
+            closeConnection();
         }
     }
     //send Staff object to server
@@ -69,6 +71,8 @@ public class Client {
             throw new RuntimeException(e);
         }catch (Exception e){
             throw new RuntimeException(e);
+        }finally {
+            closeConnection();
         }
     }
 
@@ -115,9 +119,17 @@ public class Client {
         }
     }
 
-
-
-
+    public Invoice requestInvoice(){
+        Invoice  invoice = new Invoice();
+        try {
+            invoice =  (Invoice) objIn.readObject();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
+        return invoice;
+    }
 
     public static void main(String[] args) {
         new Client();
