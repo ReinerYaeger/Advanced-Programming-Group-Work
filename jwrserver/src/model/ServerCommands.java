@@ -4,6 +4,6 @@ import java.io.Serializable;
 
 public enum ServerCommands implements Serializable {
 
-	GETCUSTOMERS;
+	GETCUSTOMERS,GETSALESREPORT;
 
 }

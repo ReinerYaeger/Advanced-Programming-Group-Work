@@ -1,5 +1,9 @@
 package controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -96,6 +100,32 @@ public class InvoiceController {
 			session.close();
 		}
 
+		return allInvoice;
+	}
+	
+	public List<Invoice> getInvoiceReport(LocalDate fromDate, LocalDate toDate){
+		
+		List<Invoice> allInvoice = null;
+
+		try {
+			session.beginTransaction();
+			
+
+			allInvoice = session.createQuery("From Invoice where billingDate >= '" + fromDate.toString() +"' AND billingDate <= '" + toDate.toString() + "'", Invoice.class).getResultList();
+
+			
+			//System.out.println(allInvoice);
+			
+		} catch (HibernateException e) {
+			System.out.println("Error with session, Invoice Controller");
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		
+		
+		
 		return allInvoice;
 	}
 

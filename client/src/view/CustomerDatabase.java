@@ -5,7 +5,9 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.TextField;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -28,11 +30,13 @@ public class CustomerDatabase extends JPanel {
 	private JButton logoutButton;
 	private JButton navigationButton;
 	private JPanel buttons;
-	DefaultTableModel tableItems;
+	private DefaultTableModel tableItems;
 	private JPanel middle;
 	private JPanel table1;
 	private JTable table;
 	private JScrollPane jsp;
+	
+	private List<Customer> allCustomers; 
 
 	public CustomerDatabase() {
 		frame = new JFrame("Customer View");
@@ -102,10 +106,23 @@ public class CustomerDatabase extends JPanel {
 	}
 
 	private void loadCustomerData() {
-		List<Customer> allCustomers = new Controller().getAllCustomers();
-
-		for (Object c : allCustomers)
-			System.out.println("h: " + c);
+		allCustomers = new Controller().getAllCustomers();
+		
+		allCustomers.forEach(customer -> {
+			Vector<Object> items = new Vector<>();
+			
+			items.add(customer.getId());
+			items.add(customer.getName());
+			items.add(customer.getDob());
+			items.add(customer.getAddress());
+			items.add(customer.getTelephone());
+			items.add(customer.getEmail());
+			items.add(customer.getDateOfMembership());
+			items.add(customer.getDateOfMembershipExp());
+			
+			tableItems.addRow(items);
+		});
+		
 	}
 
 	public static void main(String[] args) {

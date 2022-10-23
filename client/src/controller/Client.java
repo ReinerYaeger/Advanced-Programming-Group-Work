@@ -112,6 +112,16 @@ public class Client {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public void sendObject(Object object) {
+		try {
+			objOs.writeObject(object);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 	public Object receiveResponse() {
 		try {
@@ -120,6 +130,8 @@ public class Client {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (Exception e) {
+			System.out.println("Rec");
+			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 	}
