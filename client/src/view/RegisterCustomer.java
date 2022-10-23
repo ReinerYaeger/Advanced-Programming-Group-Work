@@ -8,18 +8,17 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.time.LocalDate;
-
+import java.time.LocalDateTime;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
-
 public class RegisterCustomer {
-    //Create variables
+   //Create variables
     private JFrame frame;
     private JLabel registerCustomerLabel;
     private JLabel firstNameLabel;
@@ -28,16 +27,14 @@ public class RegisterCustomer {
     private JLabel addressLabel;
     private JLabel telephoneLabel;
     private JLabel emailLabel;
-    private JLabel dateOfMembershipLabel;
-    private JLabel dateOfMembershipExpireLabel;
     private JTextField firstNameTextField;
     private JTextField lastNameTextField;
-    private JTextField dateOfBirthTextField;
+    private JComboBox<Integer> yearBox;
+    private JComboBox<Integer> monthBox;
+    private JComboBox<Integer> dayBox;
     private JTextField addressTextField;
     private JTextField telephoneTextField;
     private JTextField emailTextField;
-    private JTextField dateOfMembershipTextField;
-    private JTextField dateOfMembershipExpireTextField;
     private JButton button;
     private JPanel firstNamePanel;
     private JPanel lastNamePanel;
@@ -45,35 +42,28 @@ public class RegisterCustomer {
     private JPanel addressPanel;
     private JPanel telephonePanel;
     private JPanel emailPanel;
-    private JPanel dateOfMembershipPanel;
-    private JPanel dateOfMembershipExpirePanel;
     private JPanel buttonPanel;
     private JPanel registerCustomerPanel;
 
 
     public RegisterCustomer() {
+       //Initialize the variables
         frame = new JFrame("Register Customer");
         registerCustomerLabel = new JLabel("Register Customer");
         firstNameLabel = new JLabel("First Name: ");
         lastNameLabel = new JLabel("Last Name: ");
-        dateOfBirthLabel = new JLabel("Date of Birth:");
+        dateOfBirthLabel = new JLabel("Date of Birth -");
         addressLabel = new JLabel("Address:");
         telephoneLabel = new JLabel("Telephone: ");
         emailLabel = new JLabel("Email: ");
-        dateOfMembershipLabel = new JLabel("Date of Memebership: ");
-        dateOfMembershipExpireLabel = new JLabel("Date of Membership Expiry: ");
-
         firstNameTextField = new JTextField(20);
         lastNameTextField = new JTextField(20);
-        dateOfBirthTextField = new JTextField(20);
         addressTextField = new JTextField(20);
         addressTextField = new JTextField(20);
         telephoneTextField = new JTextField(20);
         emailTextField = new JTextField(20);
-        dateOfMembershipTextField = new JTextField(20);
-        dateOfMembershipExpireTextField = new JTextField(20);
-
         button = new JButton("Save");
+        //Set component size
         button.setSize(new Dimension(400, 30));
         registerCustomerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         firstNamePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -82,60 +72,100 @@ public class RegisterCustomer {
         addressPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         telephonePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         emailPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        dateOfMembershipPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        dateOfMembershipExpirePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-
+        
+        yearBox = new JComboBox<>();
+        for (int i = 1900; i <= LocalDateTime.now().getYear(); i++) {
+            yearBox.addItem(i);
+        }
+      
+        monthBox = new JComboBox<>();
+        for (int i = 1; i <= 12; i++) {
+            monthBox.addItem(i);
+        }
+       
+        dayBox = new JComboBox<>();
+        for (int i = 1; i <= 31; i++) {
+            dayBox.addItem(i);
+            
+        }
+        //Call layoutComponents method
         layoutComponents();
     }
-
-    private void layoutComponents() {
+    
+private void layoutComponents() {
+    	//Set the Layout Manager for the frame
         frame.setLayout(new GridLayout(0, 1, 0, 0));
+        //Add Label to panel
         registerCustomerPanel.add(registerCustomerLabel);
+        //Add panel to frame
         frame.add(registerCustomerPanel);
-
+    
+        //Set size of component
         firstNamePanel.setSize(new Dimension(400, 30));
+        //Add Label to panel
         firstNamePanel.add(firstNameLabel);
+        //Add textfield to panel
         firstNamePanel.add(firstNameTextField);
+         //Add panel to frame
         frame.add(firstNamePanel);
 
+         //Set size of component
         lastNamePanel.setSize(new Dimension(400, 30));
+         //Add Label to panel
         lastNamePanel.add(lastNameLabel);
+        //Add textfield to panel
         lastNamePanel.add(lastNameTextField);
+         //Add panel to frame
         frame.add(lastNamePanel);
 
+         //Set size of component
         dateOfBirthPanel.setSize(new Dimension(400, 30));
+        //Add Label to panel
         dateOfBirthPanel.add(dateOfBirthLabel);
-        dateOfBirthPanel.add(dateOfBirthTextField);
+        //Add label to panel
+        dateOfBirthPanel.add(new JLabel("year:"));
+        //Add combobox to panel
+        dateOfBirthPanel.add(yearBox);
+        //Add label to panel
+        dateOfBirthPanel.add(new JLabel("month:"));
+         //Add combobox to panel
+        dateOfBirthPanel.add(monthBox);
+        //Add label to panel
+        dateOfBirthPanel.add(new JLabel("day:"));
+         //Add combobox to panel
+        dateOfBirthPanel.add(dayBox);
+         //Add panel to frame
         frame.add(dateOfBirthPanel);
 
         addressPanel.setSize(new Dimension(400, 30));
+        //Add Label to panel
         addressPanel.add(addressLabel);
+        //Add textfield to panel
         addressPanel.add(addressTextField);
+         //Add panel to frame
         frame.add(addressPanel);
 
         telephonePanel.setSize(new Dimension(400, 30));
+        //Add Label to panel
         telephonePanel.add(telephoneLabel);
+        //Add textfield to panel
         telephonePanel.add(telephoneTextField);
+         //Add panel to frame
         frame.add(telephonePanel);
 
         emailPanel.setSize(new Dimension(400, 30));
+        //Add Label to panel
         emailPanel.add(emailLabel);
+        //Add textfield to panel
         emailPanel.add(emailTextField);
+         //Add panel to frame
         frame.add(emailPanel);
 
-        dateOfMembershipPanel.setSize(new Dimension(400, 30));
-        dateOfMembershipPanel.add(dateOfMembershipLabel);
-        dateOfMembershipPanel.add(dateOfMembershipTextField);
-        //frame.add(dateOfMembershipPanel);
-
-        dateOfMembershipExpirePanel.setSize(new Dimension(400, 30));
-        dateOfMembershipExpirePanel.add(dateOfMembershipExpireLabel);
-        dateOfMembershipExpirePanel.add(dateOfMembershipExpireTextField);
-        //frame.add(dateOfMembershipExpirePanel);
-
-
         buttonPanel.setSize(400, 30);
+        buttonPanel.add(button);
+         //Add panel to frame
+        frame.add(buttonPanel);
 
         button.addActionListener(e->{
             String name = firstNameTextField.getText() + " " + lastNameTextField.getText();
@@ -152,18 +182,14 @@ public class RegisterCustomer {
 
         });
 
-        buttonPanel.add(button);
-        frame.add(buttonPanel);
-
-
-        frame.getRootPane().setBorder(
-            BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLUE)
-        );
+       //Set color of frame border
+        frame.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLUE));
+      //Set size of frame
         frame.setSize(new Dimension(600, 600));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //Set frame to be visible
         frame.setVisible(true);
     }
-
 
     public static void main(String[] args) {
         new RegisterCustomer();
