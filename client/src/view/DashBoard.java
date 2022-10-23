@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class DashBoard {
-    //Create objects of the GUI components
+	//Create variables
     private JFrame frame;
     private JLabel dashBoardLabel;
     private JPanel dashBoardPanel;
@@ -24,12 +24,12 @@ public class DashBoard {
     private JButton registerCustomerButton;
     private JButton logoutButton;
 
-    //Create an object of the GridBagConstraints / Settings
+    //Create an object of the GridBagConstraints
     private GridBagConstraints gbc;
 
 
     public DashBoard() {
-        //Initialize OR Instantiate the Components
+        //Initialize the variables
         frame = new JFrame("DashBoard");
         dashBoardLabel = new JLabel("DashBoard");
         dashBoardPanel = new JPanel();
@@ -40,24 +40,33 @@ public class DashBoard {
         checkOutButton = new JButton("Check Out");
         salesReportButton = new JButton("Sales Report");
         registerCustomerButton = new JButton("Register Customer");
-
         gbc = new GridBagConstraints();
-        layoutComponents(); //Call method to layout the components
+        
+      //Call layoutComponents method
+        layoutComponents(); 
     }
     private void layoutComponents() {
         //Set the Layout Manager for the frame
         frame.setLayout(new GridBagLayout());
 
+        //Add label to panel
         dashBoardPanel.add(dashBoardLabel);
+        //Add panel to frame
         frame.add(dashBoardPanel);
 
+      //Re-Initialize the GridBag Constraints
         gbc = new GridBagConstraints();
+        //Set location in terms of row and column
         gbc.gridx = 2;
         gbc.gridy = 0;
+        //Set internal padding
         gbc.ipadx = 150;
         gbc.ipady = 50;
+      //Set location in the frame
         gbc.anchor = GridBagConstraints.NORTH;
+      //Set the external padding 
         gbc.insets = new Insets(10, 10, 11, 0);
+        //Add button to frame
         frame.add(logoutButton, gbc);
 
         gbc = new GridBagConstraints();
@@ -108,11 +117,12 @@ public class DashBoard {
         gbc.insets = new Insets(10, 10, 11, 0);
         frame.add(registerCustomerButton, gbc);
 
-        frame.getRootPane().setBorder(
-            BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLUE)
-        );
+      //Set color of frame border
+        frame.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLUE) );
+      //Set size of frame
         frame.setSize(new Dimension(920, 800));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      //Set frame to be visible
         frame.setVisible(true);
 
     }
