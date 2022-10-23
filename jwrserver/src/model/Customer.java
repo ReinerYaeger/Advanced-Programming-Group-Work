@@ -18,7 +18,7 @@ public class Customer implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@Column(name = "customerID")
 	private int id;
 
 	@Column(name = "name")

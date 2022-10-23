@@ -1,8 +1,9 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -10,8 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-
-public class SalesReport {
+public class SalesReport implements ActionListener {
 
 	private JFrame frame;
 	private JLabel navigationLabel;
@@ -25,47 +25,51 @@ public class SalesReport {
 	private JTextField fromTextField;
 	private JTextField toTextField;
 	private JButton printButton;
-	SalesReport(){
-		frame=new JFrame();
-		navigationLabel=new JLabel("Navigation:");
+
+	SalesReport() {
+		frame = new JFrame();
+		navigationLabel = new JLabel("Navigation:");
 		frame.add(navigationLabel);
 
-		button=new JButton("Logout");
-		String navigation[]= {" ","Dashboard","Customer Database","Staff Database","Stock and Inventory","Check Out","Sales Reports","Register Customer"};
-		 combobox=new JComboBox<>(navigation);
-		//combobox.setBounds(100, 50, 0, 0);
+		button = new JButton("Logout");
+		String navigation[] = { " ", "Dashboard", "Customer Database", "Staff Database", "Stock and Inventory",
+				"Check Out", "Sales Reports", "Register Customer" };
+		combobox = new JComboBox<>(navigation);
+		// combobox.setBounds(100, 50, 0, 0);
 		combobox.setSelectedIndex(0);
 		frame.add(combobox);
-		label=new JLabel("Sale Reports");
-		dateLabel=new JLabel("Date mm/dd/yyyy");
-		fromLabel=new JLabel("From:");
-		fromTextField=new JTextField();
-		toLabel=new JLabel("To");
-		toTextField=new JTextField();
-		printButton=new JButton("Print");
+		label = new JLabel("Sale Reports");
+		dateLabel = new JLabel("Date mm/dd/yyyy");
+		fromLabel = new JLabel("From:");
+		fromTextField = new JTextField();
+		toLabel = new JLabel("To");
+		toTextField = new JTextField();
+		printButton = new JButton("Print");
 		layout();
+		addActionListener();
 	}
-	public void layout() {
-		frame.setLayout(new GridBagLayout());
-		//navigationLabel.setSize(150,20);
 
-		gbc=new GridBagConstraints();
+	private void layout() {
+		frame.setLayout(new GridBagLayout());
+		// navigationLabel.setSize(150,20);
+
+		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
 		gbc.ipadx = 50;
 		gbc.ipady = 20;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
-        frame.add(navigationLabel,gbc);
+		frame.add(navigationLabel, gbc);
 
-        gbc=new GridBagConstraints();
+		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
 		gbc.ipadx = 40;
 		gbc.ipady = 5;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
-        frame.add(combobox,gbc);
+		frame.add(combobox, gbc);
 
 		gbc = new GridBagConstraints();
 		gbc.gridx = 3;
@@ -74,7 +78,7 @@ public class SalesReport {
 		gbc.ipadx = 20;
 		gbc.ipady = 10;
 		gbc.anchor = GridBagConstraints.EAST;
-		frame.add(button,gbc);
+		frame.add(button, gbc);
 
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
@@ -82,20 +86,20 @@ public class SalesReport {
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.CENTER;
 
-		frame.add(label,gbc);
+		frame.add(label, gbc);
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 2;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.WEST;
-		frame.add(dateLabel,gbc);
+		frame.add(dateLabel, gbc);
 
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 4;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.WEST;
-		frame.add(fromLabel,gbc);
+		frame.add(fromLabel, gbc);
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 4;
@@ -103,14 +107,14 @@ public class SalesReport {
 		gbc.ipadx = 90;
 		gbc.ipady = 5;
 		gbc.anchor = GridBagConstraints.WEST;
-		frame.add(fromTextField,gbc);
+		frame.add(fromTextField, gbc);
 
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 8;
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.WEST;
-		frame.add(toLabel,gbc);
+		frame.add(toLabel, gbc);
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 8;
@@ -118,7 +122,7 @@ public class SalesReport {
 		gbc.ipadx = 90;
 		gbc.ipady = 5;
 		gbc.anchor = GridBagConstraints.WEST;
-		frame.add(toTextField,gbc);
+		frame.add(toTextField, gbc);
 
 		gbc = new GridBagConstraints();
 		gbc.gridx = 2;
@@ -127,14 +131,35 @@ public class SalesReport {
 		gbc.ipadx = 20;
 		gbc.ipady = 10;
 		gbc.anchor = GridBagConstraints.WEST;
-		frame.add(printButton,gbc);
-		//ADD EVERYTHING TO A PANEL AND THEN ADD THE BORDER
-		//frame.getContentPane().add(toTextField, BorderLayout.CENTER);
-		frame.setSize(600,200);
+		frame.add(printButton, gbc);
+		// ADD EVERYTHING TO A PANEL AND THEN ADD THE BORDER
+		// frame.getContentPane().add(toTextField, BorderLayout.CENTER);
+		frame.setSize(600, 200);
 		frame.setVisible(true);
 		frame.isResizable();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+
+	private void addActionListener() {
+		printButton.addActionListener(this);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// look up invoice based on dates
+		if (printButton.getModel().isArmed()) {
+
+			// get the date and split it so we can make a localDate variable
+			String fromDate[] = fromTextField.getText().split("/");
+
+			// make a
+
+			for (String i : fromDate)
+				System.out.println(i);
+		}
+
+	}
+
 	public static void main(String[] args) {
 		new SalesReport();
 
