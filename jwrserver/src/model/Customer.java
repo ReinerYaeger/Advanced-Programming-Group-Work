@@ -18,7 +18,7 @@ public class Customer implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@Column(name = "customerID")
 	private int id;
 
 	@Column(name = "name")
@@ -53,14 +53,13 @@ public class Customer implements Serializable {
 	 * messy values
 	 */
 
-	public Customer(String name, LocalDate dob, String address, Long telephone, String email,
-			LocalDate dateOfMembership) {
+	public Customer(String name, LocalDate dob, String address, Long telephone, String email) {
 		this.name = name;
 		this.dob = dob;
 		this.address = address;
 		this.telephone = telephone;
 		this.email = email;
-		this.dateOfMembership = dateOfMembership;
+		this.dateOfMembership = LocalDate.now();
 		this.dateOfMembershipExp = dateOfMembership.plusYears(4);
 	}
 

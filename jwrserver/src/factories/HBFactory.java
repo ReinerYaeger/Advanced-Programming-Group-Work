@@ -23,7 +23,7 @@ public class HBFactory {
 	public HBFactory() {
 		factory = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Customer.class)
 				.addAnnotatedClass(Department.class).addAnnotatedClass(Inventory.class)
-				.addAnnotatedClass(InvoiceItem.class).addAnnotatedClass(Invoice.class).addAnnotatedClass(Staff.class)
+				.addAnnotatedClass(InvoiceItem.class).addAnnotatedClass(Staff.class).addAnnotatedClass(Invoice.class)
 				.buildSessionFactory();
 
 	}

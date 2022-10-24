@@ -1,7 +1,10 @@
 package driver;
 
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 public class Server {
 
@@ -27,9 +30,10 @@ public class Server {
 				new Thread(handler).start();
 
 			}
-
-		} catch (Exception e) {
-
+		}catch (IOException e) {
+			throw new RuntimeException(e);
+		}catch (Exception e){
+			throw new RuntimeException(e);
 		}
 
 	}

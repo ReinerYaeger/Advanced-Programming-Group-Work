@@ -36,7 +36,7 @@ public class Invoice implements Serializable {
 	private Staff cashier;
 
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-	@JoinColumn(name = "customer")
+	@JoinColumn(name = "customer", nullable = true)
 	private Customer customer;
 
 	/*
@@ -58,8 +58,9 @@ public class Invoice implements Serializable {
 	 * it else if its a random customer with no code it will be empty and no
 	 * discount
 	 */
-	public Invoice(LocalDate billingDate) {
-		this.billingDate = billingDate;
+	public Invoice(Staff staff) {
+		this.billingDate = LocalDate.now();
+		this.cashier = staff;
 	}
 
 	public int getInvoiceNum() {

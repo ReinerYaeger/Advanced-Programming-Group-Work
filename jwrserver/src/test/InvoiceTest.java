@@ -1,7 +1,5 @@
 package test;
 
-import java.time.LocalDate;
-
 import org.hibernate.Session;
 
 import factories.HBFactory;
@@ -16,9 +14,7 @@ public class InvoiceTest {
 
 		Staff staff = sesh.createQuery("from Staff where id = '1'", Staff.class).uniqueResult();
 
-		Invoice invoice = new Invoice(LocalDate.now());
-
-		invoice.setCashier(staff);
+		Invoice invoice = new Invoice(staff);
 
 		sesh.save(invoice);
 		sesh.getTransaction().commit();
@@ -41,5 +37,5 @@ public class InvoiceTest {
  *
  * Also if any customer code is passed in the client it would be passed to the
  * server then queried then added to the invoice
- * 
+ *
  */
