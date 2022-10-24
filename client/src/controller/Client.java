@@ -7,13 +7,15 @@ import java.net.Socket;
 
 import model.Customer;
 import model.Department;
+import model.Inventory;
 import model.Invoice;
+import model.InvoiceItem;
 import model.ServerCommands;
 import model.Staff;
 
 public class Client {
 	private ObjectInputStream objIn;
-	private static ObjectOutputStream objOs;
+	private ObjectOutputStream objOs;
 	private Socket connectionSocket;
 
 	public Client() {
@@ -78,6 +80,32 @@ public class Client {
 		}
 	}
 
+	// send Inventory object to server
+	public void sendInventory(Inventory inventory) {
+		try {
+			objOs.writeObject(inventory);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		} finally {
+			closeConnection();
+		}
+	}
+
+	// send Invoice Item object to server
+	public void sendInventory(InvoiceItem item) {
+		try {
+			objOs.writeObject(item);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		} finally {
+			closeConnection();
+		}
+	}
+
 	// send Staff object to server
 	public void sendStaff(Staff staff) {
 		try {
@@ -112,7 +140,7 @@ public class Client {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	public void sendObject(Object object) {
 		try {
 			objOs.writeObject(object);
@@ -123,17 +151,38 @@ public class Client {
 		}
 	}
 
-	public Object receiveResponse() {
+	public Object receiveInvoiceResponse() {
 		try {
-			System.out.println(objIn.readObject());
+			System.out.println();
 			return objIn.readObject();
 		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} catch (Exception e) {
+			System.out.println("IO");
+			e.printStackTrace();
+
+		} catch (ClassNotFoundException e) {
+			System.out.println("Rec Invoice");
+			e.printStackTrace();
+
+		}
+
+		return null;
+	}
+
+	public Object receiveResponse() {
+		try {
+			System.out.println();
+			return objIn.readObject();
+		} catch (IOException e) {
+			System.out.println("IO");
+			e.printStackTrace();
+
+		} catch (ClassNotFoundException e) {
 			System.out.println("Rec");
 			e.printStackTrace();
-			throw new RuntimeException(e);
+
 		}
+
+		return null;
 	}
 
 	public void sendLoginResponse(String username, String password) {

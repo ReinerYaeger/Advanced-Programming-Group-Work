@@ -4,7 +4,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -14,7 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import controller.Controller;
-import model.Customer;
 import model.Invoice;
 
 public class SalesReport implements ActionListener {
@@ -158,16 +156,17 @@ public class SalesReport implements ActionListener {
 			// get the date and split it so we can make a localDate variable
 			String[] fromDateText = fromTextField.getText().split("/");
 			String[] toDateText = toTextField.getText().split("/");
-			
-			LocalDate fromDate =  LocalDate.of(Integer.valueOf(fromDateText[2]), Integer.valueOf(fromDateText[0]), Integer.valueOf(fromDateText[1]));
-			LocalDate toDate =  LocalDate.of(Integer.valueOf(toDateText[2]), Integer.valueOf(toDateText[0]), Integer.valueOf(toDateText[1]));
-		
-			List<Invoice> invoices = new Controller().searchSalesReport(fromDate, toDate);
-			
+
+			String fromDateString = fromDateText[2] + "-" + fromDateText[0] + "-" + fromDateText[1];
+			String toDateString = toDateText[2] + "-" + toDateText[0] + "-" + toDateText[1];
+
+			List<Invoice> invoices = new Controller().searchSalesReport(fromDateString, toDateString);
+
+			System.out.println("In Sales Report");
 			System.out.println(invoices);
-			
+
 			System.out.println("Printed");
-		
+
 		}
 
 	}

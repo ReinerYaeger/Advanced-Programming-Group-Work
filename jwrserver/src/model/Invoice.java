@@ -36,7 +36,7 @@ public class Invoice implements Serializable {
 	private Staff cashier;
 
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-	@JoinColumn(name = "customer")
+	@JoinColumn(name = "customer", nullable = true)
 	private Customer customer;
 
 	/*

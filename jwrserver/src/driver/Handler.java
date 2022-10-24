@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.time.LocalDate;
 
 import controller.CustomerContoller;
 import controller.InvoiceController;
@@ -45,12 +44,17 @@ public class Handler implements Runnable {
 					if (sc == ServerCommands.GETCUSTOMERS) {
 						objOut.writeObject(new CustomerContoller().getAllCustomers());
 					}
-					if(sc == ServerCommands.GETSALESREPORT) {
-						LocalDate fromDate = (LocalDate) objIn.readObject();
-						LocalDate toDate = (LocalDate) objIn.readObject();
-							
+					if (sc == ServerCommands.GETSALESREPORT) {
+						String fromDate = (String) objIn.readObject();
+						String toDate = (String) objIn.readObject();
+
 						objOut.writeObject(new InvoiceController().getInvoiceReport(fromDate, toDate));
-					
+
+						// List<Invoice> invoices = new InvoiceController().getInvoiceReport(fromDate,
+						// toDate);
+
+						// objOut.writeObject(invoices);
+
 					}
 
 				}

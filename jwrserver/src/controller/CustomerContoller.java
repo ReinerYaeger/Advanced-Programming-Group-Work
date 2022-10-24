@@ -22,6 +22,8 @@ public class CustomerContoller {
 
 		List<Customer> allCustomer = session.createQuery("from Customer", Customer.class).getResultList();
 
+		// System.out.println(allCustomer);
+
 		session.close();
 
 		return allCustomer;

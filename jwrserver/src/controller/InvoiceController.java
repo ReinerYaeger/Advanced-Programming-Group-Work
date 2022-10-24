@@ -1,9 +1,5 @@
 package controller;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -27,12 +23,13 @@ public class InvoiceController {
 	/*
 	 * When the client wants to start a new invoice
 	 */
-	public Invoice createInvoice(Staff staff) {
+	public Invoice createInvoice() {
 
 		Invoice invoice = null;
 
 		try {
 			session.beginTransaction();
+			Staff staff = session.createQuery("From Staff where id = 1", Staff.class).uniqueResult();
 			invoice = new Invoice(staff);
 			session.save(invoice);
 			session.getTransaction().commit();
@@ -40,11 +37,13 @@ public class InvoiceController {
 		} catch (HibernateException e) {
 			System.out.println("Error with session, Invoice Controller");
 			e.printStackTrace();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
+
+		System.out.println(invoice);
 
 		return invoice;
 	}
@@ -100,22 +99,24 @@ public class InvoiceController {
 			session.close();
 		}
 
+		System.out.println(allInvoice);
+
 		return allInvoice;
 	}
-	
-	public List<Invoice> getInvoiceReport(LocalDate fromDate, LocalDate toDate){
-		
-		List<Invoice> allInvoice = null;
 
+	public List<Invoice> getInvoiceReport(String fromDate, String toDate) {
+		List<Invoice> allInvoice = null;
 		try {
 			session.beginTransaction();
-			
 
-			allInvoice = session.createQuery("From Invoice where billingDate >= '" + fromDate.toString() +"' AND billingDate <= '" + toDate.toString() + "'", Invoice.class).getResultList();
+			allInvoice = session.createQuery(
+					"From Invoice where billingDate >= '" + fromDate + "' AND billingDate <= '" + toDate + "'",
+					Invoice.class).getResultList();
 
-			
-			//System.out.println(allInvoice);
-			
+			session.close();
+
+			return allInvoice;
+
 		} catch (HibernateException e) {
 			System.out.println("Error with session, Invoice Controller");
 			e.printStackTrace();
@@ -123,10 +124,7 @@ public class InvoiceController {
 			session.close();
 		}
 
-		
-		
-		
-		return allInvoice;
+		return null;
 	}
 
 }

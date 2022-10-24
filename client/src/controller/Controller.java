@@ -1,6 +1,5 @@
 package controller;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import model.Customer;
@@ -35,32 +34,31 @@ public class Controller {
 		client.sendCommand(command);
 
 		List<Customer> allCustomers = (List<Customer>) client.receiveResponse();
-		
+
 		System.out.println("Got the customers");
-		
-		client.closeConnection();
+
+		// client.closeConnection();
 
 		return allCustomers;
 
 	}
-	
-	
+
 	/*
-	 * Returns a list of sales report based on
-	 * the given dates
+	 * Returns a list of sales report based on the given dates
 	 */
-	public List<Invoice> searchSalesReport(LocalDate fromDate, LocalDate toDate) {
-		
-		ServerCommands command= ServerCommands.GETSALESREPORT;
-		
+	public List<Invoice> searchSalesReport(String fromDate, String toDate) {
+
+		ServerCommands command = ServerCommands.GETSALESREPORT;
+
 		client.sendCommand(command);
 		client.sendObject(fromDate);
 		client.sendObject(toDate);
-		
-		List<Invoice> salesReport = (List<Invoice>) client.receiveResponse();
-		
-		return salesReport;
-		
+
+		List<Invoice> invoiceList = (List<Invoice>) client.receiveResponse();
+		System.out.println("In Controller ");
+
+		return invoiceList;
+
 	}
 
 }
