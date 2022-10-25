@@ -1,8 +1,9 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -17,7 +18,7 @@ public class SalesReport {
 	private JLabel navigationLabel;
 	private GridBagConstraints gbc;
 	private JComboBox<String> combobox;
-	private JButton button;
+	private JButton logoutBtn;
 	private JLabel label;
 	private JLabel dateLabel;
 	private JLabel fromLabel;
@@ -30,7 +31,7 @@ public class SalesReport {
 		navigationLabel=new JLabel("Navigation:");
 		frame.add(navigationLabel);
 
-		button=new JButton("Logout");
+		logoutBtn =new JButton("Logout");
 		String navigation[]= {" ","Dashboard","Customer Database","Staff Database","Stock and Inventory","Check Out","Sales Reports","Register Customer"};
 		 combobox=new JComboBox<>(navigation);
 		//combobox.setBounds(100, 50, 0, 0);
@@ -74,7 +75,12 @@ public class SalesReport {
 		gbc.ipadx = 20;
 		gbc.ipady = 10;
 		gbc.anchor = GridBagConstraints.EAST;
-		frame.add(button,gbc);
+
+		logoutBtn.addActionListener(e->{
+			frame.dispose();
+			new LoginPage();
+		});
+		frame.add(logoutBtn, gbc);
 
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
@@ -134,6 +140,14 @@ public class SalesReport {
 		frame.setVisible(true);
 		frame.isResizable();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		logoutBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new LoginPage();
+            }
+        });
 	}
 	public static void main(String[] args) {
 		new SalesReport();

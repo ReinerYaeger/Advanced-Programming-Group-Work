@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,7 +24,7 @@ public class DashBoard {
     private JButton checkOutButton;
     private JButton salesReportButton;
     private JButton registerCustomerButton;
-    private JButton logoutButton;
+    private JButton logoutBtn;
 
     //Create an object of the GridBagConstraints
     private GridBagConstraints gbc;
@@ -33,7 +35,7 @@ public class DashBoard {
         frame = new JFrame("DashBoard");
         dashBoardLabel = new JLabel("DashBoard");
         dashBoardPanel = new JPanel();
-        logoutButton = new JButton("Logout");
+        logoutBtn = new JButton("Logout");
         customerDatabaseButton = new JButton("Customer Database");
         staffDatabaseButton = new JButton("Staff Database");
         stockAndIventoryDatabaseButton = new JButton("Stock and Inventory");
@@ -67,7 +69,7 @@ public class DashBoard {
       //Set the external padding 
         gbc.insets = new Insets(10, 10, 11, 0);
         //Add button to frame
-        frame.add(logoutButton, gbc);
+        frame.add(logoutBtn, gbc);
 
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -124,6 +126,14 @@ public class DashBoard {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       //Set frame to be visible
         frame.setVisible(true);
+
+        logoutBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new LoginPage();
+            }
+        });
 
     }
     public static void main(String[] args) {

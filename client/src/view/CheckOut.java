@@ -2,6 +2,8 @@ package view;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -33,7 +35,7 @@ public class CheckOut {
 	private JRadioButton noMemberRadioButton;
 	private ButtonGroup buttonGroup;
 	private GridBagConstraints gbc;
-	private JButton button;
+	private JButton logoutBtn;
 	private JLabel navigationLabel;
 	private JComboBox<String> combobox;
 	public CheckOut() {
@@ -42,7 +44,7 @@ public class CheckOut {
     navigationLabel=new JLabel("Navigation:");
 
 
-button=new JButton("Logout");
+logoutBtn =new JButton("Logout");
 String navigation[]= {" ","Dashboard","Customer Database","Staff Database","Stock and Inventory","Check Out","Sales Reports","Register Customer"};
  combobox=new JComboBox<>(navigation);
  
@@ -109,7 +111,7 @@ String navigation[]= {" ","Dashboard","Customer Database","Staff Database","Stoc
 		gbc.ipadx = 20;
 		gbc.ipady = 10;
 		gbc.anchor = GridBagConstraints.EAST;
-		frame.add(button,gbc);
+		frame.add(logoutBtn, gbc);
 		gbc=new GridBagConstraints();
 		gbc.gridx = 3;
 		gbc.gridy = 1;
@@ -278,6 +280,14 @@ String navigation[]= {" ","Dashboard","Customer Database","Staff Database","Stoc
 		frame.setResizable(false);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		logoutBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new LoginPage();
+            }
+        });
 		
 	}
 	

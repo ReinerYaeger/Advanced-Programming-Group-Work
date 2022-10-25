@@ -89,6 +89,14 @@ public class Database extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        logoutBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new LoginPage();
+            }
+        });
+
 /*        combobox.addActionListener(e1 -> {
             @Override
             public void actionPerformed(ActionEvent e) {

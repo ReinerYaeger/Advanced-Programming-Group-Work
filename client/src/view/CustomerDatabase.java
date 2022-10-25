@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -24,7 +26,7 @@ public class CustomerDatabase extends JPanel{
 	private JFrame frame;
 	private JLabel customerDatabaseLabel,searchLabel,navigationLabel;
 	private TextField searchTextField;
-	private JButton logoutButton;	
+	private JButton logoutBtn;
 	private JPanel searchTextFieldPanel;
 	private JPanel searchLabelPanel;
 	private JPanel tablePanel;
@@ -45,7 +47,7 @@ public class CustomerDatabase extends JPanel{
 		customerDatabasePanel = new JPanel();
 		searchTextFieldPanel = new JPanel();
 		searchLabelPanel = new JPanel();
-		logoutButton = new JButton("Logout");
+		logoutBtn = new JButton("Logout");
 		navigationLabel = new JLabel("Navigation");
 		customerDatabaseLabel = new JLabel("Customer Database");
 		searchTextField = new TextField(40);
@@ -92,7 +94,7 @@ public class CustomerDatabase extends JPanel{
 		//Add combobox to panel
 		navigationPanel.add(combobox);
 		//Add button to panel
-		logoutPanel.add(logoutButton);
+		logoutPanel.add(logoutBtn);
 		//Add panel to panel using borderlayout
 		panel1.add(navigationPanel,BorderLayout.WEST);
 		panel1.add(logoutPanel,BorderLayout.EAST);
@@ -121,6 +123,14 @@ public class CustomerDatabase extends JPanel{
 		//Set frame to be visible
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		logoutBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new LoginPage();
+            }
+        });
 	}
 	public static void main(String[] args) {
 		
