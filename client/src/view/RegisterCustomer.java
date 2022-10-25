@@ -9,13 +9,9 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.*;
 
 public class RegisterCustomer {
    //Create variables
@@ -171,14 +167,28 @@ private void layoutComponents() {
             String name = firstNameTextField.getText() + " " + lastNameTextField.getText();
             String lastName = lastNameTextField.getText();
 
-            //Change Here
-            //LocalDate dateOfBirth = dateOfBirthTextField.getText();
+            int year = (int) yearBox.getSelectedItem();
+            int month = (int) monthBox.getSelectedItem();
+            int day = (int) dayBox.getSelectedItem();
+            LocalDate dateOfBirth = LocalDate.of(year, month, day);
+
             String address = addressTextField.getText();
-            Long telephone = Long.parseLong(telephoneTextField.getText().toString());
+
+
+            //Validate phone number
+
+            String regex =  "^\\d{10}$";
+            Pattern regPattern = Pattern.compile(regex);
+            Matcher matcher = regPattern.matcher(telephoneTextField.getText());
+            if (!matcher.matches()) {
+                JOptionPane.showMessageDialog(null, "Invalid phone number");
+                return;
+            }
+            Long telephone = Long.parseLong(telephoneTextField.getText());
             String email = emailTextField.getText();
 
-            new Controller().registerCustomer(new Customer(name, LocalDate.now() , address, telephone, email));
-
+            new Controller().registerCustomer(new Customer(name, dateOfBirth , address, telephone, email));
+            JOptionPane.showMessageDialog(null, "Customer registered successfully");
 
         });
 
