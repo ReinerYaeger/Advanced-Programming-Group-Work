@@ -1,12 +1,13 @@
 package test;
 
+import Log.LoggingService;
 import org.hibernate.Session;
 
 import factories.HBFactory;
 import model.Invoice;
 import model.Staff;
 
-public class InvoiceTest {
+public class InvoiceTest implements LoggingService {
 	public static void main(String[] args) {
 		Session sesh = new HBFactory().getSession();
 
@@ -19,7 +20,7 @@ public class InvoiceTest {
 		sesh.save(invoice);
 		sesh.getTransaction().commit();
 
-		System.out.println("Invoice Saved\n" + invoice);
+		log.info("Invoice Saved\n" + invoice);
 	}
 }
 /*

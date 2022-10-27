@@ -1,5 +1,7 @@
 package view;
 
+import controller.Controller;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -96,6 +98,11 @@ public class Database extends JFrame implements ActionListener {
                 new LoginPage();
             }
         });
+
+
+        if(new Controller().navigationController(combobox.getSelectedItem().toString()) != null){
+            frame.dispose();
+        }
 
 /*        combobox.addActionListener(e1 -> {
             @Override

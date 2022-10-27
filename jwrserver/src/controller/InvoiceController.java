@@ -2,6 +2,7 @@ package controller;
 
 import java.util.List;
 
+import Log.LoggingService;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
@@ -11,13 +12,14 @@ import model.Invoice;
 import model.InvoiceItem;
 import model.Staff;
 
-public class InvoiceController {
+public class InvoiceController implements LoggingService {
 
 	private Session session;
 
 	public InvoiceController() {
 		new HBFactory();
 		session = HBFactory.getSession();
+
 	}
 
 	/*
@@ -32,13 +34,15 @@ public class InvoiceController {
 			invoice = new Invoice(staff);
 			session.save(invoice);
 			session.getTransaction().commit();
+			log.info("Invoice Created");
 
 		} catch (HibernateException e) {
-			System.out.println("Error with session, Invoice Controller");
+			log.error("Error with session, Invoice Controller :" + e);
 			e.printStackTrace();
 		}catch (Exception e) {
-			e.printStackTrace();
+			log.error("Error with session, Invoice Controller :" + e);
 		} finally {
+			log.info("Closing session");
 			session.close();
 		}
 

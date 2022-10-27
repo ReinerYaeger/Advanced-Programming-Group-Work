@@ -2,13 +2,14 @@ package test;
 
 import java.time.LocalDate;
 
+import Log.LoggingService;
 import org.hibernate.Session;
 
 import factories.HBFactory;
 import model.Department;
 import model.Staff;
 
-public class StaffTest {
+public class StaffTest implements LoggingService {
 
 	public static void main(String[] args) {
 
@@ -26,7 +27,7 @@ public class StaffTest {
 		sesh.save(staff);
 		sesh.getTransaction().commit();
 
-		System.out.println("Staff Saved\n" + staff);
+		log.info("Staff Saved\n" + staff);
 	}
 
 }

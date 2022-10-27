@@ -1,11 +1,12 @@
 package test;
 
+import Log.LoggingService;
 import org.hibernate.Session;
 
 import factories.HBFactory;
 import model.Inventory;
 
-public class InventoryTest {
+public class InventoryTest implements LoggingService {
 
 	public static void main(String[] args) {
 		Session sesh = new HBFactory().getSession();
@@ -17,7 +18,7 @@ public class InventoryTest {
 		sesh.save(inventory);
 		sesh.getTransaction().commit();
 		sesh.close();
-		System.out.println("Inventory Saved\n" + inventory);
+		log.info("Inventory Saved\n" + inventory);
 
 	}
 

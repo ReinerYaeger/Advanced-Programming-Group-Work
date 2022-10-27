@@ -93,6 +93,9 @@ public class LoginPage {
             Controller controller = new Controller();
             controller.loginStaff(username, password);
 
+            frame.dispose();
+            new DashBoard();
+
         });
         //Set color of frame border
         frame.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLUE));

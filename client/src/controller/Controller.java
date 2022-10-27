@@ -1,6 +1,7 @@
 package controller;
 
 import model.*;
+import view.DashBoard;
 
 public class Controller {
 
@@ -21,6 +22,28 @@ public class Controller {
         client.sendStaff(staff);
 
     }
+
+    public Object navigationController(String viewName){
+
+        if(viewName.equals("Dashboard")){
+            return new DashBoard();
+        } else if(viewName.equals("Customer Database")){
+            // TODO
+        } else if(viewName.equals("Staff Database")){
+            // TODO
+        } else if(viewName.equals("Stock and Inventory")){
+            // TODO
+        } else if(viewName.equals("Check Out")){
+            // TODO
+        } else if(viewName.equals("Sales Reports")){
+            // TODO
+        } else if(viewName.equals("Register Customer")){
+            // TODO
+        }
+        return null;
+
+    }
+
 
 
 

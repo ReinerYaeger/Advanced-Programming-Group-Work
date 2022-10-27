@@ -1,5 +1,6 @@
 package factories;
 
+import Log.LoggingService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -16,7 +17,7 @@ import model.Staff;
  * hibernate connects to the database when called
  * and returns a session
  */
-public class HBFactory {
+public class HBFactory implements LoggingService {
 
 	public static SessionFactory factory;
 
@@ -25,6 +26,8 @@ public class HBFactory {
 				.addAnnotatedClass(Department.class).addAnnotatedClass(Inventory.class)
 				.addAnnotatedClass(InvoiceItem.class).addAnnotatedClass(Invoice.class).addAnnotatedClass(Staff.class)
 				.buildSessionFactory();
+
+		log.info("Factory Created");
 
 	}
 

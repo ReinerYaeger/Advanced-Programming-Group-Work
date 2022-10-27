@@ -1,5 +1,6 @@
 package test;
 
+import Log.LoggingService;
 import org.hibernate.Session;
 
 import factories.HBFactory;
@@ -7,7 +8,7 @@ import model.Inventory;
 import model.Invoice;
 import model.InvoiceItem;
 
-public class InvoiceItemTest {
+public class InvoiceItemTest implements LoggingService {
 	public static void main(String[] args) {
 		Session sesh = new HBFactory().getSession();
 
@@ -26,8 +27,8 @@ public class InvoiceItemTest {
 
 		sesh.getTransaction().commit();
 
-		System.out.println("Invoice Item Saved\n" + invitem);
-		System.out.println("\nThe invoice is now: \n" + invoice);
+		log.info("Invoice Item Saved\n" + invitem);
+		log.info("\nThe invoice is now: \n" + invoice);
 	}
 }
 /*

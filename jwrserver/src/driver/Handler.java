@@ -3,8 +3,11 @@ package driver;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 
-public class Handler implements Runnable {
+import Log.*;
+
+public class Handler implements Runnable, LoggingService {
 
 	private Socket socket;
 	private ObjectOutputStream objOut;
@@ -15,7 +18,7 @@ public class Handler implements Runnable {
 		try {
 			this.socket = socket;
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Error in Handler constructor: " + e);
 		}
 	}
 

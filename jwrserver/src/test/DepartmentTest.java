@@ -1,11 +1,12 @@
 package test;
 
+import Log.LoggingService;
 import org.hibernate.Session;
 
 import factories.HBFactory;
 import model.Department;
 
-public class DepartmentTest {
+public class DepartmentTest implements LoggingService {
 
 	public static void main(String[] args) {
 		new HBFactory();
@@ -18,7 +19,7 @@ public class DepartmentTest {
 		sesh.save(dep);
 		sesh.getTransaction().commit();
 
-		System.out.println("Dep ID: " + dep.getName());
+		log.info("Dep ID: " + dep.getName());
 
 	}
 
