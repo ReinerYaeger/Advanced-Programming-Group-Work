@@ -25,12 +25,13 @@ public class InvoiceController implements LoggingService {
 	/*
 	 * When the client wants to start a new invoice
 	 */
-	public Invoice createInvoice(Staff staff) {
+	public Invoice createInvoice() {
 
 		Invoice invoice = null;
 
 		try {
 			session.beginTransaction();
+			Staff staff = session.createQuery("From Staff where id = 1", Staff.class).uniqueResult();
 			invoice = new Invoice(staff);
 			session.save(invoice);
 			session.getTransaction().commit();
@@ -45,6 +46,8 @@ public class InvoiceController implements LoggingService {
 			log.info("Closing session");
 			session.close();
 		}
+
+		System.out.println(invoice);
 
 		return invoice;
 	}
@@ -100,7 +103,32 @@ public class InvoiceController implements LoggingService {
 			session.close();
 		}
 
+		System.out.println(allInvoice);
+
 		return allInvoice;
+	}
+
+	public List<Invoice> getInvoiceReport(String fromDate, String toDate) {
+		List<Invoice> allInvoice = null;
+		try {
+			session.beginTransaction();
+
+			allInvoice = session.createQuery(
+					"From Invoice where billingDate >= '" + fromDate + "' AND billingDate <= '" + toDate + "'",
+					Invoice.class).getResultList();
+
+			session.close();
+
+			return allInvoice;
+
+		} catch (HibernateException e) {
+			System.out.println("Error with session, Invoice Controller");
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return null;
 	}
 
 }

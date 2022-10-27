@@ -27,7 +27,7 @@ public class Staff implements Serializable {
 	}
 
 	/*
-	 * The department has to be set by retrievnig it from the database then adding
+	 * The department has to be set by retrievnig it fromt he database then adding
 	 * it using set method before saving to db
 	 */
 	public Staff(String name, LocalDate dob, String address, Long telephone, String email, String type) {

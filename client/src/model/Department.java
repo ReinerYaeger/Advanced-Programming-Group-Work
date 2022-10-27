@@ -7,9 +7,11 @@ public class Department implements Serializable {
 	private static final long serialVersionUID = 4801957816410214976L;
 
 	// primary key
+
 	private String departmentCode;
 
 	// Unique value
+
 	private String name;
 
 	public Department() {

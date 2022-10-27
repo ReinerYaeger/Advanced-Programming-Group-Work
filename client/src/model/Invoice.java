@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.JoinColumn;
+
 public class Invoice implements Serializable {
 
 	private static final long serialVersionUID = 4801957816410214976L;
@@ -13,6 +15,7 @@ public class Invoice implements Serializable {
 
 	private LocalDate billingDate;
 
+	@JoinColumn(name = "cashier")
 	private Staff cashier;
 
 	private Customer customer;
