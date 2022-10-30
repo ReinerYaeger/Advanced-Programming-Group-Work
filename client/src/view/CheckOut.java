@@ -1,9 +1,13 @@
 package view;
+import controller.Controller;
+
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.*;
 
@@ -288,6 +292,43 @@ String navigation[]= {" ","Dashboard","Customer Database","Staff Database","Stoc
                 new LoginPage();
             }
         });
+
+		noMemberRadioButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (noMemberRadioButton.isSelected()) {
+					int option = JOptionPane.showConfirmDialog(null,
+															   "Do you want a discount",
+															   "Want to become a member?",
+															   JOptionPane.YES_NO_OPTION);
+
+					if (option == JOptionPane.YES_OPTION) {
+						Controller cont = new Controller();
+
+						new RegisterCustomer();
+					} else if (option == JOptionPane.NO_OPTION) {
+						//TODO Validate input and add to databse the new customer and serch data base if cusomter is present
+						JOptionPane.showMessageDialog(null,
+													  "You can still become a member later");
+					}
+
+				} else if (yesMemberRadioButton.isSelected()) {
+					String value = JOptionPane.showInputDialog(null,
+												  "Please enter your phone number", JOptionPane.OK_OPTION);
+
+					String regex =  "^\\d{10}$";
+					Pattern regPattern = Pattern.compile(regex);
+					Matcher matcher = regPattern.matcher(value);
+					if (!matcher.matches()) {
+						JOptionPane.showMessageDialog(null, "Invalid phone number");
+						return;
+            		}else{
+						Controller cont = new Controller();
+						cont.verifyCustomer(value);
+					}
+				}
+			}
+		});
 		
 	}
 	

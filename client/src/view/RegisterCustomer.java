@@ -174,7 +174,6 @@ private void layoutComponents() {
 
             String address = addressTextField.getText();
 
-
             //Validate phone number
 
             String regex =  "^\\d{10}$";
@@ -184,12 +183,14 @@ private void layoutComponents() {
                 JOptionPane.showMessageDialog(null, "Invalid phone number");
                 return;
             }
+
+            //Change to String
             Long telephone = Long.parseLong(telephoneTextField.getText());
             String email = emailTextField.getText();
 
             new Controller().registerCustomer(new Customer(name, dateOfBirth , address, telephone, email));
             JOptionPane.showMessageDialog(null, "Customer registered successfully");
-
+            frame.dispose();
         });
 
        //Set color of frame border

@@ -3,14 +3,18 @@ package controller;
 import model.*;
 import view.DashBoard;
 
+import java.util.List;
+
 public class Controller {
 
+    Client client;
     public Controller(){
-
+        client = new Client();
     }
 
     public void registerCustomer(Customer customer){
-        Client client = new Client();
+
+        client.sendCommand(ServerCommands.REGISTERCUSTOMER);
         client.sendCustomer(customer);
     }
 
@@ -44,7 +48,42 @@ public class Controller {
 
     }
 
+    public List<Customer> getAllCustomers() {
+		ServerCommands command = ServerCommands.GETCUSTOMERS;
 
+		client.sendCommand(command);
 
+		List<Customer> allCustomers = (List<Customer>) client.receiveResponse();
+
+		System.out.println("Got the customers");
+
+		//client.closeConnection();
+
+		return allCustomers;
+
+	}
+
+	/*
+	 * Returns a list of sales report based on the given dates
+	 */
+	public List<Invoice> searchSalesReport(String fromDate, String toDate) {
+
+		ServerCommands command = ServerCommands.GETSALESREPORT;
+
+		client.sendCommand(command);
+		client.sendObject(fromDate);
+		client.sendObject(toDate);
+
+		List<Invoice> invoiceList = (List<Invoice>) client.receiveResponse();
+		System.out.println("In Controller ");
+
+		return invoiceList;
+
+	}
+
+    public void verifyCustomer(String value){
+        client.sendCommand(ServerCommands.VERIFYCUSTOMER);
+        client.send(value);
+    }
 
 }

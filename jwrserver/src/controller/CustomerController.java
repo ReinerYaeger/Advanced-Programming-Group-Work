@@ -7,11 +7,10 @@ import org.hibernate.Session;
 import factories.HBFactory;
 import model.Customer;
 
-public class CustomerContoller {
-
+public class CustomerController {
 	private Session session;
 
-	public CustomerContoller() {
+	public CustomerController() {
 		new HBFactory();
 		session = HBFactory.getSession();
 	}
@@ -27,6 +26,12 @@ public class CustomerContoller {
 		session.close();
 
 		return allCustomer;
+	}
+
+	public boolean verifyCustomer(String telephone){
+		session.beginTransaction();
+
+		//String isTrue = session.createQuery("from Customer where telephone = "+telephone+"", Customer.class).uniqueResult();
 	}
 
 }

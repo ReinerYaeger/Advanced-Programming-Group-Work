@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Customer;
 import model.Department;
@@ -206,6 +208,32 @@ public class Client {
 			throw new RuntimeException(e);
 		}
 		return invoice;
+	}
+
+	//get customer from server
+	public List<Customer> requestCustomer() {
+		List<Customer> customer = new ArrayList<Customer>();
+		try {
+			customer.add((Customer) objIn.readObject());
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		return customer;
+	}
+
+	public boolean checkCustomerExist(String number){
+		boolean isTrue = false;
+		try {
+			objOs.writeObject(number);
+			isTrue = (Boolean)objIn.readObject();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		return isTrue;
 	}
 
 }

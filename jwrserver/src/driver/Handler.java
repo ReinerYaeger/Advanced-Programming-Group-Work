@@ -4,12 +4,16 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.net.SocketException;
 
 import Log.*;
-import controller.CustomerContoller;
+import controller.CustomerController;
 import controller.InvoiceController;
+import factories.HBFactory;
+import model.Customer;
 import model.ServerCommands;
+import org.hibernate.Session;
+
+import javax.swing.*;
 
 public class Handler implements Runnable, LoggingService {
 
@@ -29,6 +33,7 @@ public class Handler implements Runnable, LoggingService {
 	@Override
 	public void run() {
 
+		log.info("Handler has started");
 		System.out.println("Running");
 		try {
 			System.out.println("Assigning");
@@ -39,12 +44,13 @@ public class Handler implements Runnable, LoggingService {
 
 			try {
 				while (true) {
-					System.out.println("WHile Loop");
+					log.info("Waiting for command");
+					System.out.println("While Loop");
 					ServerCommands sc = (ServerCommands) objIn.readObject();
-					System.out.println("Client Called Thread");
+					log.info("Client Called Thread");
 
 					if (sc == ServerCommands.GETCUSTOMERS) {
-						objOut.writeObject(new CustomerContoller().getAllCustomers());
+						objOut.writeObject(new CustomerController().getAllCustomers());
 					}
 					if (sc == ServerCommands.GETSALESREPORT) {
 						String fromDate = (String) objIn.readObject();
@@ -56,18 +62,34 @@ public class Handler implements Runnable, LoggingService {
 						// toDate);
 
 						// objOut.writeObject(invoices);
+					}
+					if(sc == ServerCommands.REGISTERCUSTOMER){
+						Customer customer = (Customer) objIn.readObject();
 
+						Session sesh = new HBFactory().getSession();
+
+						sesh.beginTransaction();
+						sesh.save(customer);
+						sesh.getTransaction().commit();
+						log.info("Customer Saved\n" + customer);
 					}
 
+					if(sc == ServerCommands.VERIFYCUSTOMER){
+						String telephone = (String) objIn.readObject();
+
+					}
 				}
 			} catch (IOException e) {
 				socket.close();
-				System.out.println("Shutting Down");
+				JOptionPane.showMessageDialog(null, "Client Disconnected: " + e);
+				log.error("Client Disconnected: " + e);
+				log.error("Shutting Down");
 				e.printStackTrace();
 			}
 
 		} catch (Exception e) {
-			System.out.println("Some exception found server");
+			JOptionPane.showMessageDialog(null, "Error in Handler: " + e);
+			log.error("Error in Handler run: " + e);
 			e.printStackTrace();
 		}
 
