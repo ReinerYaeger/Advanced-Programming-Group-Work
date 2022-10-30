@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-public class Database extends JFrame implements ActionListener {
+public class StaffDatabase extends JFrame  {
 
 
     private static final long serialVersionUID = 1L;
@@ -35,7 +35,7 @@ public class Database extends JFrame implements ActionListener {
     private final JButton logoutBtn;
     private final JLabel headerLabel;
 
-    Database( ) {
+    StaffDatabase( ) {
         frame = new JFrame();
         dashboard = new JPanel();
         management = new JPanel();
@@ -47,10 +47,10 @@ public class Database extends JFrame implements ActionListener {
         navigationLabel = new JLabel("Navigation:");
 
         logoutBtn = new JButton("Logout");
-        String[] navigation = {" ", "Dashboard", "Customer Database", "Staff Database", "Stock and Inventory", "Check Out", "Sales Reports", "Register Customer"};
+        String[] navigation = {" ", "Dashboard", "Customer StaffDatabase", "Staff StaffDatabase", "Stock and Inventory", "Check Out", "Sales Reports", "Register Customer"};
         combobox = new JComboBox<>(navigation);
         combobox.setBounds(100, 50, 150, 20);
-        headerLabel = new JLabel("Staff Database");
+        headerLabel = new JLabel("Staff StaffDatabase");
         navigationPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         logoutPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         headerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -84,12 +84,6 @@ public class Database extends JFrame implements ActionListener {
         frame.setVisible(true);
         //frame.isResizable();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
-
-
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
 
         logoutBtn.addActionListener(new ActionListener() {
             @Override
@@ -98,51 +92,10 @@ public class Database extends JFrame implements ActionListener {
                 new LoginPage();
             }
         });
-
-
-        if(new Controller().navigationController(combobox.getSelectedItem().toString()) != null){
-            frame.dispose();
-        }
-
-/*        combobox.addActionListener(e1 -> {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String selected = combobox.getSelectedItem().toString();
-                if (selected.equals("Dashboard")) {
-                    tab.setSelectedIndex(0);
-                    new DashBoard();
-                    System.out.println("Dashboard");
-                } else if (selected.equals("Customer Database")) {
-                    tab.setSelectedIndex(1);
-                    new CustomerDatabase();
-                    System.out.println("Customer Database");
-                } else if (selected.equals("Staff Database")) {
-                    tab.setSelectedIndex(2);
-                } else if (selected.equals("Stock and Inventory")) {
-                    tab.setSelectedIndex(3);
-                    //new Stock();
-                    System.out.println("Stock and Inventory");
-                } else if (selected.equals("Check Out")) {
-                    tab.setSelectedIndex(4);
-                    new CheckOut();
-                    System.out.println("Check Out");
-                } else if (selected.equals("Sales Reports")) {
-                    tab.setSelectedIndex(5);
-                    new SalesReport();
-                    System.out.println("Sales Reports");
-                } else if (selected.equals("Register Customer")) {
-                    tab.setSelectedIndex(6);
-                    new RegisterCustomer();
-                    System.out.println("Register Customer");
-                }
-            }
-        });*/
-
-
-
     }
 
+
     public static void main(String[] args) {
-        new Database();
+        new StaffDatabase();
     }
 }

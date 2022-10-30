@@ -11,7 +11,7 @@ public class Main implements LoggingService {
 		try {
 
 			log.info("Creating a new Server");
-			new Server(new ServerSocket(8080)).startServer();
+			new Server(new ServerSocket(1234)).startServer();
 
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Error in Main: " + e);

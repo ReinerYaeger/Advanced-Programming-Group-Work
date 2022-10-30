@@ -9,6 +9,10 @@ import java.awt.LayoutManager;
 import java.awt.TextField;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Vector;
+
+import controller.Controller;
+import model.*;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -46,7 +50,7 @@ public class CustomerDatabase extends JPanel{
 
 	public CustomerDatabase() {
 		//Initialize the variables
-		frame = new JFrame("Customer Database");
+		frame = new JFrame("Customer StaffDatabase");
 		navigationPanel = new JPanel();
 		logoutPanel = new JPanel();
 		customerDatabasePanel = new JPanel();
@@ -54,7 +58,7 @@ public class CustomerDatabase extends JPanel{
 		searchLabelPanel = new JPanel();
 		logoutButton = new JButton("Logout");
 		navigationLabel = new JLabel("Navigation");
-		customerDatabaseLabel = new JLabel("Customer Database");
+		customerDatabaseLabel = new JLabel("Customer StaffDatabase");
 		searchTextField = new TextField(40);
 		searchLabel = new JLabel("Search");
 		panel1 = new JPanel(new BorderLayout(0,0));
@@ -62,7 +66,7 @@ public class CustomerDatabase extends JPanel{
 		tablePanel = new JPanel();
 
 		//Create Array of string
-		String navigation[]= {" ","Dashboard","Customer Database","Staff Database","Stock and Inventory","Check Out","Sales Reports","Register Customer"};
+		String navigation[]= {" ","Dashboard","Customer StaffDatabase","Staff StaffDatabase","Stock and Inventory","Check Out","Sales Reports","Register Customer"};
 		combobox=new JComboBox<>(navigation);
 		//Set position on the frame
 		combobox.setBounds(100, 50, 150, 20);
@@ -148,7 +152,7 @@ public class CustomerDatabase extends JPanel{
 				items.add(customer.getDateOfMembership());
 				items.add(customer.getDateOfMembershipExp());
 				
-				tableItems.addRow(items);
+				//tableItems.addRow(items);
 			});
 			
 		}

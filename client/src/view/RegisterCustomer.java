@@ -183,12 +183,9 @@ private void layoutComponents() {
                 JOptionPane.showMessageDialog(null, "Invalid phone number");
                 return;
             }
-
-            //Change to String
-            Long telephone = Long.parseLong(telephoneTextField.getText());
             String email = emailTextField.getText();
 
-            new Controller().registerCustomer(new Customer(name, dateOfBirth , address, telephone, email));
+            new Controller().registerCustomer(new Customer(name, dateOfBirth , address, telephoneTextField.getText(), email));
             JOptionPane.showMessageDialog(null, "Customer registered successfully");
             frame.dispose();
         });

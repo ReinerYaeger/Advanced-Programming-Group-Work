@@ -45,7 +45,6 @@ public class Handler implements Runnable, LoggingService {
 			try {
 				while (true) {
 					log.info("Waiting for command");
-					System.out.println("While Loop");
 					ServerCommands sc = (ServerCommands) objIn.readObject();
 					log.info("Client Called Thread");
 
@@ -64,7 +63,9 @@ public class Handler implements Runnable, LoggingService {
 						// objOut.writeObject(invoices);
 					}
 					if(sc == ServerCommands.REGISTERCUSTOMER){
+						log.info("Registering Customer");
 						Customer customer = (Customer) objIn.readObject();
+						log.info("Customer: " + customer);
 
 						Session sesh = new HBFactory().getSession();
 
@@ -76,6 +77,8 @@ public class Handler implements Runnable, LoggingService {
 
 					if(sc == ServerCommands.VERIFYCUSTOMER){
 						String telephone = (String) objIn.readObject();
+						CustomerController cc = new CustomerController();
+						objOut.writeObject(cc.verifyCustomer(telephone));
 
 					}
 				}

@@ -4,6 +4,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.List;
 
 
@@ -37,7 +39,9 @@ public class SalesReport implements ActionListener {
 		frame.add(navigationLabel);
 
 		logoutBtn =new JButton("Logout");
-		String navigation[]= {" ","Dashboard","Customer Database","Staff Database","Stock and Inventory","Check Out","Sales Reports","Register Customer"};
+		String navigation[]= {" ","Dashboard","StaffDatabase",
+				"StaffDatabase","Stock and Inventory",
+				"Check Out","Sales Reports","Register Customer"};
 		 combobox=new JComboBox<>(navigation);
 		//combobox.setBounds(100, 50, 0, 0);
 		combobox.setSelectedIndex(0);
@@ -181,6 +185,44 @@ public class SalesReport implements ActionListener {
 			System.out.println("Printed");
 
 		}
+
+		if(combobox.getSelectedItem().equals("Dashboard")){
+			frame.dispose();
+			new DashBoard();
+		}
+		combobox.addItemListener(itemEvent->{
+			if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
+				String selected = (String) itemEvent.getItem();
+				if(selected.equals("Dashboard")) {
+					frame.dispose();
+					new DashBoard();
+				}
+				else if(selected.equals("Customer StaffDatabase")) {
+					frame.dispose();
+					new CustomerDatabase();
+				}
+				else if(selected.equals("Staff StaffDatabase")) {
+					frame.dispose();
+					new StaffDatabase();
+				}
+				else if(selected.equals("Stock and Inventory")) {
+					//frame.dispose();
+					//new StockAndInventory();
+				}
+				else if(selected.equals("Check Out")) {
+					frame.dispose();
+					new CheckOut();
+				}
+				else if(selected.equals("Sales Reports")) {
+					frame.dispose();
+					new SalesReport();
+				}
+				else if(selected.equals("Register Customer")) {
+					frame.dispose();
+					new RegisterCustomer();
+				}
+			}
+		});
 
 	}
 

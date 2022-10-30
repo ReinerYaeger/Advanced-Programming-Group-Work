@@ -15,7 +15,7 @@ public class Customer implements Serializable {
 
 	private String address;
 
-	private Long telephone;
+	private String telephone;
 
 	private String email;
 
@@ -24,6 +24,13 @@ public class Customer implements Serializable {
 	private LocalDate dateOfMembershipExp;
 
 	public Customer() {
+		this.name = "name";
+		this.dob = LocalDate.now();
+		this.address = "address";
+		this.telephone = "telephone";
+		this.email = "email";
+		this.dateOfMembership = LocalDate.now();
+		this.dateOfMembershipExp = dateOfMembership.plusYears(4);
 	}
 
 	/*
@@ -34,7 +41,7 @@ public class Customer implements Serializable {
 	 * messy values
 	 */
 
-	public Customer(String name, LocalDate dob, String address, Long telephone, String email) {
+	public Customer(String name, LocalDate dob, String address, String telephone, String email) {
 		this.name = name;
 		this.dob = dob;
 		this.address = address;
@@ -60,7 +67,7 @@ public class Customer implements Serializable {
 		return address;
 	}
 
-	public Long getTelephone() {
+	public String getTelephone() {
 		return telephone;
 	}
 
@@ -92,7 +99,7 @@ public class Customer implements Serializable {
 		this.address = address;
 	}
 
-	public void setTelephone(Long telephone) {
+	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 

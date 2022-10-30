@@ -31,7 +31,14 @@ public class CustomerController {
 	public boolean verifyCustomer(String telephone){
 		session.beginTransaction();
 
-		//String isTrue = session.createQuery("from Customer where telephone = "+telephone+"", Customer.class).uniqueResult();
+		List <Customer> customer = session.createQuery("from Customer where telephone = "+telephone+"", Customer.class).getResultList();
+
+		if(customer.isEmpty()){
+			return false;
+		}
+		else{
+			return true;
+		}
 	}
 
 }

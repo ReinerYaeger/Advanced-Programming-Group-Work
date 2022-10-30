@@ -16,6 +16,7 @@ public class Controller {
 
         client.sendCommand(ServerCommands.REGISTERCUSTOMER);
         client.sendCustomer(customer);
+
     }
 
     public void loginStaff(String username, String password){
@@ -31,9 +32,9 @@ public class Controller {
 
         if(viewName.equals("Dashboard")){
             return new DashBoard();
-        } else if(viewName.equals("Customer Database")){
+        } else if(viewName.equals("Customer StaffDatabase")){
             // TODO
-        } else if(viewName.equals("Staff Database")){
+        } else if(viewName.equals("Staff StaffDatabase")){
             // TODO
         } else if(viewName.equals("Stock and Inventory")){
             // TODO
@@ -81,9 +82,13 @@ public class Controller {
 
 	}
 
-    public void verifyCustomer(String value){
+    public boolean verifyCustomer(String value){
         client.sendCommand(ServerCommands.VERIFYCUSTOMER);
-        client.send(value);
+        return client.checkCustomerExist(value);
+    }
+
+    public void registerDiscount(){
+
     }
 
 }

@@ -27,7 +27,7 @@ public class Client {
 
 	public void createConnection() {
 		try {
-			connectionSocket = new Socket("localhost", 8080);
+			connectionSocket = new Socket("localhost", 1234);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (Exception e) {
@@ -73,6 +73,7 @@ public class Client {
 	public void sendCustomer(Customer customer) {
 		try {
 			objOs.writeObject(customer);
+			objOs.close();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (Exception e) {
@@ -86,6 +87,7 @@ public class Client {
 	public void sendInventory(Inventory inventory) {
 		try {
 			objOs.writeObject(inventory);
+			objOs.close();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (Exception e) {
@@ -99,6 +101,7 @@ public class Client {
 	public void sendInventory(InvoiceItem item) {
 		try {
 			objOs.writeObject(item);
+			objOs.close();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (Exception e) {
@@ -112,6 +115,7 @@ public class Client {
 	public void sendStaff(Staff staff) {
 		try {
 			objOs.writeObject(staff);
+			objOs.close();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (Exception e) {
@@ -125,6 +129,7 @@ public class Client {
 	public void sendDepartment(Department department) {
 		try {
 			objOs.writeObject(department);
+			objOs.close();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (Exception e) {
@@ -136,6 +141,7 @@ public class Client {
 	public void sendInvoice(Invoice invoice) {
 		try {
 			objOs.writeObject(invoice);
+			objOs.close();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (Exception e) {
@@ -146,6 +152,7 @@ public class Client {
 	public void sendObject(Object object) {
 		try {
 			objOs.writeObject(object);
+			objOs.close();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (Exception e) {
@@ -157,6 +164,7 @@ public class Client {
 		try {
 			System.out.println();
 			return objIn.readObject();
+
 		} catch (IOException e) {
 			System.out.println("IO");
 			e.printStackTrace();

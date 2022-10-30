@@ -90,12 +90,11 @@ public class LoginPage {
             String username = usernameTextField.getText();
             String password = passwordField.getPassword().toString();
 
-            Controller controller = new Controller();
-            controller.loginStaff(username, password);
+            /*Controller controller = new Controller();
+            controller.loginStaff(username, password);*/
 
             frame.dispose();
-            new DashBoard();
-
+            new DashBoard(username);
         });
         //Set color of frame border
         frame.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLUE));

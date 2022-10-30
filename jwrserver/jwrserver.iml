@@ -10,16 +10,6 @@
     <orderEntry type="library" name="mysql-connector-java-8.0.30" level="project" />
     <orderEntry type="library" name="properties" level="project" />
     <orderEntry type="library" name="log4j-api-2.18.0" level="project" />
-    <orderEntry type="library" name="lib" level="project" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="file://$USER_HOME$/Downloads/old hiblib/hibernate-release-5.4.18.Final/lib/required" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-        <jarDirectory url="file://$USER_HOME$/Downloads/old hiblib/hibernate-release-5.4.18.Final/lib/required" recursive="false" />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" name="antlr-2.7.7" level="project" />
   </component>
 </module>

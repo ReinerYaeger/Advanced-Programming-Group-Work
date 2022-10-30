@@ -30,14 +30,14 @@ public class DashBoard {
     private GridBagConstraints gbc;
 
 
-    public DashBoard() {
+    public DashBoard(String username) {
         //Initialize the variables
         frame = new JFrame("DashBoard");
-        dashBoardLabel = new JLabel("DashBoard");
+        dashBoardLabel = new JLabel("DashBoard Hi " + username);
         dashBoardPanel = new JPanel();
         logoutBtn = new JButton("Logout");
-        customerDatabaseButton = new JButton("Customer Database");
-        staffDatabaseButton = new JButton("Staff Database");
+        customerDatabaseButton = new JButton("Customer StaffDatabase");
+        staffDatabaseButton = new JButton("Staff StaffDatabase");
         stockAndIventoryDatabaseButton = new JButton("Stock and Inventory");
         checkOutButton = new JButton("Check Out");
         salesReportButton = new JButton("Sales Report");
@@ -46,6 +46,24 @@ public class DashBoard {
         
       //Call layoutComponents method
         layoutComponents(); 
+    }
+
+    public DashBoard() {
+        //Initialize the variables
+        frame = new JFrame("DashBoard");
+        dashBoardLabel = new JLabel("DashBoard");
+        dashBoardPanel = new JPanel();
+        logoutBtn = new JButton("Logout");
+        customerDatabaseButton = new JButton("Customer StaffDatabase");
+        staffDatabaseButton = new JButton("Staff StaffDatabase");
+        stockAndIventoryDatabaseButton = new JButton("Stock and Inventory");
+        checkOutButton = new JButton("Check Out");
+        salesReportButton = new JButton("Sales Report");
+        registerCustomerButton = new JButton("Register Customer");
+        gbc = new GridBagConstraints();
+
+      //Call layoutComponents method
+        layoutComponents();
     }
     private void layoutComponents() {
         //Set the Layout Manager for the frame
@@ -134,6 +152,55 @@ public class DashBoard {
                 new LoginPage();
             }
         });
+
+        customerDatabaseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new CustomerDatabase();
+            }
+        });
+
+        staffDatabaseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new StaffDatabase();
+            }
+        });
+
+        stockAndIventoryDatabaseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new Stock();
+            }
+        });
+
+        checkOutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new CheckOut();
+            }
+        });
+
+        salesReportButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SalesReport();
+            }
+        });
+
+        registerCustomerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new RegisterCustomer();
+            }
+        });
+
+
+
+
 
     }
     public static void main(String[] args) {

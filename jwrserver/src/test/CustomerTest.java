@@ -13,10 +13,12 @@ public class CustomerTest implements LoggingService {
 	public static void main(String[] args) {
 		Session sesh = new HBFactory().getSession();
 
-		sesh.beginTransaction();
-		Customer customer = new Customer("Fred Miller", LocalDate.of(2000, 10, 15), "Manor Park", 87612355126L,
+		Customer customer = new Customer("Fred Miller", LocalDate.of(2000, 10, 15), "Manor Park", "87612355126",
 				"Test1@gmail.com");
-		sesh.save(customer);
+
+		sesh.beginTransaction();
+
+		sesh.save("Customer", customer);
 		sesh.getTransaction().commit();
 		log.info("Customer Saved\n" + customer);
 	}
