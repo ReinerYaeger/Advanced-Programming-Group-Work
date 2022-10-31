@@ -185,7 +185,7 @@ private void layoutComponents() {
             }
             String email = emailTextField.getText();
 
-            new Controller().registerCustomer(new Customer(name, dateOfBirth , address, telephoneTextField.getText(), email));
+            new Controller().registerCustomer(new Customer(Math.random() * 9999999 + "",name, dateOfBirth , address, telephoneTextField.getText(), email));
             JOptionPane.showMessageDialog(null, "Customer registered successfully");
             frame.dispose();
         });

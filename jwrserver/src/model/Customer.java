@@ -19,7 +19,7 @@ public class Customer implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "customerID")
-	private int id;
+	private String id;
 
 	@Column(name = "name")
 	private String name;
@@ -43,7 +43,7 @@ public class Customer implements Serializable {
 	private LocalDate dateOfMembershipExp;
 
 	public Customer() {
-
+		this.id = (Math.random() * 99999999) + "";
 		this.name = "name";
 		this.dob = LocalDate.now();
 		this.address = "address";
@@ -61,7 +61,8 @@ public class Customer implements Serializable {
 	 * messy values
 	 */
 
-	public Customer(String name, LocalDate dob, String address, String telephone, String email) {
+	public Customer(String id ,String name, LocalDate dob, String address, String telephone, String email) {
+		this.id = id;
 		this.name = name;
 		this.dob = dob;
 		this.address = address;
@@ -71,7 +72,7 @@ public class Customer implements Serializable {
 		this.dateOfMembershipExp = dateOfMembership.plusYears(4);
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -103,7 +104,7 @@ public class Customer implements Serializable {
 		return dateOfMembershipExp;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
