@@ -163,6 +163,36 @@ public class CustomerDatabase extends JPanel {
 		});
 
 	}
+	
+	private void addItemListenerToCmobo() {
+		combobox.addItemListener(itemEvent -> {
+			if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
+				String selected = (String) itemEvent.getItem();
+				if (selected.equals("Dashboard")) {
+					frame.dispose();
+					new DashBoard();
+				} else if (selected.equals("Customer Database")) {
+					frame.dispose();
+					new CustomerDatabase();
+				} else if (selected.equals("Staff Database")) {
+					frame.dispose();
+					new StaffDatabase();
+				} else if (selected.equals("Stock and Inventory")) {
+					frame.dispose();
+					new Stock();
+				} else if (selected.equals("Check Out")) {
+					frame.dispose();
+					new CheckOut();
+				} else if (selected.equals("Sales Reports")) {
+					frame.dispose();
+					new SalesReport();
+				} else if (selected.equals("Register Customer")) {
+					frame.dispose();
+					new RegisterCustomer();
+				}
+			}
+		});
+	}
 
 	public static void main(String[] args) {
 
