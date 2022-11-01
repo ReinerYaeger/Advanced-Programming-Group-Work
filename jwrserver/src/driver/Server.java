@@ -1,13 +1,10 @@
 package driver;
 
-import Log.LoggingService;
-
-import javax.swing.*;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.sql.Connection;
-import java.sql.DriverManager;
+
+import Log.LoggingService;
 
 public class Server implements LoggingService {
 
@@ -20,7 +17,9 @@ public class Server implements LoggingService {
 	public void startServer() {
 
 		try {
+
 			log.info("Server Has Started");
+			System.out.println("Logged");
 
 			while (!serverSocket.isClosed()) {
 				Socket socket = serverSocket.accept();
@@ -31,9 +30,9 @@ public class Server implements LoggingService {
 				log.info("Starting a new thread");
 				new Thread(handler).start();
 			}
-		}catch (IOException e) {
+		} catch (IOException e) {
 			log.error("Error in startServer: " + e);
-		}catch (Exception e){
+		} catch (Exception e) {
 			log.error("Error in startServer: " + e);
 		}
 

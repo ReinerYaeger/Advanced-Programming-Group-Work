@@ -27,7 +27,7 @@ public class Client {
 
 	public void createConnection() {
 		try {
-			connectionSocket = new Socket("localhost", 1234);
+			connectionSocket = new Socket("localhost", 8080);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (Exception e) {
@@ -218,7 +218,7 @@ public class Client {
 		return invoice;
 	}
 
-	//get customer from server
+	// get customer from server
 	public List<Customer> requestCustomer() {
 		List<Customer> customer = new ArrayList<Customer>();
 		try {
@@ -231,11 +231,11 @@ public class Client {
 		return customer;
 	}
 
-	public boolean checkCustomerExist(String number){
+	public boolean checkCustomerExist(String number) {
 		boolean isTrue = false;
 		try {
 			objOs.writeObject(number);
-			isTrue = (Boolean)objIn.readObject();
+			isTrue = (Boolean) objIn.readObject();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (Exception e) {

@@ -5,15 +5,17 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import Log.*;
+import javax.swing.JOptionPane;
+
+import org.hibernate.Session;
+
+import Log.LoggingService;
 import controller.CustomerController;
+import controller.InventoryController;
 import controller.InvoiceController;
 import factories.HBFactory;
 import model.Customer;
 import model.ServerCommands;
-import org.hibernate.Session;
-
-import javax.swing.*;
 
 public class Handler implements Runnable, LoggingService {
 
@@ -62,7 +64,7 @@ public class Handler implements Runnable, LoggingService {
 
 						// objOut.writeObject(invoices);
 					}
-					if(sc == ServerCommands.REGISTERCUSTOMER){
+					if (sc == ServerCommands.REGISTERCUSTOMER) {
 						log.info("Registering Customer");
 						Customer customer = (Customer) objIn.readObject();
 						log.info("Customer: " + customer);
@@ -75,11 +77,14 @@ public class Handler implements Runnable, LoggingService {
 						log.info("Customer Saved\n" + customer);
 					}
 
-					if(sc == ServerCommands.VERIFYCUSTOMER){
+					if (sc == ServerCommands.VERIFYCUSTOMER) {
 						String telephone = (String) objIn.readObject();
 						CustomerController cc = new CustomerController();
 						objOut.writeObject(cc.verifyCustomer(telephone));
 
+					}
+					if (sc == ServerCommands.GETALLINVENTORY) {
+						objOut.writeObject(new InventoryController().getAllInventory());
 					}
 				}
 			} catch (IOException e) {

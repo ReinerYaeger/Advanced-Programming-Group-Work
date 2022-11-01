@@ -1,55 +1,60 @@
 package controller;
 
-import model.*;
-import view.DashBoard;
-
 import java.util.List;
+
+import model.Customer;
+import model.Inventory;
+import model.Invoice;
+import model.ServerCommands;
+import model.Staff;
+import view.DashBoard;
 
 public class Controller {
 
-    Client client;
-    public Controller(){
-        client = new Client();
-    }
+	Client client;
 
-    public void registerCustomer(Customer customer){
+	public Controller() {
+		client = new Client();
+	}
 
-        client.sendCommand(ServerCommands.REGISTERCUSTOMER);
-        client.sendCustomer(customer);
+	public void registerCustomer(Customer customer) {
 
-    }
+		client.sendCommand(ServerCommands.REGISTERCUSTOMER);
+		client.sendCustomer(customer);
 
-    public void loginStaff(String username, String password){
+	}
 
-        // TODO Check if staff is in database and if password is correct
-        Staff staff = new Staff();
-        Client client = new Client();
-        client.sendStaff(staff);
+	public void loginStaff(String username, String password) {
 
-    }
+		// TODO Check if staff is in database and if password is correct
+		Staff staff = new Staff();
+		Client client = new Client();
+		client.sendStaff(staff);
 
-    public Object navigationController(String viewName){
+	}
 
-        if(viewName.equals("Dashboard")){
-            return new DashBoard();
-        } else if(viewName.equals("Customer StaffDatabase")){
-            // TODO
-        } else if(viewName.equals("Staff StaffDatabase")){
-            // TODO
-        } else if(viewName.equals("Stock and Inventory")){
-            // TODO
-        } else if(viewName.equals("Check Out")){
-            // TODO
-        } else if(viewName.equals("Sales Reports")){
-            // TODO
-        } else if(viewName.equals("Register Customer")){
-            // TODO
-        }
-        return null;
+	public Object navigationController(String viewName) {
 
-    }
+		if (viewName.equals("Dashboard")) {
+			return new DashBoard();
+		} else if (viewName.equals("Customer StaffDatabase")) {
+			// TODO
+		} else if (viewName.equals("Staff StaffDatabase")) {
+			// TODO
+		} else if (viewName.equals("Stock and Inventory")) {
+			// TODO
+		} else if (viewName.equals("Check Out")) {
+			// TODO
+		} else if (viewName.equals("Sales Reports")) {
+			// TODO
+		} else if (viewName.equals("Register Customer")) {
+			// TODO
+		}
+		return null;
 
-    public List<Customer> getAllCustomers() {
+	}
+
+	public List<Customer> getAllCustomers() {
 		ServerCommands command = ServerCommands.GETCUSTOMERS;
 
 		client.sendCommand(command);
@@ -58,7 +63,7 @@ public class Controller {
 
 		System.out.println("Got the customers");
 
-		//client.closeConnection();
+		// client.closeConnection();
 
 		return allCustomers;
 
@@ -82,13 +87,19 @@ public class Controller {
 
 	}
 
-    public boolean verifyCustomer(String value){
-        client.sendCommand(ServerCommands.VERIFYCUSTOMER);
-        return client.checkCustomerExist(value);
-    }
+	public boolean verifyCustomer(String value) {
+		client.sendCommand(ServerCommands.VERIFYCUSTOMER);
+		return client.checkCustomerExist(value);
+	}
 
-    public void registerDiscount(){
+	public void registerDiscount() {
 
-    }
+	}
+
+	public List<Inventory> getAllInventory() {
+		client.sendCommand(ServerCommands.GETALLINVENTORY);
+
+		return (List<Inventory>) client.receiveResponse();
+	}
 
 }
