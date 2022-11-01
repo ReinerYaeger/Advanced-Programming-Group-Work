@@ -107,6 +107,14 @@ public class Stock {
 		frame.setResizable(true);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+	 button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new LoginPage();
+            }
+        });
 	}
 
 	private void getAllInventoryItems() {
