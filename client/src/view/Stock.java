@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ItemEvent;
 import java.util.List;
 import java.util.Vector;
 
@@ -50,7 +51,7 @@ public class Stock {
 
 		navigationLabel = new JLabel("Navigation:");
 		button = new JButton("Logout");
-		String navigation[] = { " ", "Dashboard", "Customer Database", "Staff Database", "Stock and Inventory",
+		String[] navigation = { " ", "Dashboard", "Customer Database", "Staff Database", "Stock and Inventory",
 				"Check Out", "Sales Reports", "Register Customer" };
 		combobox = new JComboBox<>(navigation);
 		headerLabel = new JLabel("Stock and Inventory");
@@ -73,6 +74,7 @@ public class Stock {
 
 		layout();
 		getAllInventoryItems();
+		addItemListenerToCmobo();
 	}
 
 	public void layout() {
@@ -123,6 +125,36 @@ public class Stock {
 			items.add(inventory.getLongDescription());
 
 			model.addRow(items);
+		});
+	}
+
+	private void addItemListenerToCmobo() {
+		combobox.addItemListener(itemEvent -> {
+			if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
+				String selected = (String) itemEvent.getItem();
+				if (selected.equals("Dashboard")) {
+					frame.dispose();
+					new DashBoard();
+				} else if (selected.equals("Customer Database")) {
+					frame.dispose();
+					new CustomerDatabase();
+				} else if (selected.equals("Staff Database")) {
+					frame.dispose();
+					new StaffDatabase();
+				} else if (selected.equals("Stock and Inventory")) {
+					frame.dispose();
+					new Stock();
+				} else if (selected.equals("Check Out")) {
+					frame.dispose();
+					new CheckOut();
+				} else if (selected.equals("Sales Reports")) {
+					frame.dispose();
+					new SalesReport();
+				} else if (selected.equals("Register Customer")) {
+					frame.dispose();
+					new RegisterCustomer();
+				}
+			}
 		});
 	}
 

@@ -37,7 +37,7 @@ public class SalesReport implements ActionListener {
 		frame.add(navigationLabel);
 
 		logoutBtn = new JButton("Logout");
-		String navigation[] = { " ", "Dashboard", "Staff Database", "Customer Database", "Stock and Inventory",
+		String[] navigation = { " ", "Dashboard", "Customer Database", "Staff Database", "Stock and Inventory",
 				"Check Out", "Sales Reports", "Register Customer" };
 		combobox = new JComboBox<>(navigation);
 		// combobox.setBounds(100, 50, 0, 0);
