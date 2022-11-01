@@ -136,6 +136,14 @@ public class CustomerDatabase extends JPanel {
 		// Set frame to be visible
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+			logoutButton.addActionListener(new ActionListener() {
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+	                frame.dispose();
+	                new LoginPage();
+	            }
+	        });
 	}
 
 	private void loadCustomerData() {
