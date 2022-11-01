@@ -5,9 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.List;
-
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -38,12 +36,11 @@ public class SalesReport implements ActionListener {
 		navigationLabel = new JLabel("Navigation:");
 		frame.add(navigationLabel);
 
-		logoutBtn =new JButton("Logout");
-		String navigation[]= {" ","Dashboard","StaffDatabase",
-				"StaffDatabase","Stock and Inventory",
-				"Check Out","Sales Reports","Register Customer"};
-		 combobox=new JComboBox<>(navigation);
-		//combobox.setBounds(100, 50, 0, 0);
+		logoutBtn = new JButton("Logout");
+		String navigation[] = { " ", "Dashboard", "Staff Database", "Customer Database", "Stock and Inventory",
+				"Check Out", "Sales Reports", "Register Customer" };
+		combobox = new JComboBox<>(navigation);
+		// combobox.setBounds(100, 50, 0, 0);
 		combobox.setSelectedIndex(0);
 		frame.add(combobox);
 		label = new JLabel("Sale Reports");
@@ -55,6 +52,7 @@ public class SalesReport implements ActionListener {
 		printButton = new JButton("Print");
 		layout();
 		addActionListener();
+		addItemListenerToCmobo();
 	}
 
 	private void layout() {
@@ -87,7 +85,7 @@ public class SalesReport implements ActionListener {
 		gbc.ipady = 10;
 		gbc.anchor = GridBagConstraints.EAST;
 
-		logoutBtn.addActionListener(e->{
+		logoutBtn.addActionListener(e -> {
 			frame.dispose();
 			new LoginPage();
 		});
@@ -153,12 +151,12 @@ public class SalesReport implements ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		logoutBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                new LoginPage();
-            }
-        });
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new LoginPage();
+			}
+		});
 	}
 
 	private void addActionListener() {
@@ -186,48 +184,46 @@ public class SalesReport implements ActionListener {
 
 		}
 
-		if(combobox.getSelectedItem().equals("Dashboard")){
+		if (combobox.getSelectedItem().equals("Dashboard")) {
 			frame.dispose();
 			new DashBoard();
 		}
-		combobox.addItemListener(itemEvent->{
+
+	}
+
+	private void addItemListenerToCmobo() {
+		combobox.addItemListener(itemEvent -> {
 			if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
 				String selected = (String) itemEvent.getItem();
-				if(selected.equals("Dashboard")) {
+				if (selected.equals("Dashboard")) {
 					frame.dispose();
 					new DashBoard();
-				}
-				else if(selected.equals("Customer StaffDatabase")) {
+				} else if (selected.equals("Customer Database")) {
 					frame.dispose();
 					new CustomerDatabase();
-				}
-				else if(selected.equals("Staff StaffDatabase")) {
+				} else if (selected.equals("Staff Database")) {
 					frame.dispose();
 					new StaffDatabase();
-				}
-				else if(selected.equals("Stock and Inventory")) {
-					//frame.dispose();
-					//new StockAndInventory();
-				}
-				else if(selected.equals("Check Out")) {
+				} else if (selected.equals("Stock and Inventory")) {
+					frame.dispose();
+					new Stock();
+				} else if (selected.equals("Check Out")) {
 					frame.dispose();
 					new CheckOut();
-				}
-				else if(selected.equals("Sales Reports")) {
+				} else if (selected.equals("Sales Reports")) {
 					frame.dispose();
 					new SalesReport();
-				}
-				else if(selected.equals("Register Customer")) {
+				} else if (selected.equals("Register Customer")) {
 					frame.dispose();
 					new RegisterCustomer();
 				}
 			}
 		});
-
 	}
 
 	public static void main(String[] args) {
 		new SalesReport();
+		;
 
 	}
 
