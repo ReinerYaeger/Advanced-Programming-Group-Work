@@ -42,7 +42,7 @@ public class Customer implements Serializable {
 	 * messy values
 	 */
 
-	public Customer(String id ,String name, LocalDate dob, String address, String telephone, String email) {
+	public Customer(String id, String name, LocalDate dob, String address, String telephone, String email) {
 		this.id = id;
 		this.name = name;
 		this.dob = dob;
