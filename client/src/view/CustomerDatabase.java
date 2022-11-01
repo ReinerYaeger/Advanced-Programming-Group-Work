@@ -6,7 +6,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.TextField;
-import java.awt.event.ItemEvent;
 import java.util.List;
 import java.util.Vector;
 
@@ -64,8 +63,8 @@ public class CustomerDatabase extends JPanel {
 		tablePanel = new JPanel();
 
 		// Create Array of string
-		String[] navigation = { " ", "Dashboard", "Customer Database", "Staff Database", "Stock and Inventory",
-				"Check Out", "Sales Reports", "Register Customer" };
+		String navigation[] = { " ", "Dashboard", "Customer StaffDatabase", "Staff StaffDatabase",
+				"Stock and Inventory", "Check Out", "Sales Reports", "Register Customer" };
 		combobox = new JComboBox<>(navigation);
 
 		// Set position on the frame
@@ -90,7 +89,6 @@ public class CustomerDatabase extends JPanel {
 		layoutComponents();
 		// call loadCustomerData method
 		// loadCustomerData();
-		addItemListenerToCmobo();
 	}
 
 	private void layoutComponents() {
@@ -136,8 +134,16 @@ public class CustomerDatabase extends JPanel {
 		// Set frame to be visible
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
+	
+	 logoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new LoginPage();
+            }
+        });
 	}
-
 	private void loadCustomerData() {
 		allCustomers = new Controller().getAllCustomers();
 
@@ -156,36 +162,6 @@ public class CustomerDatabase extends JPanel {
 			// tableItems.addRow(items);
 		});
 
-	}
-
-	private void addItemListenerToCmobo() {
-		combobox.addItemListener(itemEvent -> {
-			if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
-				String selected = (String) itemEvent.getItem();
-				if (selected.equals("Dashboard")) {
-					frame.dispose();
-					new DashBoard();
-				} else if (selected.equals("Customer Database")) {
-					frame.dispose();
-					new CustomerDatabase();
-				} else if (selected.equals("Staff Database")) {
-					frame.dispose();
-					new StaffDatabase();
-				} else if (selected.equals("Stock and Inventory")) {
-					frame.dispose();
-					new Stock();
-				} else if (selected.equals("Check Out")) {
-					frame.dispose();
-					new CheckOut();
-				} else if (selected.equals("Sales Reports")) {
-					frame.dispose();
-					new SalesReport();
-				} else if (selected.equals("Register Customer")) {
-					frame.dispose();
-					new RegisterCustomer();
-				}
-			}
-		});
 	}
 
 	public static void main(String[] args) {
