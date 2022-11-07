@@ -100,7 +100,7 @@ public class LoginPage {
 
             //Destroy the frame
             frame.dispose();
-            //call the dashboard class and display valueof username
+            //call a new dashboard and display value the of username
             new DashBoard(username);
         });
         //Set color of frame border
