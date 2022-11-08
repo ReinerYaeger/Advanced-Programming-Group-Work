@@ -6,6 +6,7 @@ import java.time.LocalDate;
 public class Customer implements Serializable {
 
 	private static final long serialVersionUID = 4801957816410214976L;
+	//Creates variables 
 
 	private String id;
 
@@ -23,6 +24,7 @@ public class Customer implements Serializable {
 
 	private LocalDate dateOfMembershipExp;
 
+	//create constructors
 	public Customer() {
 		this.id = (Math.random() * 99999999) + "";
 		this.name = "name";
@@ -42,6 +44,7 @@ public class Customer implements Serializable {
 	 * messy values
 	 */
 
+	
 	public Customer(String id, String name, LocalDate dob, String address, String telephone, String email) {
 		this.id = id;
 		this.name = name;
@@ -53,6 +56,7 @@ public class Customer implements Serializable {
 		this.dateOfMembershipExp = dateOfMembership.plusYears(4);
 	}
 
+	//create getters
 	public String getId() {
 		return id;
 	}
@@ -85,6 +89,7 @@ public class Customer implements Serializable {
 		return dateOfMembershipExp;
 	}
 
+	//create setters
 	public void setId(String id) {
 		this.id = id;
 	}
@@ -117,6 +122,7 @@ public class Customer implements Serializable {
 		this.dateOfMembershipExp = dateOfMembershipExp;
 	}
 
+	//create tostring method
 	@Override
 	public String toString() {
 		return "id: " + id + "\nname: " + name + "\ndob: " + dob + "\naddress: " + address + "\ntelephone: " + telephone
