@@ -43,10 +43,7 @@ public class CustomerDatabase extends JPanel {
 	private JPanel panel2;
 	private JTable table;
 	private JScrollPane scrollPane;
-	
-	//Create an object of type JComboBox
 	private JComboBox<String> combobox;
-	//Create an object of type List
 	private List<Customer> allCustomers;
 
 	public CustomerDatabase() {
