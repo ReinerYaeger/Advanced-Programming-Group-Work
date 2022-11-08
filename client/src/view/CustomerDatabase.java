@@ -51,7 +51,7 @@ public class CustomerDatabase extends JPanel {
 
 	public CustomerDatabase() {
 		// Initialize the variables
-		frame = new JFrame("Customer StaffDatabase");
+		frame = new JFrame("Customer Database");
 		navigationPanel = new JPanel();
 		logoutPanel = new JPanel();
 		customerDatabasePanel = new JPanel();
