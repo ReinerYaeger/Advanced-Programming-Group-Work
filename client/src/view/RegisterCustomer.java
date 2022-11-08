@@ -77,16 +77,19 @@ public class RegisterCustomer {
 		emailPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
+		//Add the year 1900 to the curreent year we are in to the JComboBox
 		yearBox = new JComboBox<>();
 		for (int i = 1900; i <= LocalDateTime.now().getYear(); i++) {
 			yearBox.addItem(i);
 		}
 
+		//Add numbers 1 to 12 to the JComboBox
 		monthBox = new JComboBox<>();
 		for (int i = 1; i <= 12; i++) {
 			monthBox.addItem(i);
 		}
 
+		//Add numbers 1 to 31 to the JComboBox
 		dayBox = new JComboBox<>();
 		for (int i = 1; i <= 31; i++) {
 			dayBox.addItem(i);
@@ -170,19 +173,23 @@ public class RegisterCustomer {
 		// Add panel to frame
 		frame.add(buttonPanel);
 
+		//Adds an ActionListener to the button
 		button.addActionListener(e -> {
+			//Store textfield value in the variable declared
 			String name = firstNameTextField.getText() + " " + lastNameTextField.getText();
 			String lastName = lastNameTextField.getText();
 
+			//Store the selected value in the variable declared
 			int year = (int) yearBox.getSelectedItem();
 			int month = (int) monthBox.getSelectedItem();
 			int day = (int) dayBox.getSelectedItem();
+			
 			LocalDate dateOfBirth = LocalDate.of(year, month, day);
 
+			//Store textfield value in the variable declared
 			String address = addressTextField.getText();
 
 			// Validate phone number
-
 			String regex = "^\\d{10}$";
 			Pattern regPattern = Pattern.compile(regex);
 			Matcher matcher = regPattern.matcher(telephoneTextField.getText());
@@ -190,11 +197,14 @@ public class RegisterCustomer {
 				JOptionPane.showMessageDialog(null, "Invalid phone number");
 				return;
 			}
+			//Store textfield value in the variable declared
 			String email = emailTextField.getText();
 
+			
 			new Controller().registerCustomer(new Customer(Math.random() * 9999999 + "", name, dateOfBirth, address,
 					telephoneTextField.getText(), email));
 			JOptionPane.showMessageDialog(null, "Customer registered successfully");
+			//Destroy the frame
 			frame.dispose();
 		});
 
@@ -208,6 +218,7 @@ public class RegisterCustomer {
 	}
 
 	public static void main(String[] args) {
+		//call new RegisterCustomer
 		new RegisterCustomer();
 	}
 }
