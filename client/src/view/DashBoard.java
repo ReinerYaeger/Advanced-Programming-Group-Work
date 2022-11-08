@@ -145,55 +145,67 @@ public class DashBoard {
       //Set frame to be visible
         frame.setVisible(true);
 
-        logoutBtn.addActionListener(new ActionListener() {
+            //Adds an ActionListener to the button
+	    logoutBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+		 //Destroy the frame   
                 frame.dispose();
+		    //calls a new loginpage
                 new LoginPage();
             }
         });
-
+         // Adds an ActionListener to the button
         customerDatabaseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+		//Destroy the frame    
                 frame.dispose();
+		     //calls a new customerdatabase
                 new CustomerDatabase();
             }
         });
-
+         //Adds an ActionListener to the button.
         staffDatabaseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+		//Destroy the frame    
                 frame.dispose();
+		     //calls a new staffdatabase
                 new StaffDatabase();
             }
         });
-
+        //Adds an ActionListener to the button
         stockAndIventoryDatabaseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+		//Destroy the frame    
                 frame.dispose();
+		     //calls a new stock
                 new Stock();
             }
         });
-
+        // Adds an ActionListener to the button.
         checkOutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+		     //calls a new checkout
                 new CheckOut();
             }
         });
-
+        //Adds an ActionListener to the button.
         salesReportButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+		     //calls a new salesreport
                 new SalesReport();
             }
         });
-
+         //Adds an ActionListener to the button.
         registerCustomerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+		     //calls a new registercustomer
                 new RegisterCustomer();
             }
         });
@@ -204,6 +216,7 @@ public class DashBoard {
 
     }
     public static void main(String[] args) {
+	     //calls a new dashboard
         new DashBoard();
     }
 }

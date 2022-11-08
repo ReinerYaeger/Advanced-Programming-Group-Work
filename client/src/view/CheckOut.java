@@ -22,6 +22,7 @@ import controller.Controller;
 
 public class CheckOut {
 
+	//Create variables
 	private final JLabel headerLabel;
 	private final JLabel invoiceLabel;
 	private final JLabel dateLabel;
@@ -52,15 +53,17 @@ public class CheckOut {
 	private GridBagConstraints gbc;
 
 	public CheckOut() {
+		// Initialize the variables
 		frame = new JFrame();
-
 		navigationLabel = new JLabel("Navigation:");
-
 		logoutBtn = new JButton("Logout");
+		//create array of string
 		String[] navigation = { " ", "Dashboard", "Customer Database", "Staff Database", "Stock and Inventory",
 				"Check Out", "Sales Reports", "Register Customer" };
+		//Creates a JComboBox that contains the elements in the specified array
 		combobox = new JComboBox<>(navigation);
 
+		// Initialize the variables
 		headerLabel = new JLabel("Check Out");
 		invoiceLabel = new JLabel("Invoice#:");
 		// use random number to set invoice number
@@ -93,6 +96,8 @@ public class CheckOut {
 		recievedLabel = new JLabel("Amount Received:");
 		recievedTextField = new JTextField();
 		changeLabel = new JLabel("Change");
+		
+		//call methods created
 		layout();
 		actionListener();
 		addItemListenerToCmobo();
@@ -102,18 +107,25 @@ public class CheckOut {
 	}
 
 	public static void main(String[] args) {
+		//call new CheckOut
 		new CheckOut();
 	}
 
 	public void layout() {
+		// Set the Layout Manager for the frame
 		frame.setLayout(new GridBagLayout());
+		//Re-Initialize the GridBag Constraints
 		gbc = new GridBagConstraints();
+		//Set location in terms of row and column
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
+		//Set internal padding
 		gbc.ipadx = 50;
 		gbc.ipady = 20;
+		//sets where, within the frame, to place the component. 
 		gbc.anchor = GridBagConstraints.NORTHWEST;
+		//Add component to frame
 		frame.add(navigationLabel, gbc);
 
 		gbc = new GridBagConstraints();
@@ -133,6 +145,7 @@ public class CheckOut {
 		gbc.ipady = 10;
 		gbc.anchor = GridBagConstraints.EAST;
 		frame.add(logoutBtn, gbc);
+		
 		gbc = new GridBagConstraints();
 		gbc.gridx = 3;
 		gbc.gridy = 1;
@@ -141,6 +154,7 @@ public class CheckOut {
 		gbc.ipady = 20;
 		gbc.anchor = GridBagConstraints.EAST;
 		frame.add(headerLabel, gbc);
+		
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 2;
@@ -149,6 +163,7 @@ public class CheckOut {
 		gbc.ipady = 20;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(invoiceLabel, gbc);
+		
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 3;
@@ -157,6 +172,7 @@ public class CheckOut {
 		gbc.ipady = 20;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(dateLabel, gbc);
+		
 		gbc = new GridBagConstraints();
 		gbc.gridx = 4;
 		gbc.gridy = 3;
@@ -165,6 +181,7 @@ public class CheckOut {
 		gbc.ipady = 20;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(cashierLabel, gbc);
+		
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 4;
@@ -173,6 +190,7 @@ public class CheckOut {
 		gbc.ipady = 20;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(customerLabel, gbc);
+		
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 4;
@@ -181,6 +199,7 @@ public class CheckOut {
 		gbc.ipady = 5;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(customerTextField, gbc);
+		
 		gbc = new GridBagConstraints();
 		gbc.gridx = 4;
 		gbc.gridy = 4;
@@ -189,6 +208,7 @@ public class CheckOut {
 		gbc.ipady = 20;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(idLabel, gbc);
+		
 		gbc = new GridBagConstraints();
 		gbc.gridx = 5;
 		gbc.gridy = 4;
@@ -197,6 +217,7 @@ public class CheckOut {
 		gbc.ipady = 5;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(idTextField, gbc);
+		
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 5;
@@ -205,6 +226,7 @@ public class CheckOut {
 		gbc.ipady = 20;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(itemLabel, gbc);
+		
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 5;
@@ -213,6 +235,7 @@ public class CheckOut {
 		gbc.ipady = 5;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(itemTextField, gbc);
+		
 		gbc = new GridBagConstraints();
 		gbc.gridx = 4;
 		gbc.gridy = 5;
@@ -221,6 +244,7 @@ public class CheckOut {
 		gbc.ipady = 20;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(quantityLabel, gbc);
+		
 		gbc = new GridBagConstraints();
 		gbc.gridx = 5;
 		gbc.gridy = 5;
@@ -229,6 +253,7 @@ public class CheckOut {
 		gbc.ipady = 5;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(quantityTextField, gbc);
+		
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 6;
@@ -237,6 +262,7 @@ public class CheckOut {
 		gbc.ipady = 20;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(memberLabel, gbc);
+		
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 6;
@@ -257,6 +283,7 @@ public class CheckOut {
 		gbc.ipady = 20;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(discountLabel, gbc);
+		
 		gbc = new GridBagConstraints();
 		gbc.gridx = 2;
 		gbc.gridy = 7;
@@ -265,6 +292,7 @@ public class CheckOut {
 		gbc.ipady = 20;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(taxLabel, gbc);
+		
 		gbc = new GridBagConstraints();
 		gbc.gridx = 4;
 		gbc.gridy = 7;
@@ -273,6 +301,7 @@ public class CheckOut {
 		gbc.ipady = 20;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(totalLabel, gbc);
+		
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 8;
@@ -281,6 +310,7 @@ public class CheckOut {
 		gbc.ipady = 20;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(recievedLabel, gbc);
+		
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 8;
@@ -289,6 +319,7 @@ public class CheckOut {
 		gbc.ipady = 5;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(recievedTextField, gbc);
+		
 		gbc = new GridBagConstraints();
 		gbc.gridx = 4;
 		gbc.gridy = 8;
@@ -298,7 +329,9 @@ public class CheckOut {
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(changeLabel, gbc);
 
+		//Set size of frame
 		frame.setSize(new Dimension(800, 500));
+		//Set frame to be visible
 		frame.setVisible(true);
 		frame.setResizable(false);
 
@@ -307,26 +340,33 @@ public class CheckOut {
 	}
 
 	public void actionListener() {
+		////Adds an ActionListener to the button.
 		logoutBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//destroy frame
 				frame.dispose();
+				//call new loginpage
 				new LoginPage();
 			}
 		});
 
+		//Adds an ActionListener to the button
 		noMemberRadioButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (noMemberRadioButton.isSelected()) {
+					//Ask if a discount is needed
 					int option = JOptionPane.showConfirmDialog(null, "Do you want a discount",
 							"Want to become a member?", JOptionPane.YES_NO_OPTION);
 
+					//if yes call new RegisterCustomer
 					if (option == JOptionPane.YES_OPTION) {
 						Controller cont = new Controller();
 
 						new RegisterCustomer();
 						yesMemberRadioButton.setSelected(true);
+						//If no Tells that yoou can still register later
 					} else if (option == JOptionPane.NO_OPTION) {
 
 						JOptionPane.showMessageDialog(null, "You can still become a member later");
@@ -335,6 +375,7 @@ public class CheckOut {
 			}
 		});
 
+		//Adds an ActionListener to the button
 		yesMemberRadioButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent actionEvent) {
@@ -343,6 +384,7 @@ public class CheckOut {
 					String value = JOptionPane.showInputDialog(null, "Please enter your phone number",
 							JOptionPane.OK_OPTION);
 
+					// Validate phone number
 					String regex = "^\\d{10}$";
 					Pattern regPattern = Pattern.compile(regex);
 					Matcher matcher = regPattern.matcher(value);
@@ -381,29 +423,44 @@ public class CheckOut {
 	}
 
 	private void addItemListenerToCmobo() {
+		//Adds an ItemListener with the event to be processed
 		combobox.addItemListener(itemEvent -> {
 			if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
 				String selected = (String) itemEvent.getItem();
 				if (selected.equals("Dashboard")) {
+					//Destroy frame
 					frame.dispose();
+					//Calls new DasBoard
 					new DashBoard();
 				} else if (selected.equals("Customer Database")) {
+					//Destroy frame
 					frame.dispose();
+					//Calls new CustomerDatabase
 					new CustomerDatabase();
 				} else if (selected.equals("Staff Database")) {
+					//Destroy frame
 					frame.dispose();
+					//Calls new StaffDatabase
 					new StaffDatabase();
 				} else if (selected.equals("Stock and Inventory")) {
+					//Destroy frame
 					frame.dispose();
+					//Calls new Stock
 					new Stock();
 				} else if (selected.equals("Check Out")) {
+					//Destroy frame
 					frame.dispose();
+					//Calls new CheckOut
 					new CheckOut();
 				} else if (selected.equals("Sales Reports")) {
+					//Destroy frame
 					frame.dispose();
+					//Calls new SalesReport
 					new SalesReport();
 				} else if (selected.equals("Register Customer")) {
+					//Destroy frame
 					frame.dispose();
+					//Calls new RegisterCustomer
 					new RegisterCustomer();
 				}
 			}

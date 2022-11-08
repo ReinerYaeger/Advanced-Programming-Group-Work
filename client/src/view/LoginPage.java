@@ -43,6 +43,7 @@ public class LoginPage {
         usernameTextField = new JTextField(20);
         passwordField = new JPasswordField(20);
         button = new JButton("Login");
+        //set size of button 
         button.setSize(new Dimension(400, 30));
         mainPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         namePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -61,6 +62,7 @@ public class LoginPage {
         //Add panel to frame
         frame.add(mainPanel);
         
+        //Set size of panel
         namePanel.setSize(new Dimension(400, 30));
         //Add label to panel
         namePanel.add(usernameLabel);
@@ -71,6 +73,7 @@ public class LoginPage {
         
         //Set size of panel
         passwordPanel.setSize(new Dimension(400, 30));
+        // Set what the component will display
         passwordLabel.setText("Password: ");
         //Add label to panel
         passwordPanel.add(passwordLabel);
@@ -86,14 +89,18 @@ public class LoginPage {
         //Add panel to frame
         frame.add(buttonPanel);
 
+        //Adds an ActionListener to the button
         button.addActionListener((ActionListener)  e -> {
+            //set the variables to the value from the text and password field
             String username = usernameTextField.getText();
             String password = passwordField.getPassword().toString();
 
             /*Controller controller = new Controller();
             controller.loginStaff(username, password);*/
 
+            //Destroy the frame
             frame.dispose();
+            //call a new dashboard and display value the of username
             new DashBoard(username);
         });
         //Set color of frame border

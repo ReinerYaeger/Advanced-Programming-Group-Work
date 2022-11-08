@@ -1,1 +1,12 @@
 /bin/
+.classpath
+.DS_Store
+.project
+client/bin
+client/.classpath
+client/.project
+client/client.iml
+jwrserver/bin
+jwrserver/.classpath
+jwrserver/.project
+jwrserver/jwrserver.iml
