@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Inventory implements Serializable {
 
 	private static final long serialVersionUID = 4801957816410214976L;
+	//Creates variables 
 
 	private int id;
 
@@ -18,6 +19,7 @@ public class Inventory implements Serializable {
 
 	private String longDescription;
 
+	//create constructors
 	public Inventory() {
 	}
 
@@ -29,6 +31,7 @@ public class Inventory implements Serializable {
 		this.longDescription = longDescription;
 	}
 
+	//create getters
 	public int getId() {
 		return id;
 	}
@@ -53,6 +56,7 @@ public class Inventory implements Serializable {
 		return longDescription;
 	}
 
+	//create setters
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -77,6 +81,7 @@ public class Inventory implements Serializable {
 		this.longDescription = longDescription;
 	}
 
+	//create tostring method
 	@Override
 	public String toString() {
 		return "id: " + id + "\nname: " + name + "\nitemsInStock: " + itemsInStock + "\nunitPrice: " + unitPrice
