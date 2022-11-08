@@ -150,10 +150,10 @@ public class CustomerDatabase extends JPanel {
 	private void loadCustomerData() {
 		
 		allCustomers = new Controller().getAllCustomers();
-
+		
 		allCustomers.forEach(customer -> {
 			Vector<Object> items = new Vector<>();
-
+			//Collects the customer information
 			items.add(customer.getId());
 			items.add(customer.getName());
 			items.add(customer.getDob());
@@ -162,7 +162,7 @@ public class CustomerDatabase extends JPanel {
 			items.add(customer.getEmail());
 			items.add(customer.getDateOfMembership());
 			items.add(customer.getDateOfMembershipExp());
-
+			// add all the information to the table
 			// tableItems.addRow(items);
 		});
 
