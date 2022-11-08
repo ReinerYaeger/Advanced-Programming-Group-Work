@@ -6,6 +6,7 @@ import java.time.LocalDate;
 public class Staff implements Serializable {
 
 	private static final long serialVersionUID = 4801957816410214976L;
+	//Creates variables 
 
 	private int id;
 
@@ -23,6 +24,7 @@ public class Staff implements Serializable {
 
 	private Department department;
 
+	//create constructors
 	public Staff() {
 	}
 
@@ -39,6 +41,7 @@ public class Staff implements Serializable {
 		this.type = type;
 	}
 
+	//create getters
 	public int getId() {
 		return id;
 	}
@@ -71,6 +74,7 @@ public class Staff implements Serializable {
 		return department;
 	}
 
+	//create setters
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -103,6 +107,7 @@ public class Staff implements Serializable {
 		this.department = department;
 	}
 
+	//create tostring method
 	@Override
 	public String toString() {
 		return "id: " + id + "\nname: " + name + "\ndob: " + dob + "\naddress: " + address + "\ntelephone: " + telephone
