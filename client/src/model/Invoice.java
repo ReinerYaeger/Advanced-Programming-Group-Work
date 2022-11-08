@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 public class Invoice implements Serializable {
 
 	private static final long serialVersionUID = 4801957816410214976L;
+	//Creates variables 
 
 	private int invoiceNum;
 
@@ -27,6 +28,7 @@ public class Invoice implements Serializable {
 
 	private List<InvoiceItem> items;
 
+	//create constructors
 	public Invoice() {
 	}
 
@@ -43,6 +45,7 @@ public class Invoice implements Serializable {
 		this.cashier = staff;
 	}
 
+	//create getters
 	public int getInvoiceNum() {
 		return invoiceNum;
 	}
@@ -63,6 +66,7 @@ public class Invoice implements Serializable {
 		return items;
 	}
 
+	//create setters
 	public void setInvoiceNum(int invoiceNum) {
 		this.invoiceNum = invoiceNum;
 	}
@@ -97,6 +101,7 @@ public class Invoice implements Serializable {
 		item.setInvoiceNum(this);
 	}
 
+	//create tostring method
 	@Override
 	public String toString() {
 		return "invoiceNum: " + invoiceNum + "\nbillingDate: " + billingDate + "\ncashier: " + cashier + "\ncustomer: "
