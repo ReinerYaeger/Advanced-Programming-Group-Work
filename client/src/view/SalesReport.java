@@ -18,6 +18,7 @@ import model.Invoice;
 
 public class SalesReport implements ActionListener {
 
+	//Create variables
 	private JFrame frame;
 	private JLabel navigationLabel;
 	private GridBagConstraints gbc;
@@ -56,16 +57,21 @@ public class SalesReport implements ActionListener {
 	}
 
 	private void layout() {
+		// Set the Layout Manager for the frame
 		frame.setLayout(new GridBagLayout());
-		// navigationLabel.setSize(150,20);
+		
 
+		//Re-Initialize the GridBag Constraints
 		gbc = new GridBagConstraints();
+		//Set location in terms of row and column
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
+		//Set internal padding
 		gbc.ipadx = 50;
 		gbc.ipady = 20;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
+		 //Add component to frame
 		frame.add(navigationLabel, gbc);
 
 		gbc = new GridBagConstraints();
