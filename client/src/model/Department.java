@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Department implements Serializable {
 
 	private static final long serialVersionUID = 4801957816410214976L;
+	//Creates variables 
 
 	// primary key
 
@@ -14,6 +15,7 @@ public class Department implements Serializable {
 
 	private String name;
 
+	//create constructors
 	public Department() {
 	}
 
@@ -22,6 +24,7 @@ public class Department implements Serializable {
 		this.name = name;
 	}
 
+	//create getters
 	public String getDepartmentCode() {
 		return departmentCode;
 	}
@@ -30,6 +33,7 @@ public class Department implements Serializable {
 		return name;
 	}
 
+	//create setters
 	public void setDepartmentCode(String departmentCode) {
 		this.departmentCode = departmentCode;
 	}
@@ -38,6 +42,7 @@ public class Department implements Serializable {
 		this.name = name;
 	}
 
+	//create tostring method
 	@Override
 	public String toString() {
 		return "departmentCode: " + departmentCode + "\nname: " + name;
