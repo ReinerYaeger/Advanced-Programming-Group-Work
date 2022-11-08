@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import controller.Controller;
 import model.Customer;
 
+// CustomerDatabase class inheriting from Jpanel 
 public class CustomerDatabase extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -42,8 +43,10 @@ public class CustomerDatabase extends JPanel {
 	private JPanel panel2;
 	private JTable table;
 	private JScrollPane scrollPane;
+	
+	//Create an object of type JComboBox
 	private JComboBox<String> combobox;
-
+	//Create an object of type List
 	private List<Customer> allCustomers;
 
 	public CustomerDatabase() {
@@ -66,6 +69,7 @@ public class CustomerDatabase extends JPanel {
 		// Create Array of string
 		String[] navigation = { " ", "Dashboard", "Customer Database", "Staff Database", "Stock and Inventory",
 				"Check Out", "Sales Reports", "Register Customer" };
+		//Creates a JComboBox that contains the elementsin the specified array
 		combobox = new JComboBox<>(navigation);
 
 		// Set position on the frame
@@ -74,10 +78,14 @@ public class CustomerDatabase extends JPanel {
 		// Create Array of string
 		String columns[] = { "Customer ID", "Name", "DOB", "Address", "Telephone", "Email", "Date of Membership",
 				"Date of Membership Expiry" };
+		//set value of row to 15
 		int rows = 15;
-
+		
+		//Constructs a DefaultTableModel with rowCount of rows value and columnCount of the length of the column array.
 		DefaultTableModel model = new DefaultTableModel(rows, columns.length);
+		//Replaces the column identifiers in the model with the values from the column array
 		model.setColumnIdentifiers(columns);
+		//Constructs a JTable
 		table = new JTable(model);
 
 		// Set size of viewport for the table
@@ -89,8 +97,9 @@ public class CustomerDatabase extends JPanel {
 		// Call layoutComponents method
 		layoutComponents();
 		// call loadCustomerData method
-		// loadCustomerData();
-		addItemListenerToCmobo();
+		loadCustomerData();
+		//call addItemListenerToCombo method
+		addItemListenerToCombo();
 	}
 
 	private void layoutComponents() {
@@ -139,6 +148,7 @@ public class CustomerDatabase extends JPanel {
 	}
 
 	private void loadCustomerData() {
+		
 		allCustomers = new Controller().getAllCustomers();
 
 		allCustomers.forEach(customer -> {
@@ -158,30 +168,45 @@ public class CustomerDatabase extends JPanel {
 
 	}
 
-	private void addItemListenerToCmobo() {
+	private void addItemListenerToCombo() {
+		//Adds an ItemListener with the event to be processed
 		combobox.addItemListener(itemEvent -> {
 			if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
 				String selected = (String) itemEvent.getItem();
 				if (selected.equals("Dashboard")) {
+					//Destroy frame
 					frame.dispose();
+					//Calls new DasBoard
 					new DashBoard();
 				} else if (selected.equals("Customer Database")) {
+					//Destroy frame
 					frame.dispose();
+					//Calls new CustomerDatabase
 					new CustomerDatabase();
 				} else if (selected.equals("Staff Database")) {
+					//Destroy frame
 					frame.dispose();
+					//Calls new StaffDatabase
 					new StaffDatabase();
 				} else if (selected.equals("Stock and Inventory")) {
+					//Destroy frame
 					frame.dispose();
+					//Calls new Stock
 					new Stock();
 				} else if (selected.equals("Check Out")) {
+					//Destroy frame
 					frame.dispose();
+					//Calls new CheckOut
 					new CheckOut();
 				} else if (selected.equals("Sales Reports")) {
+					//Destroy frame
 					frame.dispose();
+					//Calls new SalesReport
 					new SalesReport();
 				} else if (selected.equals("Register Customer")) {
+					//Destroy frame
 					frame.dispose();
+					//Calls new RegisterCustomer
 					new RegisterCustomer();
 				}
 			}
@@ -189,7 +214,7 @@ public class CustomerDatabase extends JPanel {
 	}
 
 	public static void main(String[] args) {
-
+		//Calls new CustomerDatabase
 		new CustomerDatabase();
 	}
 }
