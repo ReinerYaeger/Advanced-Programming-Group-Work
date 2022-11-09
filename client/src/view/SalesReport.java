@@ -240,8 +240,6 @@ public class SalesReport implements ActionListener {
 					//Calls new SalesReport
 					new SalesReport();
 				} else if (selected.equals("Register Customer")) {
-					//Destroy frame
-					frame.dispose();
 					//Calls new RegisterCustomer
 					new RegisterCustomer();
 				}

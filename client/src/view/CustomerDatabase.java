@@ -6,19 +6,16 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.util.List;
 import java.util.Vector;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 import controller.Controller;
 import model.Customer;
@@ -29,22 +26,26 @@ public class CustomerDatabase extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	// Create variables
-	private JFrame frame;
-	private JLabel customerDatabaseLabel, searchLabel, navigationLabel;
-	private TextField searchTextField;
-	private JButton logoutButton;
-	private JPanel searchTextFieldPanel;
-	private JPanel searchLabelPanel;
-	private JPanel tablePanel;
-	private JPanel navigationPanel;
-	private JPanel logoutPanel;
-	private JPanel customerDatabasePanel;
-	private JPanel panel1;
-	private JPanel panel2;
-	private JTable table;
-	private JScrollPane scrollPane;
-	private JComboBox<String> combobox;
+	private final JFrame frame;
+	private final JLabel customerDatabaseLabel;
+	private final JLabel searchLabel;
+	private final JLabel navigationLabel;
+	private final TextField searchTextField;
+	private final JButton logoutBtn;
+	private final JButton searchBtn;
+	private final JPanel searchTextFieldPanel;
+	private final JPanel searchLabelPanel;
+	private final JPanel tablePanel;
+	private final JPanel navigationPanel;
+	private final JPanel logoutPanel;
+	private final JPanel customerDatabasePanel;
+	private final JPanel panel1;
+	private final JPanel panel2;
+	private final JTable table;
+	private final JScrollPane scrollPane;
+	private final JComboBox<String> combobox;
 	private List<Customer> allCustomers;
+	private DefaultTableModel model;
 
 	public CustomerDatabase() {
 		// Initialize the variables
@@ -54,10 +55,11 @@ public class CustomerDatabase extends JPanel {
 		customerDatabasePanel = new JPanel();
 		searchTextFieldPanel = new JPanel();
 		searchLabelPanel = new JPanel();
-		logoutButton = new JButton("Logout");
+		logoutBtn = new JButton("Logout");
 		navigationLabel = new JLabel("Navigation");
 		customerDatabaseLabel = new JLabel("Customer StaffDatabase");
 		searchTextField = new TextField(40);
+		searchBtn = new JButton("Search");
 		searchLabel = new JLabel("Search");
 		panel1 = new JPanel(new BorderLayout(0, 0));
 		panel2 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -73,13 +75,13 @@ public class CustomerDatabase extends JPanel {
 		combobox.setBounds(100, 50, 150, 20);
 
 		// Create Array of string
-		String columns[] = { "Customer ID", "Name", "DOB", "Address", "Telephone", "Email", "Date of Membership",
+		String[] columns = { "Customer ID", "Name", "DOB", "Address", "Telephone", "Email", "Date of Membership",
 				"Date of Membership Expiry" };
 		//set value of row to 15
 		int rows = 15;
 		
 		//Constructs a DefaultTableModel with rowCount of rows value and columnCount of the length of the column array.
-		DefaultTableModel model = new DefaultTableModel(rows, columns.length);
+		model = new DefaultTableModel(rows, columns.length);
 		//Replaces the column identifiers in the model with the values from the column array
 		model.setColumnIdentifiers(columns);
 		//Constructs a JTable
@@ -113,7 +115,7 @@ public class CustomerDatabase extends JPanel {
 		// Add combobox to panel
 		navigationPanel.add(combobox);
 		// Add button to panel
-		logoutPanel.add(logoutButton);
+		logoutPanel.add(logoutBtn);
 		// Add panel to panel using borderlayout
 		panel1.add(navigationPanel, BorderLayout.WEST);
 		panel1.add(logoutPanel, BorderLayout.EAST);
@@ -124,6 +126,7 @@ public class CustomerDatabase extends JPanel {
 		searchLabelPanel.add(searchLabel);
 		// Add textfield to panel
 		searchTextFieldPanel.add(searchTextField);
+		searchTextFieldPanel.add(searchBtn);
 		// Add panel to panel
 		panel2.add(searchLabelPanel);
 		panel2.add(searchTextFieldPanel);
@@ -142,14 +145,6 @@ public class CustomerDatabase extends JPanel {
 		// Set frame to be visible
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-			logoutButton.addActionListener(new ActionListener() {
-	            @Override
-	            public void actionPerformed(ActionEvent e) {
-	                frame.dispose();
-	                new LoginPage();
-	            }
-	        });
 	}
 
 	private void loadCustomerData() {
@@ -168,7 +163,8 @@ public class CustomerDatabase extends JPanel {
 			items.add(customer.getDateOfMembership());
 			items.add(customer.getDateOfMembershipExp());
 			// add all the information to the table
-			// tableItems.addRow(items);
+
+			model.insertRow(0,items);
 		});
 
 	}
@@ -209,13 +205,31 @@ public class CustomerDatabase extends JPanel {
 					//Calls new SalesReport
 					new SalesReport();
 				} else if (selected.equals("Register Customer")) {
-					//Destroy frame
-					frame.dispose();
 					//Calls new RegisterCustomer
 					new RegisterCustomer();
 				}
 			}
 		});
+
+		 logoutBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+		 //Destroy the frame
+                frame.dispose();
+		    //calls a new loginpage
+                new LoginPage();
+            }
+        });
+
+		 searchBtn.addActionListener(new ActionListener() {
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+					String search = searchTextField.getText();
+						final TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
+						table.setRowSorter(sorter);
+						sorter.setRowFilter(RowFilter.regexFilter(search));
+				}
+	        });
 	}
 
 	public static void main(String[] args) {

@@ -395,9 +395,8 @@ public class CheckOut {
 
 						if (cont.verifyCustomer(value)) {
 							JOptionPane.showMessageDialog(null, "Customer verified");
-
-							cont.registerDiscount();
-
+							//double discountCost = cont.registerDiscount();
+							//TODO
 						} else {
 							JOptionPane.showConfirmDialog(null,
 									"Customer not verified\nDo you want to become a member?");
@@ -458,8 +457,6 @@ public class CheckOut {
 					//Calls new SalesReport
 					new SalesReport();
 				} else if (selected.equals("Register Customer")) {
-					//Destroy frame
-					frame.dispose();
 					//Calls new RegisterCustomer
 					new RegisterCustomer();
 				}

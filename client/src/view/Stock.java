@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.util.List;
 import java.util.Vector;
@@ -184,8 +186,6 @@ public class Stock {
 					//Calls new SalesReport
 					new SalesReport();
 				} else if (selected.equals("Register Customer")) {
-					//Destroy frame
-					frame.dispose();
 					//Calls new RegisterCustomer
 					new RegisterCustomer();
 				}

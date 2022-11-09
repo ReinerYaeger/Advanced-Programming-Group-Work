@@ -94,6 +94,7 @@ public class Controller {
 
 	public void registerDiscount() {
 
+
 	}
 
 	public List<Inventory> getAllInventory() {

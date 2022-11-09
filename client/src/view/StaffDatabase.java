@@ -62,7 +62,7 @@ public class StaffDatabase extends JFrame {
 		// Call layoutComponents method
 		layout();
 		// Call addItemListenerCmobo method
-		addItemListenerToCmobo();
+		addItemListenerToCombo();
 	}
 
 	@Override
@@ -116,7 +116,7 @@ public class StaffDatabase extends JFrame {
 		});
 	}
 
-	private void addItemListenerToCmobo() {
+	private void addItemListenerToCombo() {
 		//Adds an ItemListener with the event to be processed
 		combobox.addItemListener(itemEvent -> {
 			if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
@@ -152,8 +152,6 @@ public class StaffDatabase extends JFrame {
 					//Calls new SalesReport
 					new SalesReport();
 				} else if (selected.equals("Register Customer")) {
-					//Destroy frame
-					frame.dispose();
 					//Calls new RegisterCustomer
 					new RegisterCustomer();
 				}
