@@ -1,6 +1,7 @@
 package view;
 
 import controller.Controller;
+import model.Department;
 import model.Staff;
 
 import java.awt.BorderLayout;
@@ -13,14 +14,7 @@ import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class RegisterStaff {
 
@@ -211,7 +205,6 @@ public class RegisterStaff {
 
 			button.addActionListener(e -> {
 				String name = firstNameTextField.getText() + " " + lastNameTextField.getText();
-				String lastName = lastNameTextField.getText();
 
 				int year = (int) yearBox.getSelectedItem();
 				int month = (int) monthBox.getSelectedItem();
@@ -229,9 +222,29 @@ public class RegisterStaff {
 					JOptionPane.showMessageDialog(null, "Invalid phone number");
 					return;
 				}
+				String telephone = telephoneTextField.getText();
 				String email = emailTextField.getText();
+				String password = passwordField.getPassword().toString();
+				String department = (String) departmentBox.getSelectedItem();
+				String type = (String) typeBox.getSelectedItem();
+				// Create a new Staff object
 
-				new Controller().registerStaff(new Staff());
+				Department departmentObj = new Department();
+				departmentObj.setName(department);
+				if(department == "Management") {
+					departmentObj.setDepartmentCode("MGT101");
+				}
+				else if(department == "Inventory") {
+					departmentObj.setDepartmentCode("INV101");
+				}
+				else if(department == "Accounting and Sales") {
+					departmentObj.setDepartmentCode("ACCS101");
+				}
+
+				Staff staff = new Staff(name,password, dateOfBirth, address, telephone, email, departmentObj, type);
+
+
+				new Controller().registerStaff(staff);
 				JOptionPane.showMessageDialog(null, "Customer staff successfully");
 				frame.dispose();
 			});

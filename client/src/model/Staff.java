@@ -16,11 +16,12 @@ public class Staff implements Serializable {
 
 	private String address;
 
-	private Long telephone;
+	private String telephone;
 
 	private String email;
 
 	private String type; // Manager,Supervisor,Line-Worker
+	protected String password;
 
 	private Department department;
 
@@ -32,12 +33,34 @@ public class Staff implements Serializable {
 	 * The department has to be set by retrievnig it fromt he database then adding
 	 * it using set method before saving to db
 	 */
-	public Staff(String name, LocalDate dob, String address, Long telephone, String email, String type) {
+	public Staff(String name, LocalDate dob, String address, String telephone, String email, String type) {
 		this.name = name;
 		this.dob = dob;
 		this.address = address;
 		this.telephone = telephone;
 		this.email = email;
+		this.type = type;
+	}
+
+	public Staff(String name, String password, LocalDate dob, String address, String telephone, String email, String type, Department department) {
+		this.name = name;
+		this.password = password;
+		this.dob = dob;
+		this.address = address;
+		this.telephone = telephone;
+		this.email = email;
+		this.type = type;
+		this.department = department;
+	}
+
+	public Staff(String name, String password, LocalDate dateOfBirth, String address, String telephone, String email , Department department, String type) {
+		this.name = name;
+		this.password = password;
+		this.dob = dateOfBirth;
+		this.address = address;
+		this.telephone = telephone;
+		this.email = email;
+		this.department = department;
 		this.type = type;
 	}
 
@@ -58,7 +81,7 @@ public class Staff implements Serializable {
 		return address;
 	}
 
-	public Long getTelephone() {
+	public String getTelephone() {
 		return telephone;
 	}
 
@@ -91,7 +114,7 @@ public class Staff implements Serializable {
 		this.address = address;
 	}
 
-	public void setTelephone(Long telephone) {
+	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 
@@ -105,6 +128,14 @@ public class Staff implements Serializable {
 
 	public void setDepartment(Department department) {
 		this.department = department;
+	}
+
+	public String getPassword( ) {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	// create tostring method

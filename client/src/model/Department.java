@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class Department implements Serializable {
 
+	enum DepartmentType {
+		INVENTORY,MANAGEMENT, ACCOUNTING;
+	}
+
 	private static final long serialVersionUID = 4801957816410214976L;
 	//Creates variables 
 
@@ -17,6 +21,7 @@ public class Department implements Serializable {
 
 	//create constructors
 	public Department() {
+
 	}
 
 	public Department(String departnemtCode, String name) {
