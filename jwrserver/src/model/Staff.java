@@ -22,30 +22,39 @@ public class Staff implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "staffID")
+	//Creates variable 
 	private int id;
 
 	@Column(name = "name")
+	//Creates variable
 	private String name;
 
 	@Column(name = "dob")
+	//Creates variable
 	private LocalDate dob;
 
 	@Column(name = "address")
+	//Creates variable
 	private String address;
 
 	@Column(name = "telephone")
+	
+	//Creates variables 
 	private Long telephone;
 
 	@Column(name = "email")
+	//Creates variables 
 	private String email;
 
 	@Column(name = "type")
+	//Creates variables 
 	private String type; // Manager,Supervisor,Line-Worker
 
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "department")
 	private Department department;
 
+	//create constructors
 	public Staff() {
 	}
 
@@ -62,6 +71,7 @@ public class Staff implements Serializable {
 		this.type = type;
 	}
 
+	//create getters
 	public int getId() {
 		return id;
 	}
@@ -94,6 +104,7 @@ public class Staff implements Serializable {
 		return department;
 	}
 
+	//create setters
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -126,6 +137,7 @@ public class Staff implements Serializable {
 		this.department = department;
 	}
 
+	//create tostring method
 	@Override
 	public String toString() {
 		return "id: " + id + "\nname: " + name + "\ndob: " + dob + "\naddress: " + address + "\ntelephone: " + telephone
