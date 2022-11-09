@@ -25,46 +25,52 @@ public class Staff implements Serializable {
 	@GenericGenerator(name = "UUID", strategy = "uuid2")
 	@Column(name = "staffID")
 	// Creates variable
-	private String id;
+	protected String id;
 
 	@Column(name = "name")
 	// Creates variable
-	private String name;
+	protected String name;
 
 	@Column(name = "dob")
 	// Creates variable
-	private LocalDate dob;
+	protected LocalDate dob;
 
 	@Column(name = "address")
 	// Creates variable
-	private String address;
+	protected String address;
 
 	@Column(name = "telephone")
 
 	// Creates variables
-	private Long telephone;
+	protected String telephone;
 
 	@Column(name = "email")
 	// Creates variables
-	private String email;
+	protected String email;
 
 	@Column(name = "type")
 	// Creates variables
-	private String type; // Manager,Supervisor,Line-Worker
+	protected String type; // Manager,Supervisor,Line-Worker
 
-	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+/*	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "department")
-	private Department department;
+	protected Department department;*/
 
 	// create constructors
 	public Staff() {
+		this.name = "name";
+		this.dob = LocalDate.now();
+		this.address = "address";
+		this.telephone = " ";
+		this.email = "email";
+		this.type = "type";
 	}
 
 	/*
 	 * The department has to be set by retrievnig it fromt he database then adding
 	 * it using set method before saving to db
 	 */
-	public Staff(String name, LocalDate dob, String address, Long telephone, String email, String type) {
+	public Staff(String name, LocalDate dob, String address, String telephone, String email, String type) {
 		this.name = name;
 		this.dob = dob;
 		this.address = address;
@@ -90,7 +96,7 @@ public class Staff implements Serializable {
 		return address;
 	}
 
-	public Long getTelephone() {
+	public String getTelephone() {
 		return telephone;
 	}
 
@@ -102,9 +108,9 @@ public class Staff implements Serializable {
 		return type;
 	}
 
-	public Department getDepartment() {
+	/*public Department getDepartment() {
 		return department;
-	}
+	}*/
 
 	// create setters
 	public void setId(String id) {
@@ -123,7 +129,7 @@ public class Staff implements Serializable {
 		this.address = address;
 	}
 
-	public void setTelephone(Long telephone) {
+	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 
@@ -135,15 +141,15 @@ public class Staff implements Serializable {
 		this.type = type;
 	}
 
-	public void setDepartment(Department department) {
+/*	public void setDepartment(Department department) {
 		this.department = department;
-	}
+	}*/
 
 	// create tostring method
 	@Override
 	public String toString() {
 		return "id: " + id + "\nname: " + name + "\ndob: " + dob + "\naddress: " + address + "\ntelephone: " + telephone
-				+ "\nemail: " + email + "\ntype: " + type + "\ndepartment: " + department;
+				+ "\nemail: " + email + "\ntype: " + type;
 	}
 
 }

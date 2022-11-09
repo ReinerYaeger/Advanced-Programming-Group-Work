@@ -26,10 +26,12 @@ public class Department implements Serializable {
 
 	//create constructors
 	public Department() {
+		name = "Dept";
+		departmentCode = "DeptCode";
 	}
 
-	public Department(String departnemtCode, String name) {
-		this.departmentCode = departnemtCode;
+	public Department(String departmentCode, String name) {
+		this.departmentCode = departmentCode;
 		this.name = name;
 	}
 
