@@ -201,7 +201,7 @@ public class RegisterCustomer {
 			String email = emailTextField.getText();
 
 			
-			new Controller().registerCustomer(new Customer(Math.random() * 9999999 + "", name, dateOfBirth, address,
+			new Controller().registerCustomer(new Customer(name, dateOfBirth, address,
 					telephoneTextField.getText(), email));
 			JOptionPane.showMessageDialog(null, "Customer registered successfully");
 			//Destroy the frame
