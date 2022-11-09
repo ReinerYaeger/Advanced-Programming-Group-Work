@@ -20,16 +20,20 @@ public class InvoiceItem implements Serializable {
 	@Id
 	@OneToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "productCode")
+	//Creates variables 
 	private Inventory productCode;
 
 	@Id
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "invoiceNum")
+	//Creates variables 
 	private Invoice invoiceNum;
 
 	@Column(name = "quantityOfItem")
+	//Creates variables 
 	private int quantity;
 
+	//create constructors
 	public InvoiceItem() {
 	}
 
@@ -38,6 +42,7 @@ public class InvoiceItem implements Serializable {
 		this.quantity = quantity;
 	}
 
+	//create getters
 	public Inventory getProductCode() {
 		return productCode;
 	}
@@ -50,6 +55,7 @@ public class InvoiceItem implements Serializable {
 		return quantity;
 	}
 
+	//create setters
 	public void setProductCode(Inventory productCode) {
 		this.productCode = productCode;
 	}
@@ -62,6 +68,7 @@ public class InvoiceItem implements Serializable {
 		this.quantity = quantity;
 	}
 
+	//create tostring method
 	@Override
 	public String toString() {
 		return "productCode: " + productCode + "\nquantity: " + quantity;

@@ -26,17 +26,21 @@ public class Invoice implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "invoiceNum")
+	//Creates variable
 	private int invoiceNum;
 
 	@Column(name = "billingDate")
+	//Creates variable
 	private LocalDate billingDate;
 
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "cashier")
+	//Creates variable
 	private Staff cashier;
 
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "customer", nullable = true)
+	//Creates variable
 	private Customer customer;
 
 	/*
@@ -47,6 +51,7 @@ public class Invoice implements Serializable {
 			CascadeType.PERSIST, CascadeType.REFRESH })
 	private List<InvoiceItem> items;
 
+	//create constructor
 	public Invoice() {
 	}
 
@@ -58,11 +63,13 @@ public class Invoice implements Serializable {
 	 * it else if its a random customer with no code it will be empty and no
 	 * discount
 	 */
+	//create constructors
 	public Invoice(Staff staff) {
 		this.billingDate = LocalDate.now();
 		this.cashier = staff;
 	}
 
+	//create getters
 	public int getInvoiceNum() {
 		return invoiceNum;
 	}
@@ -83,6 +90,7 @@ public class Invoice implements Serializable {
 		return items;
 	}
 
+	//create setters
 	public void setInvoiceNum(int invoiceNum) {
 		this.invoiceNum = invoiceNum;
 	}
@@ -117,6 +125,7 @@ public class Invoice implements Serializable {
 		item.setInvoiceNum(this);
 	}
 
+	//create tostring method
 	@Override
 	public String toString() {
 		return "invoiceNum: " + invoiceNum + "\nbillingDate: " + billingDate + "\ncashier: " + cashier + "\ncustomer: "
