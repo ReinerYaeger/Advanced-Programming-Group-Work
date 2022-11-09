@@ -35,6 +35,7 @@ public class RegisterStaff {
 		private JLabel emailLabel;
 		private JLabel typeLabel;
 		private JLabel departmentLabel;
+		private JLabel passwordLabel;
 		private JTextField firstNameTextField;
 		private JTextField lastNameTextField;
 		private JComboBox<Integer> yearBox;
@@ -45,6 +46,7 @@ public class RegisterStaff {
 		private JTextField addressTextField;
 		private JTextField telephoneTextField;
 		private JTextField emailTextField;
+		private JPasswordField passwordField;
 		private JButton button;
 		private JPanel firstNamePanel;
 		private JPanel lastNamePanel;
@@ -56,6 +58,7 @@ public class RegisterStaff {
 		private JPanel registerStaffPanel;
 		private JPanel typePanel;
 		private JPanel departmentPanel;
+		private JPanel passwordPanel;
 
 		public RegisterStaff() {
 			// Initialize the variables
@@ -69,12 +72,14 @@ public class RegisterStaff {
 			emailLabel = new JLabel("Email: ");
 			typeLabel = new JLabel("Type of Worker: ");
 			departmentLabel = new JLabel("Department Name: ");
+			passwordLabel = new JLabel("Password: ");
 			firstNameTextField = new JTextField(20);
 			lastNameTextField = new JTextField(20);
 			addressTextField = new JTextField(20);
 			addressTextField = new JTextField(20);
 			telephoneTextField = new JTextField(20);
 			emailTextField = new JTextField(20);
+			passwordField = new JPasswordField(20);
 			button = new JButton("Save");
 			// Set component size
 			button.setSize(new Dimension(400, 30));
@@ -88,6 +93,7 @@ public class RegisterStaff {
 			buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 			typePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 			departmentPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+			passwordPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 			
 
 			yearBox = new JComboBox<>();
@@ -193,6 +199,10 @@ public class RegisterStaff {
 			departmentPanel.add(departmentLabel);
 			departmentPanel.add(departmentBox);
 			frame.add(departmentPanel);
+			
+			passwordPanel.add(passwordLabel);
+			passwordPanel.add(passwordField);
+			frame.add(passwordPanel);
 
 			buttonPanel.setSize(400, 30);
 			buttonPanel.add(button);
