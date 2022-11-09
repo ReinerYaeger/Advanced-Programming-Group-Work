@@ -1,8 +1,8 @@
 package test;
 
-import Log.LoggingService;
 import org.hibernate.Session;
 
+import Log.LoggingService;
 import factories.HBFactory;
 import model.Inventory;
 

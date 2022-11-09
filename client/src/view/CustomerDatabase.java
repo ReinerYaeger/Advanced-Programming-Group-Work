@@ -12,7 +12,15 @@ import java.awt.event.ItemEvent;
 import java.util.List;
 import java.util.Vector;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -20,7 +28,7 @@ import javax.swing.table.TableRowSorter;
 import controller.Controller;
 import model.Customer;
 
-// CustomerDatabase class inheriting from Jpanel 
+// CustomerDatabase class inheriting from Jpanel
 public class CustomerDatabase extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -68,7 +76,7 @@ public class CustomerDatabase extends JPanel {
 		// Create Array of string
 		String[] navigation = { " ", "Dashboard", "Customer Database", "Staff Database", "Stock and Inventory",
 				"Check Out", "Sales Reports", "Register Customer" };
-		//Creates a JComboBox that contains the elementsin the specified array
+		// Creates a JComboBox that contains the elementsin the specified array
 		combobox = new JComboBox<>(navigation);
 
 		// Set position on the frame
@@ -77,14 +85,22 @@ public class CustomerDatabase extends JPanel {
 		// Create Array of string
 		String[] columns = { "Customer ID", "Name", "DOB", "Address", "Telephone", "Email", "Date of Membership",
 				"Date of Membership Expiry" };
-		//set value of row to 15
-		int rows = 15;
-		
-		//Constructs a DefaultTableModel with rowCount of rows value and columnCount of the length of the column array.
-		model = new DefaultTableModel(rows, columns.length);
-		//Replaces the column identifiers in the model with the values from the column array
+		// set value of row to 15
+		int rows = 0;
+
+		// Constructs a DefaultTableModel with rowCount of rows value and columnCount of
+		// the length of the column array.
+		model = new DefaultTableModel(rows, columns.length) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+		};
+		// Replaces the column identifiers in the model with the values from the column
+		// array
 		model.setColumnIdentifiers(columns);
-		//Constructs a JTable
+		// Constructs a JTable
 		table = new JTable(model);
 
 		// Set size of viewport for the table
@@ -97,7 +113,7 @@ public class CustomerDatabase extends JPanel {
 		layoutComponents();
 		// call loadCustomerData method
 		loadCustomerData();
-		//call addItemListenerToCombo method
+		// call addItemListenerToCombo method
 		addItemListenerToCombo();
 	}
 
@@ -148,12 +164,12 @@ public class CustomerDatabase extends JPanel {
 	}
 
 	private void loadCustomerData() {
-		
+
 		allCustomers = new Controller().getAllCustomers();
-		
+
 		allCustomers.forEach(customer -> {
 			Vector<Object> items = new Vector<>();
-			//Collects the customer information
+			// Collects the customer information
 			items.add(customer.getId());
 			items.add(customer.getName());
 			items.add(customer.getDob());
@@ -164,76 +180,76 @@ public class CustomerDatabase extends JPanel {
 			items.add(customer.getDateOfMembershipExp());
 			// add all the information to the table
 
-			model.insertRow(0,items);
+			model.insertRow(0, items);
 		});
 
 	}
 
 	private void addItemListenerToCombo() {
-		//Adds an ItemListener with the event to be processed
+		// Adds an ItemListener with the event to be processed
 		combobox.addItemListener(itemEvent -> {
 			if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
 				String selected = (String) itemEvent.getItem();
 				if (selected.equals("Dashboard")) {
-					//Destroy frame
+					// Destroy frame
 					frame.dispose();
-					//Calls new DasBoard
+					// Calls new DasBoard
 					new DashBoard();
 				} else if (selected.equals("Customer Database")) {
-					//Destroy frame
+					// Destroy frame
 					frame.dispose();
-					//Calls new CustomerDatabase
+					// Calls new CustomerDatabase
 					new CustomerDatabase();
 				} else if (selected.equals("Staff Database")) {
-					//Destroy frame
+					// Destroy frame
 					frame.dispose();
-					//Calls new StaffDatabase
+					// Calls new StaffDatabase
 					new StaffDatabase();
 				} else if (selected.equals("Stock and Inventory")) {
-					//Destroy frame
+					// Destroy frame
 					frame.dispose();
-					//Calls new Stock
+					// Calls new Stock
 					new Stock();
 				} else if (selected.equals("Check Out")) {
-					//Destroy frame
+					// Destroy frame
 					frame.dispose();
-					//Calls new CheckOut
+					// Calls new CheckOut
 					new CheckOut();
 				} else if (selected.equals("Sales Reports")) {
-					//Destroy frame
+					// Destroy frame
 					frame.dispose();
-					//Calls new SalesReport
+					// Calls new SalesReport
 					new SalesReport();
 				} else if (selected.equals("Register Customer")) {
-					//Calls new RegisterCustomer
+					// Calls new RegisterCustomer
 					new RegisterCustomer();
 				}
 			}
 		});
 
-		 logoutBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-		 //Destroy the frame
-                frame.dispose();
-		    //calls a new loginpage
-                new LoginPage();
-            }
-        });
+		logoutBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Destroy the frame
+				frame.dispose();
+				// calls a new loginpage
+				new LoginPage();
+			}
+		});
 
-		 searchBtn.addActionListener(new ActionListener() {
-	            @Override
-	            public void actionPerformed(ActionEvent e) {
-					String search = searchTextField.getText();
-						final TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
-						table.setRowSorter(sorter);
-						sorter.setRowFilter(RowFilter.regexFilter(search));
-				}
-	        });
+		searchBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String search = searchTextField.getText();
+				final TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
+				table.setRowSorter(sorter);
+				sorter.setRowFilter(RowFilter.regexFilter(search));
+			}
+		});
 	}
 
 	public static void main(String[] args) {
-		//Calls new CustomerDatabase
+		// Calls new CustomerDatabase
 		new CustomerDatabase();
 	}
 }

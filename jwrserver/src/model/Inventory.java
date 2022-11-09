@@ -5,9 +5,10 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "Inventory")
@@ -16,7 +17,8 @@ public class Inventory implements Serializable {
 	private static final long serialVersionUID = 4801957816410214976L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(name = "UUID", strategy = "uuid2")
 	@Column(name = "productCode")
 	// Creates variable
 	private String id;

@@ -57,7 +57,15 @@ public class Stock {
 				"Check Out", "Sales Reports", "Register Customer" };
 		combobox = new JComboBox<>(navigation);
 		headerLabel = new JLabel("Stock and Inventory");
-		model = new DefaultTableModel(0, headings.length);
+		model = new DefaultTableModel(0, headings.length) {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+		};
 		model.setColumnIdentifiers(headings);
 		table = new JTable(model);
 		Border border = BorderFactory.createLineBorder(Color.black);
@@ -74,7 +82,7 @@ public class Stock {
 		borderPanel = new JPanel();
 		borderPanel.setBorder(border);
 
-		//call methods created
+		// call methods created
 		layout();
 		getAllInventoryItems();
 		addItemListenerToCmobo();
@@ -83,50 +91,50 @@ public class Stock {
 	public void layout() {
 		// Set the Layout Manager for the frame
 		frame.setLayout(new GridLayout(0, 1, 1, 2));
-		//add label to panel
+		// add label to panel
 		panel1.add(navigationLabel);
-		//add combobox to panel
+		// add combobox to panel
 		panel1.add(combobox);
-		//add button too panel
+		// add button too panel
 		panel2.add(button);
-		//add pael to panel
+		// add pael to panel
 		panel4.add(panel1, BorderLayout.WEST);
 		panel4.add(panel2, BorderLayout.EAST);
-		//add panel to frame
+		// add panel to frame
 		frame.add(panel4);
 		panel3.add(headerLabel, BorderLayout.CENTER);
-		//add panel to frame
+		// add panel to frame
 		frame.add(panel3);
 		panel5.add(table.getTableHeader(), BorderLayout.NORTH);
-		//add table to panel
+		// add table to panel
 		panel5.add(table);
-		//add panel to frame
+		// add panel to frame
 		frame.add(panel5);
 		panel6.add(updateButton);
 		panel6.add(deleteButton);
 		panel6.add(insertButton);
-		//add panel to frame
+		// add panel to frame
 		frame.add(panel6);
 		borderPanel.setLayout(new GridLayout(0, 1, 20, 0));
 		borderPanel.add(panel5);
 		borderPanel.add(panel6);
 
 		frame.getContentPane().add(borderPanel, BorderLayout.CENTER);
-		//set size of frame
+		// set size of frame
 		frame.setSize(new Dimension(800, 500));
-		//set frame to be visible
+		// set frame to be visible
 		frame.setVisible(true);
 		frame.setResizable(true);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-	 button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-                new LoginPage();
-            }
-        });
+
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new LoginPage();
+			}
+		});
 	}
 
 	private void getAllInventoryItems() {
@@ -137,7 +145,7 @@ public class Stock {
 		allItems.forEach(inventory -> {
 			Vector<Object> items = new Vector<>();
 
-			//Collects inventory information
+			// Collects inventory information
 			items.add(inventory.getId());
 			items.add(inventory.getName());
 			items.add(inventory.getItemsInStock());
@@ -145,48 +153,48 @@ public class Stock {
 			items.add(inventory.getShortDescription());
 			items.add(inventory.getLongDescription());
 
-			//Add information to table
+			// Add information to table
 			model.addRow(items);
 		});
 	}
 
 	private void addItemListenerToCmobo() {
-		//Adds an ItemListener with the event to be processed
+		// Adds an ItemListener with the event to be processed
 		combobox.addItemListener(itemEvent -> {
 			if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
 				String selected = (String) itemEvent.getItem();
 				if (selected.equals("Dashboard")) {
-					//Destroy frame
+					// Destroy frame
 					frame.dispose();
-					//Calls new DasBoard
+					// Calls new DasBoard
 					new DashBoard();
 				} else if (selected.equals("Customer Database")) {
-					//Destroy frame
+					// Destroy frame
 					frame.dispose();
-					//Calls new CustomerDatabase
+					// Calls new CustomerDatabase
 					new CustomerDatabase();
 				} else if (selected.equals("Staff Database")) {
-					//Destroy frame
+					// Destroy frame
 					frame.dispose();
-					//Calls new StaffDatabase
+					// Calls new StaffDatabase
 					new StaffDatabase();
 				} else if (selected.equals("Stock and Inventory")) {
-					//Destroy frame
+					// Destroy frame
 					frame.dispose();
-					//Calls new Stock
+					// Calls new Stock
 					new Stock();
 				} else if (selected.equals("Check Out")) {
-					//Destroy frame
+					// Destroy frame
 					frame.dispose();
-					//Calls new CheckOut
+					// Calls new CheckOut
 					new CheckOut();
 				} else if (selected.equals("Sales Reports")) {
-					//Destroy frame
+					// Destroy frame
 					frame.dispose();
-					//Calls new SalesReport
+					// Calls new SalesReport
 					new SalesReport();
 				} else if (selected.equals("Register Customer")) {
-					//Calls new RegisterCustomer
+					// Calls new RegisterCustomer
 					new RegisterCustomer();
 				}
 			}
@@ -194,7 +202,7 @@ public class Stock {
 	}
 
 	public static void main(String[] args) {
-		//Calls new Stock
+		// Calls new Stock
 		new Stock();
 	}
 
