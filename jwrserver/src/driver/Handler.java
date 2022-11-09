@@ -7,6 +7,8 @@ import java.net.Socket;
 
 import javax.swing.JOptionPane;
 
+import controller.StaffController;
+import model.Staff;
 import org.hibernate.Session;
 
 import Log.LoggingService;
@@ -85,6 +87,16 @@ public class Handler implements Runnable, LoggingService {
 					}
 					if (sc == ServerCommands.GETALLINVENTORY) {
 						objOut.writeObject(new InventoryController().getAllInventory());
+					}
+					if(sc == ServerCommands.REGISTERSTAFF) {
+						Staff staff = (Staff) objIn.readObject();
+						new StaffController().registerStaff(staff);
+					}
+					if(sc == ServerCommands.VERIFYSTAFF){
+						String username = (String) objIn.readObject();
+						String password = (String) objIn.readObject();
+						StaffController staffCont  = new StaffController();
+						objOut.writeObject(staffCont.verifyStaff(username, password));
 					}
 				}
 			} catch (IOException e) {

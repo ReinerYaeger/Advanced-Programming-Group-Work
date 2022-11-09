@@ -195,10 +195,14 @@ public class Client {
 		return null;
 	}
 
-	public void sendLoginResponse(String username, String password) {
+	public boolean sendLoginResponse(String username, String password) {
 		try {
 			objOs.writeObject(username);
 			objOs.writeObject(password);
+			if((Boolean) objIn.readObject()){
+				return true;
+			}
+			return false;
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (Exception e) {

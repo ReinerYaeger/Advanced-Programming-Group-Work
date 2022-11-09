@@ -24,13 +24,12 @@ public class Controller {
 
 	}
 
-	public void loginStaff(String username, String password) {
-
-		// TODO Check if staff is in database and if password is correct
-		Staff staff = new Staff();
-		Client client = new Client();
-		client.sendStaff(staff);
-
+	public boolean loginStaff(String username, String password) {
+		client.sendCommand(ServerCommands.VERIFYSTAFF);
+		if(client.sendLoginResponse(username, password)){
+			return true;
+		}
+		return false;
 	}
 
 	public Object navigationController(String viewName) {
@@ -101,6 +100,12 @@ public class Controller {
 		client.sendCommand(ServerCommands.GETALLINVENTORY);
 
 		return (List<Inventory>) client.receiveResponse();
+	}
+
+	public void registerStaff(Staff staff) {
+		client.sendCommand(ServerCommands.REGISTERSTAFF);
+		client.sendStaff(staff);
+
 	}
 
 }

@@ -32,7 +32,7 @@ public class CustomerController {
 		session.beginTransaction();
 
 		List <Customer> customer = session.createQuery("from Customer where telephone = "+telephone+"", Customer.class).getResultList();
-
+		session.close();
 		if(customer.isEmpty()){
 			return false;
 		}

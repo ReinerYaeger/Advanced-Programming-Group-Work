@@ -9,13 +9,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 
 public class LoginPage {
@@ -95,13 +89,17 @@ public class LoginPage {
             String username = usernameTextField.getText();
             String password = passwordField.getPassword().toString();
 
-            /*Controller controller = new Controller();
-            controller.loginStaff(username, password);*/
-
-            //Destroy the frame
-            frame.dispose();
-            //call a new dashboard and display value the of username
-            new DashBoard(username);
+            Controller controller = new Controller();
+            if(controller.loginStaff(username, password)) {
+                //Destroy the frame
+                frame.dispose();
+                //call a new dashboard and display value the of username
+                new DashBoard(username);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Invalid Username or Password","Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
         });
         //Set color of frame border
         frame.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLUE));

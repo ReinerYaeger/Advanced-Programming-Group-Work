@@ -1,5 +1,8 @@
 package view;
 
+import controller.Controller;
+import model.Staff;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -218,8 +221,7 @@ public class RegisterStaff {
 				}
 				String email = emailTextField.getText();
 
-				//new Controller().registerCustomer(new Customer(Math.random() * 9999999 + "", name, dateOfBirth, address,
-				//		telephoneTextField.getText(), email));
+				new Controller().registerStaff(new Staff());
 				JOptionPane.showMessageDialog(null, "Customer staff successfully");
 				frame.dispose();
 			});
