@@ -2,9 +2,9 @@ package test;
 
 import java.time.LocalDate;
 
-import Log.LoggingService;
 import org.hibernate.Session;
 
+import Log.LoggingService;
 import factories.HBFactory;
 import model.Department;
 import model.Staff;

@@ -18,30 +18,30 @@ public class Inventory implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "productCode")
-	//Creates variable
-	private int id;
+	// Creates variable
+	private String id;
 
 	@Column(name = "name")
-	//Creates variable
+	// Creates variable
 	private String name;
 
 	@Column(name = "itemsInStock")
-	//Creates variable
+	// Creates variable
 	private int itemsInStock;
 
 	@Column(name = "unitPrice")
-	//Creates variable
+	// Creates variable
 	private float unitPrice;
 
 	@Column(name = "shortDescription")
-	//Creates variable
+	// Creates variable
 	private String shortDescription;
 
 	@Column(name = "longDescription")
-	//Creates variable
+	// Creates variable
 	private String longDescription;
 
-	//create constructors
+	// create constructors
 	public Inventory() {
 	}
 
@@ -53,8 +53,8 @@ public class Inventory implements Serializable {
 		this.longDescription = longDescription;
 	}
 
-	//create getters
-	public int getId() {
+	// create getters
+	public String getId() {
 		return id;
 	}
 
@@ -78,8 +78,8 @@ public class Inventory implements Serializable {
 		return longDescription;
 	}
 
-	//create setters
-	public void setId(int id) {
+	// create setters
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -103,7 +103,7 @@ public class Inventory implements Serializable {
 		this.longDescription = longDescription;
 	}
 
-	//create tostring method
+	// create tostring method
 	@Override
 	public String toString() {
 		return "id: " + id + "\nname: " + name + "\nitemsInStock: " + itemsInStock + "\nunitPrice: " + unitPrice

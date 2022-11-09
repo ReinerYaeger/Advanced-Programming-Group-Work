@@ -2,9 +2,9 @@ package test;
 
 import java.time.LocalDate;
 
-import Log.LoggingService;
 import org.hibernate.Session;
 
+import Log.LoggingService;
 import factories.HBFactory;
 import model.Customer;
 
@@ -13,7 +13,7 @@ public class CustomerTest implements LoggingService {
 	public static void main(String[] args) {
 		Session sesh = new HBFactory().getSession();
 
-		Customer customer = new Customer(Math.random()*99999999 + "","Fred Miller", LocalDate.of(2000, 10, 15), "Manor Park", "87612355126",
+		Customer customer = new Customer("Fred Miller", LocalDate.of(2000, 10, 15), "Manor Park", "87612355126",
 				"Test1@gmail.com");
 
 		sesh.beginTransaction();

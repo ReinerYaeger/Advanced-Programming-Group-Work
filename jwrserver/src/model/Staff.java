@@ -7,11 +7,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "Staff")
@@ -20,41 +21,42 @@ public class Staff implements Serializable {
 	private static final long serialVersionUID = 4801957816410214976L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(name = "UUID", strategy = "uuid2")
 	@Column(name = "staffID")
-	//Creates variable 
-	private int id;
+	// Creates variable
+	private String id;
 
 	@Column(name = "name")
-	//Creates variable
+	// Creates variable
 	private String name;
 
 	@Column(name = "dob")
-	//Creates variable
+	// Creates variable
 	private LocalDate dob;
 
 	@Column(name = "address")
-	//Creates variable
+	// Creates variable
 	private String address;
 
 	@Column(name = "telephone")
-	
-	//Creates variables 
+
+	// Creates variables
 	private Long telephone;
 
 	@Column(name = "email")
-	//Creates variables 
+	// Creates variables
 	private String email;
 
 	@Column(name = "type")
-	//Creates variables 
+	// Creates variables
 	private String type; // Manager,Supervisor,Line-Worker
 
 	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "department")
 	private Department department;
 
-	//create constructors
+	// create constructors
 	public Staff() {
 	}
 
@@ -71,8 +73,8 @@ public class Staff implements Serializable {
 		this.type = type;
 	}
 
-	//create getters
-	public int getId() {
+	// create getters
+	public String getId() {
 		return id;
 	}
 
@@ -104,8 +106,8 @@ public class Staff implements Serializable {
 		return department;
 	}
 
-	//create setters
-	public void setId(int id) {
+	// create setters
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -137,7 +139,7 @@ public class Staff implements Serializable {
 		this.department = department;
 	}
 
-	//create tostring method
+	// create tostring method
 	@Override
 	public String toString() {
 		return "id: " + id + "\nname: " + name + "\ndob: " + dob + "\naddress: " + address + "\ntelephone: " + telephone

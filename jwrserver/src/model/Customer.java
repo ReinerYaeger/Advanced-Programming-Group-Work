@@ -3,7 +3,13 @@ package model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "Customer")
@@ -11,9 +17,10 @@ public class Customer implements Serializable {
 
 	private static final long serialVersionUID = 4801957816410214976L;
 
-	//Creates variables 
+	// Creates variables
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(name = "UUID", strategy = "uuid2")
 	@Column(name = "customerID")
 	private String id;
 
@@ -38,9 +45,8 @@ public class Customer implements Serializable {
 	@Column(name = "dateOfMembershipExpiry")
 	private LocalDate dateOfMembershipExp;
 
-	//create constructors
+	// create constructors
 	public Customer() {
-		this.id = (Math.random() * 99999999) + "";
 		this.name = "name";
 		this.dob = LocalDate.now();
 		this.address = "address";
@@ -58,8 +64,7 @@ public class Customer implements Serializable {
 	 * messy values
 	 */
 
-	public Customer(String id ,String name, LocalDate dob, String address, String telephone, String email) {
-		this.id = id;
+	public Customer(String name, LocalDate dob, String address, String telephone, String email) {
 		this.name = name;
 		this.dob = dob;
 		this.address = address;
@@ -69,7 +74,7 @@ public class Customer implements Serializable {
 		this.dateOfMembershipExp = dateOfMembership.plusYears(4);
 	}
 
-	//create getters
+	// create getters
 	public String getId() {
 		return id;
 	}
@@ -102,7 +107,7 @@ public class Customer implements Serializable {
 		return dateOfMembershipExp;
 	}
 
-	//create setters
+	// create setters
 	public void setId(String id) {
 		this.id = id;
 	}
@@ -135,7 +140,7 @@ public class Customer implements Serializable {
 		this.dateOfMembershipExp = dateOfMembershipExp;
 	}
 
-	//create tostring method
+	// create tostring method
 	@Override
 	public String toString() {
 		return "id: " + id + "\nname: " + name + "\ndob: " + dob + "\naddress: " + address + "\ntelephone: " + telephone
