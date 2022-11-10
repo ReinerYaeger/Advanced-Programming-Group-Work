@@ -243,7 +243,6 @@ public class RegisterStaff {
 
 				Staff staff = new Staff(name,password, dateOfBirth, address, telephone, email, departmentObj, type);
 
-
 				new Controller().registerStaff(staff);
 				JOptionPane.showMessageDialog(null, "Customer staff successfully");
 				frame.dispose();

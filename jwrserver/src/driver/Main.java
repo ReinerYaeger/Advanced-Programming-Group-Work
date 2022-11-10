@@ -16,10 +16,10 @@ public class Main implements LoggingService {
 
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Error in Main: " + e);
-			log.error("Error in main: " + e);
+			log.fatal("Error in main: " + e);
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Error in Main: " + e);
-			log.error("Error in main: " + e);
+			log.fatal("Error in main: " + e);
 		}
 
 	}

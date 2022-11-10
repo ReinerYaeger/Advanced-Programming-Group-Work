@@ -52,7 +52,14 @@ public class Invoice implements Serializable {
 	private List<InvoiceItem> items;
 
 	//create constructor
+
+	//Default constructor
 	public Invoice() {
+		this.items = new ArrayList<InvoiceItem>();
+		this.billingDate = LocalDate.now();
+		this.cashier = null;
+		this.customer = null;
+		this.invoiceNum = 0;
 	}
 
 	/*

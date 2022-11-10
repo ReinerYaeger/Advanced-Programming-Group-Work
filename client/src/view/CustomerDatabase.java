@@ -21,6 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -115,6 +117,27 @@ public class CustomerDatabase extends JPanel {
 		loadCustomerData();
 		// call addItemListenerToCombo method
 		addItemListenerToCombo();
+
+		// Add action listener to logout button
+		logoutBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// Destroy the frame
+				frame.dispose();
+				// calls a new loginpage
+				new LoginPage();
+			}
+		});
+
+		searchBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String search = searchTextField.getText();
+				final TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
+				table.setRowSorter(sorter);
+				sorter.setRowFilter(RowFilter.regexFilter(search));
+			}
+		});
 	}
 
 	private void layoutComponents() {
@@ -231,26 +254,9 @@ public class CustomerDatabase extends JPanel {
 			}
 		});
 
-		logoutBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// Destroy the frame
-				frame.dispose();
-				// calls a new loginpage
-				new LoginPage();
-			}
-		});
-
-		searchBtn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String search = searchTextField.getText();
-				final TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model);
-				table.setRowSorter(sorter);
-				sorter.setRowFilter(RowFilter.regexFilter(search));
-			}
-		});
 	}
+
+
 
 	public static void main(String[] args) {
 		// Calls new CustomerDatabase

@@ -66,6 +66,16 @@ public class Staff implements Serializable {
 		this.type = "type";
 	}
 
+	//create a copy constructor
+	public Staff(Staff staff){
+		this.name = staff.name;
+		this.dob = staff.dob;
+		this.address = staff.address;
+		this.telephone = staff.telephone;
+		this.email = staff.email;
+		this.type = staff.type;
+	}
+
 	/*
 	 * The department has to be set by retrievnig it fromt he database then adding
 	 * it using set method before saving to db

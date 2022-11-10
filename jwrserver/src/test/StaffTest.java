@@ -2,6 +2,7 @@ package test;
 
 import java.time.LocalDate;
 
+import model.staff.Manager;
 import org.hibernate.Session;
 
 import Log.LoggingService;
@@ -19,15 +20,15 @@ public class StaffTest implements LoggingService {
 
 		Department dep = sesh.createQuery("from Department where name= 'Management' ", Department.class).uniqueResult();
 
-		Staff staff = new Staff("Alesha Ronbinson", LocalDate.of(1990, 2, 16), "2 Kings Street", 8766932165L,
-				"Alesha@gmail.com", "Manager");
+		Staff staff = new Manager(new Staff("Alesha Ronbinson", LocalDate.of(1990, 2, 16), "2 Kings Street", "0395873625",
+											"Alesha@gmail.com", "Manager"));
 
-		staff.setDepartment(dep);
+
+		/*staff.setDepartment(dep);*/
 
 		sesh.save(staff);
 		sesh.getTransaction().commit();
 
 		log.info("Staff Saved\n" + staff);
 	}
-
 }

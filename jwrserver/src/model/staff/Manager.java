@@ -22,6 +22,10 @@ public class Manager extends Staff implements Serializable {
 		super();
 	}
 
+	public Manager (Staff staff){
+		super(staff);
+	}
+
 	public Department getDepartment( ) {
 		return department;
 	}
