@@ -102,7 +102,7 @@ public class CustomerDatabase extends JPanel {
 		model.setColumnIdentifiers(columns);
 		// Constructs a JTable
 		table = new JTable(model);
-
+         table.setEnabled(false);
 		// Set size of viewport for the table
 		table.setPreferredScrollableViewportSize(new Dimension(1200, 100));
 		table.setFillsViewportHeight(true);
