@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -54,8 +55,8 @@ public class DashBoard {
         dashBoardLabel = new JLabel("DashBoard");
         dashBoardPanel = new JPanel();
         logoutBtn = new JButton("Logout");
-        customerDatabaseButton = new JButton("Customer StaffDatabase");
-        staffDatabaseButton = new JButton("Staff StaffDatabase");
+        customerDatabaseButton = new JButton("Customer Database");
+        staffDatabaseButton = new JButton("Staff Database");
         stockAndIventoryDatabaseButton = new JButton("Stock and Inventory");
         checkOutButton = new JButton("Check Out");
         salesReportButton = new JButton("Sales Report");
@@ -68,7 +69,9 @@ public class DashBoard {
     private void layoutComponents() {
         //Set the Layout Manager for the frame
         frame.setLayout(new GridBagLayout());
-
+      
+        
+        
         //Add label to panel
         dashBoardPanel.add(dashBoardLabel);
         //Add panel to frame
@@ -80,8 +83,8 @@ public class DashBoard {
         gbc.gridx = 2;
         gbc.gridy = 0;
         //Set internal padding
-        gbc.ipadx = 150;
-        gbc.ipady = 50;
+        gbc.ipadx = 20;
+        gbc.ipady = 10;
       //Set location in the frame
         gbc.anchor = GridBagConstraints.NORTH;
       //Set the external padding 
@@ -92,55 +95,55 @@ public class DashBoard {
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 2;
-        gbc.ipadx = 150;
-        gbc.ipady = 50;
-        gbc.insets = new Insets(10, 10, 11, 0);
+        gbc.ipadx = 80;
+        gbc.ipady = 20;
+        gbc.insets = new Insets(10, 10, 11, 5);
         frame.add(customerDatabaseButton, gbc);
 
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 2;
-        gbc.ipadx = 150;
-        gbc.ipady = 50;
+        gbc.ipadx = 70;
+        gbc.ipady = 20;
         gbc.insets = new Insets(10, 10, 11, 0);
         frame.add(staffDatabaseButton, gbc);
 
         gbc = new GridBagConstraints();
         gbc.gridx = 2;
         gbc.gridy = 2;
-        gbc.ipadx = 150;
-        gbc.ipady = 50;
-        gbc.insets = new Insets(10, 10, 11, 0);
+        gbc.ipadx = 45;
+        gbc.ipady = 20;
+        gbc.insets = new Insets(10, 10, 11, 5);
         frame.add(stockAndIventoryDatabaseButton, gbc);
 
         gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 4;
-        gbc.ipadx = 150;
-        gbc.ipady = 50;
+        gbc.ipadx = 140;
+        gbc.ipady = 20;
         gbc.insets = new Insets(10, 10, 11, 0);
         frame.add(checkOutButton, gbc);
 
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 4;
-        gbc.ipadx = 150;
-        gbc.ipady = 50;
+        gbc.ipadx = 75;
+        gbc.ipady = 20;
         gbc.insets = new Insets(10, 10, 11, 0);
         frame.add(salesReportButton, gbc);
 
         gbc = new GridBagConstraints();
         gbc.gridx = 2;
         gbc.gridy = 4;
-        gbc.ipadx = 150;
-        gbc.ipady = 50;
-        gbc.insets = new Insets(10, 10, 11, 0);
+        gbc.ipadx = 50;
+        gbc.ipady = 20;
+        gbc.insets = new Insets(10, 10, 11, 5);
         frame.add(registerCustomerButton, gbc);
 
       //Set color of frame border
         frame.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLUE) );
       //Set size of frame
-        frame.setSize(new Dimension(920, 800));
+        frame.setSize(new Dimension(670, 400));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       //Set frame to be visible
         frame.setVisible(true);
