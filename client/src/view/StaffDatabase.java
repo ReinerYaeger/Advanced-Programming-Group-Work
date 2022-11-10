@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -13,6 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 // StaffDatabase class inheriting from JFrame 
 public class StaffDatabase extends JFrame {
@@ -34,18 +37,24 @@ public class StaffDatabase extends JFrame {
 	private final JComboBox<String> combobox;
 	private final JButton logoutBtn;
 	private final JLabel headerLabel;
-
+	private String headings[]= {"Department Code","Name"};
+	private int row =35;
+	private JTable managementTable;
+	private JTable inventoryTable;
+	private JTable accountingTable;
+	private JPanel centerPanel;
+	private JPanel topPanel;
 	StaffDatabase() {
 		// Initialize the variables
 		frame = new JFrame();
-		dashboard = new JPanel();
-		management = new JPanel();
-		inventory = new JPanel();
-		accounting = new JPanel();
+		dashboard=new JPanel();
+		management=new JPanel(new BorderLayout(0,0));
+		inventory=new JPanel(new BorderLayout(0,0));
+		accounting=new JPanel(new BorderLayout(0,0));
 		tab = new JTabbedPane();
-		tab.setBounds(100, 100, 700, 400);
+		tab.setBounds(500, 500, 700, 400);
 		navigationLabel = new JLabel("Navigation:");
-
+        topPanel=new JPanel(new BorderLayout(0,0));
 		logoutBtn = new JButton("Logout");
 		// Create Array of string
 		String[] navigation = { " ", "Dashboard", "Customer Database", "Staff Database", "Stock and Inventory",
@@ -53,12 +62,22 @@ public class StaffDatabase extends JFrame {
 		combobox = new JComboBox<>(navigation);
 		//Set size of component
 		combobox.setBounds(100, 50, 150, 20);
-		headerLabel = new JLabel("Staff StaffDatabase");
+		headerLabel = new JLabel("Staff Database");
 		navigationPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		logoutPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		headerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		logNavPanel = new JPanel(new BorderLayout(0, 0));
 		tabPanel = new JPanel(new BorderLayout(1, 0));
+		DefaultTableModel model = new DefaultTableModel(row, headings.length) ;
+		 model.setColumnIdentifiers(headings);
+		 
+		 managementTable=new JTable(model);
+		managementTable.setEnabled(false);
+		 inventoryTable=new JTable(model);
+		 inventoryTable.setEnabled(false);
+		 accountingTable=new JTable(model);
+		accountingTable.setEnabled(false);
+		 centerPanel=new JPanel(new BorderLayout(1,0));
 		// Call layoutComponents method
 		layout();
 		// Call addItemListenerCmobo method
@@ -68,7 +87,7 @@ public class StaffDatabase extends JFrame {
 	@Override
 	public void layout() {
 		// Set the Layout Manager for the frame
-		frame.setLayout(new GridLayout(0, 1, 1, 2));
+		frame.setLayout(new BorderLayout(0,1));
 
 		//Add label to panel
 		navigationPanel.add(navigationLabel);
@@ -82,23 +101,36 @@ public class StaffDatabase extends JFrame {
 		//Add panel to panel
 		logNavPanel.add(logoutPanel, BorderLayout.EAST);
 		//Add panel to frame
-		frame.add(logNavPanel);
+		frame.add(logNavPanel,BorderLayout.PAGE_START);
 		//Add label to panel
 		headerPanel.add(headerLabel, BorderLayout.CENTER);
 		//Add panel to frame
-		frame.add(headerPanel);
+		centerPanel.add(headerPanel,BorderLayout.NORTH);
 
 		
 		tab.add("Dashboard", dashboard);
+		managementTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+	    managementTable.getColumnModel().getColumn(1).setPreferredWidth(450);
+		management.add(managementTable.getTableHeader(),BorderLayout.PAGE_START);
+		management.add(managementTable,BorderLayout.CENTER);
 		tab.add("Management", management);
+		inventoryTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+		inventoryTable.getColumnModel().getColumn(1).setPreferredWidth(450);
+		inventory.add(inventoryTable.getTableHeader(),BorderLayout.PAGE_START);
+		inventory.add(inventoryTable,BorderLayout.CENTER);
 		tab.add("Inventory", inventory);
+		accountingTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+		accountingTable.getColumnModel().getColumn(1).setPreferredWidth(450);
+		accounting.add(accountingTable.getTableHeader(),BorderLayout.PAGE_START);
+		accounting.add(accountingTable,BorderLayout.CENTER);
 		tab.add("Accounting and Sales", accounting);
-		tabPanel.add(tab);
+		//tabPanel.add(tab);
+		centerPanel.add(tab);
 		//Set size of panel
-		tabPanel.setSize(400, 200);
-		frame.add(tabPanel, BorderLayout.CENTER);
+		//tabPanel.setSize(400, 200);
+		frame.getContentPane().add(centerPanel, BorderLayout.CENTER);
 		//Set size of frame
-		frame.setSize(700, 400);
+		frame.setSize(700, 600);
 		//Set frame to be visible
 		frame.setVisible(true);
 		
