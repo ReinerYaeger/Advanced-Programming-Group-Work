@@ -52,9 +52,9 @@ public class Staff implements Serializable {
 	// Creates variables
 	protected String type; // Manager,Supervisor,Line-Worker
 
-/*	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
+	@ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	@JoinColumn(name = "department")
-	protected Department department;*/
+	protected Department department;
 
 	// create constructors
 	public Staff() {
@@ -118,9 +118,9 @@ public class Staff implements Serializable {
 		return type;
 	}
 
-	/*public Department getDepartment() {
+	public Department getDepartment() {
 		return department;
-	}*/
+	}
 
 	// create setters
 	public void setId(String id) {
@@ -151,9 +151,9 @@ public class Staff implements Serializable {
 		this.type = type;
 	}
 
-/*	public void setDepartment(Department department) {
+	public void setDepartment(Department department) {
 		this.department = department;
-	}*/
+	}
 
 	// create tostring method
 	@Override

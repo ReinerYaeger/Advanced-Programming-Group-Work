@@ -24,7 +24,7 @@ public class StaffTest implements LoggingService {
 											"Alesha@gmail.com", "Manager");
 
 
-		/*staff.setDepartment(dep);*/
+		staff.setDepartment(dep);
 
 		sesh.save(staff);
 		sesh.getTransaction().commit();
