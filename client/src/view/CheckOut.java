@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
+import java.sql.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,6 +40,7 @@ public class CheckOut {
 	private final JLabel changeLabel;
 	private final JFrame frame;
 	private final JTextField invoiceTextField;
+	private final JTextField dateTextField;
 	private final JTextField customerTextField;
 	private final JTextField idTextField;
 	private final JTextField itemTextField;
@@ -46,12 +48,19 @@ public class CheckOut {
 	private final JTextField recievedTextField;
 	private final JRadioButton yesMemberRadioButton;
 	private final JRadioButton noMemberRadioButton;
+	private final JTextField discountTextField;
 	private final ButtonGroup buttonGroup;
 	private final JButton logoutBtn;
 	private final JLabel navigationLabel;
 	private final JComboBox<String> combobox;
 	private GridBagConstraints gbc;
-
+	private Date date;
+    private String dateComp;
+	private final JTextField taxTextField;
+	private final JTextField totalTextField;
+	private final JTextField changeTextField;
+	private final JTextField cashierTextField;
+    //private String invoiceNumber;
 	public CheckOut() {
 		// Initialize the variables
 		frame = new JFrame();
@@ -67,9 +76,17 @@ public class CheckOut {
 		headerLabel = new JLabel("Check Out");
 		invoiceLabel = new JLabel("Invoice#:");
 		// use random number to set invoice number
+		
 		invoiceTextField = new JTextField(50);
 		dateLabel = new JLabel("Billing Date");
+		//format and set date
+		date=new Date(System.currentTimeMillis());
+		dateComp=date.toString();
+		dateTextField=new JTextField(dateComp);
+		//set field to not be editable
+		dateTextField.setEditable(false);
 		cashierLabel = new JLabel("Cashier");
+		cashierTextField = new JTextField();
 		customerLabel = new JLabel("Customer");
 		customerTextField = new JTextField(50);
 		idLabel = new JLabel("Customer ID");
@@ -88,14 +105,17 @@ public class CheckOut {
 		buttonGroup.add(yesMemberRadioButton);
 		buttonGroup.add(noMemberRadioButton);
 		discountLabel = new JLabel("Discount");
-
+        discountTextField=new JTextField();
 		taxLabel = new JLabel("Tax");
-
+		taxTextField = new JTextField();
 		totalLabel = new JLabel("Total");
+		totalTextField = new JTextField();
 
 		recievedLabel = new JLabel("Amount Received:");
 		recievedTextField = new JTextField();
 		changeLabel = new JLabel("Change");
+		changeTextField = new JTextField();
+		
 		
 		//call methods created
 		layout();
@@ -165,6 +185,15 @@ public class CheckOut {
 		frame.add(invoiceLabel, gbc);
 		
 		gbc = new GridBagConstraints();
+		gbc.gridx = 1;
+		gbc.gridy = 2;
+		gbc.gridwidth = 1;
+		gbc.ipadx = 150;
+		gbc.ipady = 5;
+		gbc.anchor = GridBagConstraints.NORTHWEST;
+		frame.add(invoiceTextField, gbc);
+		
+		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 3;
 		gbc.gridwidth = 1;
@@ -174,6 +203,15 @@ public class CheckOut {
 		frame.add(dateLabel, gbc);
 		
 		gbc = new GridBagConstraints();
+		gbc.gridx = 1;
+		gbc.gridy = 3;
+		gbc.gridwidth = 1;
+		gbc.ipadx = 150;
+		gbc.ipady = 5;
+		gbc.anchor = GridBagConstraints.NORTHWEST;
+		frame.add(dateTextField, gbc);
+		
+		gbc = new GridBagConstraints();
 		gbc.gridx = 4;
 		gbc.gridy = 3;
 		gbc.gridwidth = 1;
@@ -181,6 +219,15 @@ public class CheckOut {
 		gbc.ipady = 20;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(cashierLabel, gbc);
+		
+		gbc = new GridBagConstraints();
+		gbc.gridx = 5;
+		gbc.gridy = 3;
+		gbc.gridwidth = 1;
+		gbc.ipadx = 150;
+		gbc.ipady = 5;
+		gbc.anchor = GridBagConstraints.NORTHWEST;
+		frame.add(cashierTextField, gbc);
 		
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
@@ -285,6 +332,15 @@ public class CheckOut {
 		frame.add(discountLabel, gbc);
 		
 		gbc = new GridBagConstraints();
+		gbc.gridx = 1;
+		gbc.gridy = 7;
+		gbc.gridwidth = 1;
+		gbc.ipadx = 150;
+		gbc.ipady = 5;
+		gbc.anchor = GridBagConstraints.NORTHWEST;
+		frame.add(discountTextField, gbc);
+		
+		gbc = new GridBagConstraints();
 		gbc.gridx = 2;
 		gbc.gridy = 7;
 		gbc.gridwidth = 1;
@@ -294,6 +350,15 @@ public class CheckOut {
 		frame.add(taxLabel, gbc);
 		
 		gbc = new GridBagConstraints();
+		gbc.gridx = 3;
+		gbc.gridy = 7;
+		gbc.gridwidth = 1;
+		gbc.ipadx = 100;
+		gbc.ipady = 5;
+		gbc.anchor = GridBagConstraints.NORTHWEST;
+		frame.add(taxTextField, gbc);
+		
+		gbc = new GridBagConstraints();
 		gbc.gridx = 4;
 		gbc.gridy = 7;
 		gbc.gridwidth = 1;
@@ -301,6 +366,15 @@ public class CheckOut {
 		gbc.ipady = 20;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(totalLabel, gbc);
+		
+		gbc = new GridBagConstraints();
+		gbc.gridx = 5;
+		gbc.gridy = 7;
+		gbc.gridwidth = 1;
+		gbc.ipadx = 150;
+		gbc.ipady = 5;
+		gbc.anchor = GridBagConstraints.NORTHWEST;
+		frame.add(totalTextField, gbc);
 		
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
@@ -329,8 +403,17 @@ public class CheckOut {
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(changeLabel, gbc);
 
+		gbc = new GridBagConstraints();
+		gbc.gridx = 5;
+		gbc.gridy = 8;
+		gbc.gridwidth = 1;
+		gbc.ipadx = 150;
+		gbc.ipady = 5;
+		gbc.anchor = GridBagConstraints.NORTHWEST;
+		frame.add(changeTextField, gbc);
+		
 		//Set size of frame
-		frame.setSize(new Dimension(800, 500));
+		frame.setSize(new Dimension(850, 500));
 		//Set frame to be visible
 		frame.setVisible(true);
 		frame.setResizable(false);
@@ -463,4 +546,5 @@ public class CheckOut {
 			}
 		});
 	}
+	
 }
