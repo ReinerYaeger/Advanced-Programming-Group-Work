@@ -58,14 +58,14 @@ public class CustomerDatabase extends JPanel {
 	public CustomerDatabase() {
 		// Initialize the variables
 		frame = new JFrame("Customer Database");
-		navigationPanel = new JPanel();
-		logoutPanel = new JPanel();
+		navigationPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		logoutPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		customerDatabasePanel = new JPanel();
 		searchTextFieldPanel = new JPanel();
-		searchLabelPanel = new JPanel();
+		searchLabelPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		logoutBtn = new JButton("Logout");
 		navigationLabel = new JLabel("Navigation");
-		customerDatabaseLabel = new JLabel("Customer StaffDatabase");
+		customerDatabaseLabel = new JLabel("Customer Staff Database");
 		searchTextField = new TextField(40);
 		searchBtn = new JButton("Search");
 		searchLabel = new JLabel("Search");
@@ -108,7 +108,7 @@ public class CustomerDatabase extends JPanel {
 		table.setFillsViewportHeight(true);
 		// Add table to scrollpane view
 		scrollPane = new JScrollPane(table);
-
+        
 		// Call layoutComponents method
 		layoutComponents();
 		// call loadCustomerData method
@@ -119,12 +119,12 @@ public class CustomerDatabase extends JPanel {
 
 	private void layoutComponents() {
 		// Set the Layout Manager for the frame
-		frame.setLayout(new GridLayout(0, 1, 0, 0));
+		frame.setLayout(new BorderLayout(0,1));
 
 		// Add label to panel
 		customerDatabasePanel.add(customerDatabaseLabel);
 		// Add panel to frame
-		frame.add(customerDatabasePanel);
+		//panel1.add(customerDatabasePanel, );
 
 		// Add label to panel
 		navigationPanel.add(navigationLabel);
@@ -135,8 +135,9 @@ public class CustomerDatabase extends JPanel {
 		// Add panel to panel using borderlayout
 		panel1.add(navigationPanel, BorderLayout.WEST);
 		panel1.add(logoutPanel, BorderLayout.EAST);
+		panel1.add(customerDatabasePanel,BorderLayout.AFTER_LAST_LINE );
 		// Add panel to frame
-		frame.add(panel1);
+		frame.add(panel1,BorderLayout.PAGE_START);
 
 		// Add label to panel
 		searchLabelPanel.add(searchLabel);
@@ -152,7 +153,9 @@ public class CustomerDatabase extends JPanel {
 		// Add scrollable table to panel
 		tablePanel.add(scrollPane);
 		// Add panel to frame
-		frame.add(tablePanel);
+		panel2.add(tablePanel);
+		
+		frame.getContentPane().add(panel2,BorderLayout.CENTER);
 
 		// Set color of frame border
 		frame.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLUE));
@@ -160,6 +163,7 @@ public class CustomerDatabase extends JPanel {
 		frame.setSize(1350, 900);
 		// Set frame to be visible
 		frame.setVisible(true);
+		//frame.setResizable(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
