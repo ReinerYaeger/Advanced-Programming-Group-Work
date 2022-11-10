@@ -47,7 +47,7 @@ public class Stock {
 	private JButton insertButton;
 	private DefaultTableModel model;
 	List<Inventory> allItems;
-
+	private int row=30;
 	public Stock() {
 		// Initialize the variables
 		frame = new JFrame();
@@ -57,29 +57,27 @@ public class Stock {
 				"Check Out", "Sales Reports", "Register Customer" };
 		combobox = new JComboBox<>(navigation);
 		headerLabel = new JLabel("Stock and Inventory");
-		model = new DefaultTableModel(0, headings.length) {
-			private static final long serialVersionUID = 1L;
+		model = new DefaultTableModel(row, headings.length) {
 
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				// TODO Auto-generated method stub
-				return false;
-			}
+			private static final long serialVersionUID = 1L;
+			
+			
 		};
 		model.setColumnIdentifiers(headings);
 		table = new JTable(model);
+		table.setEnabled(false);
 		Border border = BorderFactory.createLineBorder(Color.black);
 		updateButton = new JButton("Update");
 		deleteButton = new JButton("Delete");
 		insertButton = new JButton("Insert");
 		panel1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		panel2 = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		panel3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		panel3 = new JPanel();
 		panel4 = new JPanel(new BorderLayout(0, 0));
 		panel5 = new JPanel(new BorderLayout(0, 0));
 		panel5.setSize(400, 500);
-		panel6 = new JPanel();
-		borderPanel = new JPanel();
+		panel6 = new JPanel(new FlowLayout());
+		borderPanel = new JPanel(new BorderLayout(0,0));
 		borderPanel.setBorder(border);
 
 		// call methods created
@@ -90,21 +88,21 @@ public class Stock {
 
 	public void layout() {
 		// Set the Layout Manager for the frame
-		frame.setLayout(new GridLayout(0, 1, 1, 2));
+		frame.setLayout(new BorderLayout(3,1));
 		// add label to panel
 		panel1.add(navigationLabel);
 		// add combobox to panel
 		panel1.add(combobox);
 		// add button too panel
 		panel2.add(button);
-		// add pael to panel
+		// add panel to panel
 		panel4.add(panel1, BorderLayout.WEST);
 		panel4.add(panel2, BorderLayout.EAST);
 		// add panel to frame
-		frame.add(panel4);
-		panel3.add(headerLabel, BorderLayout.CENTER);
+		frame.add(panel4,BorderLayout.PAGE_START);
+		panel3.add(headerLabel);
 		// add panel to frame
-		frame.add(panel3);
+		frame.add(panel3, BorderLayout.AFTER_LAST_LINE);
 		panel5.add(table.getTableHeader(), BorderLayout.NORTH);
 		// add table to panel
 		panel5.add(table);
@@ -114,12 +112,12 @@ public class Stock {
 		panel6.add(deleteButton);
 		panel6.add(insertButton);
 		// add panel to frame
-		frame.add(panel6);
-		borderPanel.setLayout(new GridLayout(0, 1, 20, 0));
+		
+		borderPanel.add(panel3,BorderLayout.PAGE_START);
 		borderPanel.add(panel5);
-		borderPanel.add(panel6);
+		borderPanel.add(panel6,BorderLayout.PAGE_END);
 
-		frame.getContentPane().add(borderPanel, BorderLayout.CENTER);
+		frame.getContentPane().add(borderPanel);
 		// set size of frame
 		frame.setSize(new Dimension(800, 500));
 		// set frame to be visible
