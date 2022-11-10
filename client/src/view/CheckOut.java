@@ -75,9 +75,8 @@ public class CheckOut {
 		// Initialize the variables
 		headerLabel = new JLabel("Check Out");
 		invoiceLabel = new JLabel("Invoice#:");
-		// use random number to set invoice number
-		
 		invoiceTextField = new JTextField(50);
+		invoiceTextField.setEditable(false);
 		dateLabel = new JLabel("Billing Date");
 		//format and set date
 		date=new Date(System.currentTimeMillis());
@@ -87,6 +86,7 @@ public class CheckOut {
 		dateTextField.setEditable(false);
 		cashierLabel = new JLabel("Cashier");
 		cashierTextField = new JTextField();
+		cashierTextField.setEditable(false);
 		customerLabel = new JLabel("Customer");
 		customerTextField = new JTextField(50);
 		idLabel = new JLabel("Customer ID");
@@ -106,16 +106,18 @@ public class CheckOut {
 		buttonGroup.add(noMemberRadioButton);
 		discountLabel = new JLabel("Discount");
         discountTextField=new JTextField();
+        discountTextField.setEditable(false);
 		taxLabel = new JLabel("Tax");
 		taxTextField = new JTextField();
+		taxTextField.setEditable(false);
 		totalLabel = new JLabel("Total");
 		totalTextField = new JTextField();
-
+		totalTextField.setEditable(false);
 		recievedLabel = new JLabel("Amount Received:");
 		recievedTextField = new JTextField();
 		changeLabel = new JLabel("Change");
 		changeTextField = new JTextField();
-		
+		changeTextField.setEditable(false);
 		
 		//call methods created
 		layout();
