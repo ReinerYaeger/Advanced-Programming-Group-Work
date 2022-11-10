@@ -122,7 +122,9 @@ CREATE TABLE `InvoiceItem` (
 
 CREATE TABLE `Staff` (
   `staffID` varchar(100) NOT NULL,
-  `name` varchar(50) NOT NULL,
+  `firstName` varchar(100) NOT NULL,
+  `lastName` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
   `dob` date NOT NULL,
   `address` varchar(50) NOT NULL,
   `telephone` bigint(10) NOT NULL,

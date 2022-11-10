@@ -20,8 +20,8 @@ public class StaffTest implements LoggingService {
 
 		Department dep = sesh.createQuery("from Department where name= 'Management' ", Department.class).uniqueResult();
 
-		Staff staff = new Manager(new Staff("Alesha Ronbinson", LocalDate.of(1990, 2, 16), "2 Kings Street", "0395873625",
-											"Alesha@gmail.com", "Manager"));
+		Staff staff =new Staff("Alesha Ronbinson", LocalDate.of(1990, 2, 16), "2 Kings Street", "0395873625",
+											"Alesha@gmail.com", "Manager");
 
 
 		/*staff.setDepartment(dep);*/
