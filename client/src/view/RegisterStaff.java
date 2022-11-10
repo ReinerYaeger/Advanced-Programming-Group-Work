@@ -241,7 +241,9 @@ public class RegisterStaff {
 					departmentObj.setDepartmentCode("ACCS101");
 				}
 
-				Staff staff = new Staff(name,password, dateOfBirth, address, telephone, email, departmentObj, type);
+				Staff staff =new Staff(name,dateOfBirth, address, telephone,email,department);
+				/*Staff staff = new Staff(name,password, dateOfBirth, address, telephone, email, departmentObj, type);*/
+
 
 				new Controller().registerStaff(staff);
 				JOptionPane.showMessageDialog(null, "Customer staff successfully");
