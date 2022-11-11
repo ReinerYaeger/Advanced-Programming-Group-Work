@@ -73,13 +73,11 @@ public class Client {
 	public void sendCustomer(Customer customer) {
 		try {
 			objOs.writeObject(customer);
-			objOs.close();
+			// objOs.close();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
-		} finally {
-			closeConnection();
 		}
 	}
 
@@ -87,13 +85,11 @@ public class Client {
 	public void sendInventory(Inventory inventory) {
 		try {
 			objOs.writeObject(inventory);
-			objOs.close();
+			// objOs.close();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
-		} finally {
-			closeConnection();
 		}
 	}
 
@@ -101,13 +97,11 @@ public class Client {
 	public void sendInventory(InvoiceItem item) {
 		try {
 			objOs.writeObject(item);
-			objOs.close();
+			// objOs.close();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
-		} finally {
-			closeConnection();
 		}
 	}
 
@@ -115,13 +109,11 @@ public class Client {
 	public void sendStaff(Staff staff) {
 		try {
 			objOs.writeObject(staff);
-			objOs.close();
+
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
-		} finally {
-			closeConnection();
 		}
 	}
 
@@ -129,7 +121,7 @@ public class Client {
 	public void sendDepartment(Department department) {
 		try {
 			objOs.writeObject(department);
-			objOs.close();
+
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (Exception e) {
@@ -141,7 +133,7 @@ public class Client {
 	public void sendInvoice(Invoice invoice) {
 		try {
 			objOs.writeObject(invoice);
-			objOs.close();
+
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (Exception e) {
@@ -152,7 +144,7 @@ public class Client {
 	public void sendObject(Object object) {
 		try {
 			objOs.writeObject(object);
-			objOs.close();
+
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (Exception e) {
@@ -195,14 +187,12 @@ public class Client {
 		return null;
 	}
 
-	public boolean sendLoginResponse(String username, String password) {
+	public Staff sendLoginResponse(String username, String password) {
 		try {
 			objOs.writeObject(username);
 			objOs.writeObject(password);
-			if((Boolean) objIn.readObject()){
-				return true;
-			}
-			return false;
+			Staff staff = (Staff) objIn.readObject();
+			return staff;
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (Exception e) {
@@ -210,7 +200,7 @@ public class Client {
 		}
 	}
 
-	public Invoice requestInvoice() {
+	public Invoice recieveInvoice() {
 		Invoice invoice = new Invoice();
 		try {
 			invoice = (Invoice) objIn.readObject();
@@ -235,17 +225,17 @@ public class Client {
 		return customer;
 	}
 
-	public boolean checkCustomerExist(String number) {
-		boolean isTrue = false;
+	public Customer checkCustomerExist(String number) {
+		Customer customer;
 		try {
 			objOs.writeObject(number);
-			isTrue = (Boolean) objIn.readObject();
+			customer = (Customer) objIn.readObject();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-		return isTrue;
+		return customer;
 	}
 
 }

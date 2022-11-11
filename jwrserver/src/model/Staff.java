@@ -56,6 +56,9 @@ public class Staff implements Serializable {
 	@JoinColumn(name = "department")
 	protected Department department;
 
+	@Column(name = "password")
+	protected String password;
+
 	// create constructors
 	public Staff() {
 		this.name = "name";
@@ -66,8 +69,8 @@ public class Staff implements Serializable {
 		this.type = "type";
 	}
 
-	//create a copy constructor
-	public Staff(Staff staff){
+	// create a copy constructor
+	public Staff(Staff staff) {
 		this.name = staff.name;
 		this.dob = staff.dob;
 		this.address = staff.address;
@@ -87,6 +90,17 @@ public class Staff implements Serializable {
 		this.telephone = telephone;
 		this.email = email;
 		this.type = type;
+	}
+
+	public Staff(String name, LocalDate dob, String address, String telephone, String email, String type,
+			String password) {
+		this.name = name;
+		this.dob = dob;
+		this.address = address;
+		this.telephone = telephone;
+		this.email = email;
+		this.type = type;
+		this.password = password;
 	}
 
 	// create getters
@@ -155,11 +169,19 @@ public class Staff implements Serializable {
 		this.department = department;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	// create tostring method
 	@Override
 	public String toString() {
 		return "id: " + id + "\nname: " + name + "\ndob: " + dob + "\naddress: " + address + "\ntelephone: " + telephone
-				+ "\nemail: " + email + "\ntype: " + type;
+				+ "\nemail: " + email + "\ntype: " + type + "\ndepartment: " + department;
 	}
 
 }

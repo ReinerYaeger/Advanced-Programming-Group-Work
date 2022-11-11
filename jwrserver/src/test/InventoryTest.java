@@ -13,7 +13,7 @@ public class InventoryTest implements LoggingService {
 
 		sesh.beginTransaction();
 
-		Inventory inventory = new Inventory("Pepsi", 200, 50.0f, "Pepsi Drink", "A drink named pepsi");
+		Inventory inventory = new Inventory("Water Bottle", 20, 50.0f, "Bottle", "Water Bottle");
 
 		sesh.save(inventory);
 		sesh.getTransaction().commit();
