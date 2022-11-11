@@ -91,6 +91,7 @@ public class Controller {
 
 		client.sendInvoice(invoice);
 		client.sendObject(items);
+		client.receiveInvoiceResponse();
 
 	}
 

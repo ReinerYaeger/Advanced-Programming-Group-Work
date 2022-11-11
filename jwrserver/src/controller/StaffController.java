@@ -23,7 +23,6 @@ public class StaffController implements LoggingService {
 	private int affectedRows = 0;
 
 	public StaffController() {
-		new HBFactory();
 		session = HBFactory.getSession();
 
 		connection = DBConnectorFactory.getDatabaseConnection();

@@ -111,7 +111,7 @@ public class Handler implements Runnable, LoggingService {
 						List<InvoiceItem> items = (List<InvoiceItem>) objIn.readObject();
 
 						new InvoiceController().submitInvoice(invoice, items);
-
+						objOut.writeObject(true);
 					}
 				}
 			} catch (IOException e) {

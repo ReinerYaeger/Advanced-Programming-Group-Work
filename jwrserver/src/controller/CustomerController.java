@@ -11,7 +11,6 @@ public class CustomerController {
 	private Session session;
 
 	public CustomerController() {
-		new HBFactory();
 		session = HBFactory.getSession();
 	}
 

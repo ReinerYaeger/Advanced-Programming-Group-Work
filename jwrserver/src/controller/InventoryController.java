@@ -12,7 +12,6 @@ public class InventoryController {
 	private Session session;
 
 	public InventoryController() {
-		new HBFactory();
 		session = HBFactory.getSession();
 	}
 

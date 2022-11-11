@@ -16,7 +16,6 @@ public class InvoiceController implements LoggingService {
 	private Session session;
 
 	public InvoiceController() {
-		new HBFactory();
 		session = HBFactory.getSession();
 
 	}
