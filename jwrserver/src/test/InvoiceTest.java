@@ -1,8 +1,8 @@
 package test;
 
-import Log.LoggingService;
 import org.hibernate.Session;
 
+import Log.LoggingService;
 import factories.HBFactory;
 import model.Invoice;
 import model.Staff;
@@ -13,7 +13,7 @@ public class InvoiceTest implements LoggingService {
 
 		sesh.beginTransaction();
 
-		Staff staff = sesh.createQuery("from Staff where id = '1'", Staff.class).uniqueResult();
+		Staff staff = sesh.createQuery("from Staff where name = 'Kimone'", Staff.class).uniqueResult();
 
 		Invoice invoice = new Invoice(staff);
 
@@ -21,6 +21,7 @@ public class InvoiceTest implements LoggingService {
 		sesh.getTransaction().commit();
 
 		log.info("Invoice Saved\n" + invoice);
+		System.out.println(invoice);
 	}
 }
 /*

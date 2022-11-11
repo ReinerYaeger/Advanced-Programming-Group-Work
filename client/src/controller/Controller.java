@@ -5,6 +5,7 @@ import java.util.List;
 import model.Customer;
 import model.Inventory;
 import model.Invoice;
+import model.InvoiceItem;
 import model.ServerCommands;
 import model.Staff;
 import view.DashBoard;
@@ -24,12 +25,11 @@ public class Controller {
 
 	}
 
-	public boolean loginStaff(String username, String password) {
+	public Staff loginStaff(String username, String password) {
 		client.sendCommand(ServerCommands.VERIFYSTAFF);
-		if(client.sendLoginResponse(username, password)){
-			return true;
-		}
-		return false;
+		Staff staff = client.sendLoginResponse(username, password);
+
+		return staff;
 	}
 
 	public Object navigationController(String viewName) {
@@ -86,13 +86,20 @@ public class Controller {
 
 	}
 
-	public boolean verifyCustomer(String value) {
+	public void submitInvoice(Invoice invoice, List<InvoiceItem> items) {
+		client.sendCommand(ServerCommands.SUBMITINVOICE);
+
+		client.sendInvoice(invoice);
+		client.sendObject(items);
+
+	}
+
+	public Customer verifyCustomer(String value) {
 		client.sendCommand(ServerCommands.VERIFYCUSTOMER);
 		return client.checkCustomerExist(value);
 	}
 
 	public void registerDiscount() {
-
 
 	}
 
@@ -106,6 +113,12 @@ public class Controller {
 		client.sendCommand(ServerCommands.REGISTERSTAFF);
 		client.sendStaff(staff);
 
+	}
+
+	public Invoice newInvoice(Staff staff) {
+		client.sendCommand(ServerCommands.NEWINVOICE);
+		client.sendStaff(staff);
+		return client.recieveInvoice();
 	}
 
 }

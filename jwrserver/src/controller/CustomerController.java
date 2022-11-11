@@ -28,17 +28,15 @@ public class CustomerController {
 		return allCustomer;
 	}
 
-	public boolean verifyCustomer(String telephone){
+	public Customer verifyCustomer(String telephone) {
+		Customer customer;
 		session.beginTransaction();
 
-		List <Customer> customer = session.createQuery("from Customer where telephone = "+telephone+"", Customer.class).getResultList();
+		customer = session.createQuery("from Customer where telephone = " + telephone + "", Customer.class)
+				.uniqueResult();
 		session.close();
-		if(customer.isEmpty()){
-			return false;
-		}
-		else{
-			return true;
-		}
+
+		return customer;
 	}
 
 }

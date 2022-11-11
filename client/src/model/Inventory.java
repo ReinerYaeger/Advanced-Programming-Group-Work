@@ -84,7 +84,7 @@ public class Inventory implements Serializable {
 	// create tostring method
 	@Override
 	public String toString() {
-		return "id: " + id + "\nname: " + name + "\nitemsInStock: " + itemsInStock + "\nunitPrice: " + unitPrice
+		return "\nname: " + name + "\nitemsInStock: " + itemsInStock + "\nunitPrice: " + unitPrice
 				+ "\nshortDescription: " + shortDescription + "\nlongDescription: " + longDescription;
 	}
 

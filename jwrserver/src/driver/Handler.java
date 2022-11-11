@@ -4,20 +4,23 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import controller.StaffController;
-import model.Staff;
 import org.hibernate.Session;
 
 import Log.LoggingService;
 import controller.CustomerController;
 import controller.InventoryController;
 import controller.InvoiceController;
+import controller.StaffController;
 import factories.HBFactory;
 import model.Customer;
+import model.Invoice;
+import model.InvoiceItem;
 import model.ServerCommands;
+import model.Staff;
 
 public class Handler implements Runnable, LoggingService {
 
@@ -88,15 +91,27 @@ public class Handler implements Runnable, LoggingService {
 					if (sc == ServerCommands.GETALLINVENTORY) {
 						objOut.writeObject(new InventoryController().getAllInventory());
 					}
-					if(sc == ServerCommands.REGISTERSTAFF) {
+					if (sc == ServerCommands.REGISTERSTAFF) {
 						Staff staff = (Staff) objIn.readObject();
 						new StaffController().registerStaff(staff);
 					}
-					if(sc == ServerCommands.VERIFYSTAFF){
+					if (sc == ServerCommands.VERIFYSTAFF) {
 						String username = (String) objIn.readObject();
 						String password = (String) objIn.readObject();
-						StaffController staffCont  = new StaffController();
+						StaffController staffCont = new StaffController();
 						objOut.writeObject(staffCont.verifyStaff(username, password));
+					}
+					if (sc == ServerCommands.NEWINVOICE) {
+						Staff staff = (Staff) objIn.readObject();
+
+						objOut.writeObject(new InvoiceController().createInvoice(staff));
+					}
+					if (sc == ServerCommands.SUBMITINVOICE) {
+						Invoice invoice = (Invoice) objIn.readObject();
+						List<InvoiceItem> items = (List<InvoiceItem>) objIn.readObject();
+
+						new InvoiceController().submitInvoice(invoice, items);
+
 					}
 				}
 			} catch (IOException e) {

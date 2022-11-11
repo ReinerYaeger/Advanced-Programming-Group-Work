@@ -13,8 +13,8 @@ public class CustomerTest implements LoggingService {
 	public static void main(String[] args) {
 		Session sesh = new HBFactory().getSession();
 
-		Customer customer = new Customer("Fred Miller", LocalDate.of(2000, 10, 15), "Manor Park", "87612355126",
-				"Test1@gmail.com");
+		Customer customer = new Customer("Polio", LocalDate.of(2000, 10, 15), "Manor Park", "8761234567",
+				"Test10@gmail.com");
 
 		sesh.beginTransaction();
 
