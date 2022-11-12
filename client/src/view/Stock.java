@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -47,7 +46,8 @@ public class Stock {
 	private JButton insertButton;
 	private DefaultTableModel model;
 	List<Inventory> allItems;
-	private int row=30;
+	private int row = 0;
+
 	public Stock() {
 		// Initialize the variables
 		frame = new JFrame();
@@ -60,12 +60,17 @@ public class Stock {
 		model = new DefaultTableModel(row, headings.length) {
 
 			private static final long serialVersionUID = 1L;
-			
-			
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				// all cells false
+				return false;
+			}
+
 		};
 		model.setColumnIdentifiers(headings);
 		table = new JTable(model);
-		table.setEnabled(false);
+		table.setEnabled(true);
 		Border border = BorderFactory.createLineBorder(Color.black);
 		updateButton = new JButton("Update");
 		deleteButton = new JButton("Delete");
@@ -77,18 +82,19 @@ public class Stock {
 		panel5 = new JPanel(new BorderLayout(0, 0));
 		panel5.setSize(400, 500);
 		panel6 = new JPanel(new FlowLayout());
-		borderPanel = new JPanel(new BorderLayout(0,0));
+		borderPanel = new JPanel(new BorderLayout(0, 0));
 		borderPanel.setBorder(border);
 
 		// call methods created
 		layout();
+		addActionListener();
 		getAllInventoryItems();
 		addItemListenerToCmobo();
 	}
 
 	public void layout() {
 		// Set the Layout Manager for the frame
-		frame.setLayout(new BorderLayout(3,1));
+		frame.setLayout(new BorderLayout(3, 1));
 		// add label to panel
 		panel1.add(navigationLabel);
 		// add combobox to panel
@@ -99,7 +105,7 @@ public class Stock {
 		panel4.add(panel1, BorderLayout.WEST);
 		panel4.add(panel2, BorderLayout.EAST);
 		// add panel to frame
-		frame.add(panel4,BorderLayout.PAGE_START);
+		frame.add(panel4, BorderLayout.PAGE_START);
 		panel3.add(headerLabel);
 		// add panel to frame
 		frame.add(panel3, BorderLayout.AFTER_LAST_LINE);
@@ -112,10 +118,10 @@ public class Stock {
 		panel6.add(deleteButton);
 		panel6.add(insertButton);
 		// add panel to frame
-		
-		borderPanel.add(panel3,BorderLayout.PAGE_START);
+
+		borderPanel.add(panel3, BorderLayout.PAGE_START);
 		borderPanel.add(panel5);
-		borderPanel.add(panel6,BorderLayout.PAGE_END);
+		borderPanel.add(panel6, BorderLayout.PAGE_END);
 
 		frame.getContentPane().add(borderPanel);
 		// set size of frame
@@ -136,6 +142,8 @@ public class Stock {
 	}
 
 	private void getAllInventoryItems() {
+		System.out.println("Getting");
+		model.setRowCount(0);
 		allItems = new Controller().getAllInventory();
 
 		System.out.println(allItems + " .. ");
@@ -146,10 +154,10 @@ public class Stock {
 			// Collects inventory information
 			items.add(inventory.getId());
 			items.add(inventory.getName());
-			items.add(inventory.getItemsInStock());
-			items.add(inventory.getUnitPrice());
 			items.add(inventory.getShortDescription());
 			items.add(inventory.getLongDescription());
+			items.add(inventory.getItemsInStock());
+			items.add(inventory.getUnitPrice());
 
 			// Add information to table
 			model.addRow(items);
@@ -195,6 +203,38 @@ public class Stock {
 					// Calls new RegisterCustomer
 					new RegisterCustomer();
 				}
+			}
+		});
+	}
+
+	private void addActionListener() {
+		updateButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(allItems.get(table.getSelectedRow()));
+				new StockCRUD(allItems.get(table.getSelectedRow()));
+				frame.dispose();
+
+			}
+		});
+
+		insertButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new StockCRUD();
+				frame.dispose();
+			}
+		});
+
+		deleteButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (new Controller().deleteInventory(allItems.get(table.getSelectedRow())))
+					getAllInventoryItems();
+
 			}
 		});
 	}

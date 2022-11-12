@@ -122,4 +122,24 @@ public class Controller {
 		return client.recieveInvoice();
 	}
 
+	public boolean updateInventory(Inventory item) {
+		client.sendCommand(ServerCommands.UPDATEINVENTORY);
+		client.sendInventory(item);
+		return (boolean) client.receiveResponse();
+
+	}
+
+	public boolean addInventory(Inventory item) {
+		client.sendCommand(ServerCommands.ADDINVENTORY);
+		client.sendInventory(item);
+
+		return (boolean) client.receiveResponse();
+	}
+
+	public boolean deleteInventory(Inventory inventory) {
+		client.sendCommand(ServerCommands.DELETEINVENTORY);
+		client.sendInventory(inventory);
+		return (boolean) client.receiveResponse();
+	}
+
 }

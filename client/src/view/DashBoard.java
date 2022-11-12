@@ -174,6 +174,8 @@ public class DashBoard {
 		checkOutButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// Destroy the frame
+				frame.dispose();
 				// calls a new checkout
 				new CheckOut();
 			}
@@ -182,6 +184,8 @@ public class DashBoard {
 		salesReportButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// Destroy the frame
+				frame.dispose();
 				// calls a new salesreport
 				new SalesReport();
 			}
@@ -190,6 +194,8 @@ public class DashBoard {
 		registerCustomerButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// Destroy the frame
+				frame.dispose();
 				// calls a new registercustomer
 				new RegisterCustomer();
 			}
