@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,8 +20,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -104,13 +101,13 @@ public class CustomerDatabase extends JPanel {
 		model.setColumnIdentifiers(columns);
 		// Constructs a JTable
 		table = new JTable(model);
-         table.setEnabled(false);
+		table.setEnabled(false);
 		// Set size of viewport for the table
 		table.setPreferredScrollableViewportSize(new Dimension(1200, 100));
 		table.setFillsViewportHeight(true);
 		// Add table to scrollpane view
 		scrollPane = new JScrollPane(table);
-        
+
 		// Call layoutComponents method
 		layoutComponents();
 		// call loadCustomerData method
@@ -142,12 +139,12 @@ public class CustomerDatabase extends JPanel {
 
 	private void layoutComponents() {
 		// Set the Layout Manager for the frame
-		frame.setLayout(new BorderLayout(0,1));
+		frame.setLayout(new BorderLayout(0, 1));
 
 		// Add label to panel
 		customerDatabasePanel.add(customerDatabaseLabel);
 		// Add panel to frame
-		//panel1.add(customerDatabasePanel, );
+		// panel1.add(customerDatabasePanel, );
 
 		// Add label to panel
 		navigationPanel.add(navigationLabel);
@@ -158,9 +155,9 @@ public class CustomerDatabase extends JPanel {
 		// Add panel to panel using borderlayout
 		panel1.add(navigationPanel, BorderLayout.WEST);
 		panel1.add(logoutPanel, BorderLayout.EAST);
-		panel1.add(customerDatabasePanel,BorderLayout.AFTER_LAST_LINE );
+		panel1.add(customerDatabasePanel, BorderLayout.AFTER_LAST_LINE);
 		// Add panel to frame
-		frame.add(panel1,BorderLayout.PAGE_START);
+		frame.add(panel1, BorderLayout.PAGE_START);
 
 		// Add label to panel
 		searchLabelPanel.add(searchLabel);
@@ -177,8 +174,8 @@ public class CustomerDatabase extends JPanel {
 		tablePanel.add(scrollPane);
 		// Add panel to frame
 		panel2.add(tablePanel);
-		
-		frame.getContentPane().add(panel2,BorderLayout.CENTER);
+
+		frame.getContentPane().add(panel2, BorderLayout.CENTER);
 
 		// Set color of frame border
 		frame.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLUE));
@@ -186,7 +183,7 @@ public class CustomerDatabase extends JPanel {
 		frame.setSize(1350, 900);
 		// Set frame to be visible
 		frame.setVisible(true);
-		//frame.setResizable(true);
+		// frame.setResizable(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
@@ -255,8 +252,6 @@ public class CustomerDatabase extends JPanel {
 		});
 
 	}
-
-
 
 	public static void main(String[] args) {
 		// Calls new CustomerDatabase

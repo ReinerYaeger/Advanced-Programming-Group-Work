@@ -17,6 +17,7 @@ import controller.InvoiceController;
 import controller.StaffController;
 import factories.HBFactory;
 import model.Customer;
+import model.Inventory;
 import model.Invoice;
 import model.InvoiceItem;
 import model.ServerCommands;
@@ -51,6 +52,7 @@ public class Handler implements Runnable, LoggingService {
 
 			try {
 				while (true) {
+
 					log.info("Waiting for command");
 					ServerCommands sc = (ServerCommands) objIn.readObject();
 					log.info("Client Called Thread");
@@ -112,6 +114,21 @@ public class Handler implements Runnable, LoggingService {
 
 						new InvoiceController().submitInvoice(invoice, items);
 						objOut.writeObject(true);
+					}
+					if (sc == ServerCommands.UPDATEINVENTORY) {
+						Inventory item = (Inventory) objIn.readObject();
+						objOut.writeObject(new InventoryController().updateInventory(item));
+
+					}
+					if (sc == ServerCommands.ADDINVENTORY) {
+						Inventory item = (Inventory) objIn.readObject();
+						objOut.writeObject(new InventoryController().addInventory(item));
+
+					}
+					if (sc == ServerCommands.DELETEINVENTORY) {
+						Inventory item = (Inventory) objIn.readObject();
+						objOut.writeObject(new InventoryController().deleteInventory(item));
+
 					}
 				}
 			} catch (IOException e) {
