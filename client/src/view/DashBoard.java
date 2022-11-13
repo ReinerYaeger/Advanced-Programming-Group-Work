@@ -27,6 +27,7 @@ public class DashBoard {
 	private JButton checkOutButton;
 	private JButton salesReportButton;
 	private JButton registerCustomerButton;
+	private JButton registerStaffButton;
 	private JButton logoutBtn;
 
 	// Create an object of the GridBagConstraints
@@ -44,6 +45,7 @@ public class DashBoard {
 		checkOutButton = new JButton("Check Out");
 		salesReportButton = new JButton("Sales Report");
 		registerCustomerButton = new JButton("Register Customer");
+		registerStaffButton = new JButton("Register Staff");
 		gbc = new GridBagConstraints();
 
 		// Call layoutComponents method
@@ -121,6 +123,14 @@ public class DashBoard {
 		gbc.ipady = 20;
 		gbc.insets = new Insets(10, 10, 11, 5);
 		frame.add(registerCustomerButton, gbc);
+		
+		gbc = new GridBagConstraints();
+		gbc.gridx = 1;
+		gbc.gridy = 5;
+		gbc.ipadx = 50;
+		gbc.ipady = 20;
+		gbc.insets = new Insets(10, 10, 11, 5);
+		frame.add(registerStaffButton, gbc);
 
 		// Set color of frame border
 		frame.getRootPane().setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.BLUE));
@@ -200,6 +210,16 @@ public class DashBoard {
 				new RegisterCustomer();
 			}
 		});
+		
+		registerStaffButton.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// Destroy the frame
+			frame.dispose();
+			// calls a new registerstaff
+			new RegisterStaff();
+		}
+	});
 
 	}
 
