@@ -6,8 +6,6 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import org.hibernate.Session;
 
 import Log.LoggingService;
@@ -136,14 +134,12 @@ public class Handler implements Runnable, LoggingService {
 				}
 			} catch (IOException e) {
 				socket.close();
-				JOptionPane.showMessageDialog(null, "Client Disconnected: " + e);
 				log.error("Client Disconnected: " + e);
 				log.error("Shutting Down");
 				e.printStackTrace();
 			}
 
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Error in Handler: " + e);
 			log.error("Error in Handler run: " + e);
 			e.printStackTrace();
 		}
