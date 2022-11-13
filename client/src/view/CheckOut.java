@@ -394,7 +394,6 @@ public class CheckOut {
 		gbc.ipady = 20;
 		gbc.anchor = GridBagConstraints.NORTHWEST;
 		frame.add(totalLabel, gbc);
-
 		gbc = new GridBagConstraints();
 		gbc.gridx = 5;
 		gbc.gridy = 7;
@@ -492,6 +491,7 @@ public class CheckOut {
 					customerTextField.setText(customer.getName());
 					invoice.setCustomer(customer);
 					discountPercentage = .10f;
+					yesMemberRadioButton.setSelected(true);
 					calculateTotal();
 				}
 			}
