@@ -1,8 +1,8 @@
 package test;
 
-import Log.LoggingService;
 import org.hibernate.Session;
 
+import Log.LoggingService;
 import factories.HBFactory;
 import model.Department;
 
@@ -14,7 +14,7 @@ public class DepartmentTest implements LoggingService {
 
 		sesh.beginTransaction();
 
-		Department dep = new Department("200", "Management");
+		Department dep = new Department("300", "Accounting");
 
 		sesh.save(dep);
 		sesh.getTransaction().commit();

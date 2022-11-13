@@ -17,10 +17,10 @@ public class StaffTest implements LoggingService {
 
 		sesh.beginTransaction();
 
-		Department dep = sesh.createQuery("from Department where name= 'Management' ", Department.class).uniqueResult();
+		Department dep = sesh.createQuery("from Department where name= 'Accounting' ", Department.class).uniqueResult();
 
-		Staff staff = new Staff("Kimone", LocalDate.of(1990, 2, 16), "2 Kings Street", "0395873625", "Alesha@gmail.com",
-				"Manager", "password");
+		Staff staff = new Staff("Paul Webb", LocalDate.of(1990, 2, 16), "2 Kings Street", "0395873625",
+				"Alesha@gmail.com", "Accountant", "password1");
 
 		staff.setDepartment(dep);
 

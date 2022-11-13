@@ -5,6 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import Log.LoggingService;
+import factories.DBConnectorFactory;
 import factories.HBFactory;
 
 public class Server implements LoggingService {
@@ -22,6 +23,7 @@ public class Server implements LoggingService {
 			log.info("Server Has Started");
 			System.out.println("Logged");
 			new HBFactory();
+			new DBConnectorFactory();
 			while (!serverSocket.isClosed()) {
 				Socket socket = serverSocket.accept();
 				log.info("Client has connected!");
