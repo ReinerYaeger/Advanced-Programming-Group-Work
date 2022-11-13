@@ -130,6 +130,9 @@ public class Handler implements Runnable, LoggingService {
 						objOut.writeObject(new InventoryController().deleteInventory(item));
 
 					}
+					if (sc == ServerCommands.GETALLSTAFF) {
+						objOut.writeObject(new StaffController().getAllStaff());
+					}
 				}
 			} catch (IOException e) {
 				socket.close();

@@ -6,19 +6,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.util.List;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import controller.Controller;
 import model.Invoice;
 
 public class SalesReport implements ActionListener {
 
-	//Create variables
+	// Create variables
 	private JFrame frame;
 	private JLabel navigationLabel;
 	private GridBagConstraints gbc;
@@ -31,23 +34,25 @@ public class SalesReport implements ActionListener {
 	private JTextField fromTextField;
 	private JTextField toTextField;
 	private JButton printButton;
+	private JTable table;
+	private DefaultTableModel model;
 
 	SalesReport() {
 		// Initialize the variables
 		frame = new JFrame();
 		navigationLabel = new JLabel("Navigation:");
-		//add label to frame
+		// add label to frame
 		frame.add(navigationLabel);
 
 		// Initialize the variable
 		logoutBtn = new JButton("Logout");
-		//create array of string
+		// create array of string
 		String[] navigation = { " ", "Dashboard", "Customer Database", "Staff Database", "Stock and Inventory",
 				"Check Out", "Sales Reports", "Register Customer" };
-		//Creates a JComboBox that contains the elements in the specified array
+		// Creates a JComboBox that contains the elements in the specified array
 		combobox = new JComboBox<>(navigation);
 		combobox.setSelectedIndex(0);
-		//add combobox to frame
+		// add combobox to frame
 		frame.add(combobox);
 		// Initialize the variables
 		label = new JLabel("Sale Reports");
@@ -57,8 +62,19 @@ public class SalesReport implements ActionListener {
 		toLabel = new JLabel("To");
 		toTextField = new JTextField();
 		printButton = new JButton("Print");
-		
-		//call the methods created
+		String modelColumns[] = { "Invoice Number", "Billing Date", "Cashier", "Customer" };
+		model = new DefaultTableModel(modelColumns, 5) {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+		};
+		table = new JTable(model);
+
+		// call the methods created
 		layout();
 		addActionListener();
 		addItemListenerToCmobo();
@@ -67,20 +83,19 @@ public class SalesReport implements ActionListener {
 	private void layout() {
 		// Set the Layout Manager for the frame
 		frame.setLayout(new GridBagLayout());
-		
 
-		//Re-Initialize the GridBag Constraints
+		// Re-Initialize the GridBag Constraints
 		gbc = new GridBagConstraints();
-		//Set location in terms of row and column
+		// Set location in terms of row and column
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
-		//Set internal padding
+		// Set internal padding
 		gbc.ipadx = 50;
 		gbc.ipady = 20;
-		//sets where, within the frame, to place the component. 
+		// sets where, within the frame, to place the component.
 		gbc.anchor = GridBagConstraints.NORTHWEST;
-		 //Add component to frame
+		// Add component to frame
 		frame.add(navigationLabel, gbc);
 
 		gbc = new GridBagConstraints();
@@ -107,7 +122,7 @@ public class SalesReport implements ActionListener {
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.CENTER;
 		frame.add(label, gbc);
-		
+
 		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 2;
@@ -121,7 +136,7 @@ public class SalesReport implements ActionListener {
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.WEST;
 		frame.add(fromLabel, gbc);
-		
+
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 4;
@@ -137,7 +152,7 @@ public class SalesReport implements ActionListener {
 		gbc.gridwidth = 1;
 		gbc.anchor = GridBagConstraints.WEST;
 		frame.add(toLabel, gbc);
-		
+
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 8;
@@ -155,32 +170,50 @@ public class SalesReport implements ActionListener {
 		gbc.ipady = 10;
 		gbc.anchor = GridBagConstraints.WEST;
 		frame.add(printButton, gbc);
-		
-		//Set size of frame
-		frame.setSize(600, 200);
-		//Set frame to be visible
+
+		gbc = new GridBagConstraints();
+		gbc.gridx = 2;
+		gbc.gridy = 8;
+		gbc.gridwidth = 1;
+		gbc.ipadx = 20;
+		gbc.ipady = 10;
+		gbc.anchor = GridBagConstraints.SOUTH;
+		frame.add(table.getTableHeader(), gbc);
+
+		gbc = new GridBagConstraints();
+		gbc.gridx = 2;
+		gbc.gridy = 18;
+		gbc.gridwidth = 1;
+		gbc.ipadx = 20;
+		gbc.ipady = 10;
+		gbc.anchor = GridBagConstraints.SOUTH;
+		frame.add(table, gbc);
+
+		// Set size of frame
+		frame.setSize(800, 600);
+		// Set frame to be visible
 		frame.setVisible(true);
 		frame.isResizable();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		//Adds an ActionListener to the button.
+		// Adds an ActionListener to the button.
 		logoutBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//destroy frame
+				// destroy frame
 				frame.dispose();
-				//call new loginpage
+				// call new loginpage
 				new LoginPage();
 			}
 		});
 	}
 
 	private void addActionListener() {
-		//Adds an actionListener to the button
+		// Adds an actionListener to the button
 		printButton.addActionListener(this);
 	}
 
-	//Invoked when an action occurs.
+	// Invoked when an action occurs.
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// look up invoice based on dates
@@ -195,52 +228,60 @@ public class SalesReport implements ActionListener {
 
 			List<Invoice> invoices = new Controller().searchSalesReport(fromDateString, toDateString);
 
-			//Prints information to console
-			System.out.println("In Sales Report");
-			System.out.println(invoices);
-			System.out.println("Printed");
+			invoices.forEach(invoice -> {
+				Vector<Object> items = new Vector<>();
+
+				items.add(invoice.getInvoiceNum());
+				items.add(invoice.getBillingDate());
+				items.add(invoice.getCashier().getName());
+				if (invoice.getCustomer() != null)
+					items.add(invoice.getCustomer().getName());
+				else
+					items.add(invoice.getCustomer());
+				model.addRow(items);
+			});
 
 		}
 
 	}
 
 	private void addItemListenerToCmobo() {
-		//Adds an ItemListener with the event to be processed
+		// Adds an ItemListener with the event to be processed
 		combobox.addItemListener(itemEvent -> {
 			if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
 				String selected = (String) itemEvent.getItem();
 				if (selected.equals("Dashboard")) {
-					//Destroy frame
+					// Destroy frame
 					frame.dispose();
-					//Calls new DasBoard
+					// Calls new DasBoard
 					new DashBoard();
 				} else if (selected.equals("Customer Database")) {
-					//Destroy frame
+					// Destroy frame
 					frame.dispose();
-					//Calls new CustomerDatabase
+					// Calls new CustomerDatabase
 					new CustomerDatabase();
 				} else if (selected.equals("Staff Database")) {
-					//Destroy frame
+					// Destroy frame
 					frame.dispose();
-					//Calls new StaffDatabase
+					// Calls new StaffDatabase
 					new StaffDatabase();
 				} else if (selected.equals("Stock and Inventory")) {
-					//Destroy frame
+					// Destroy frame
 					frame.dispose();
-					//Calls new Stock
+					// Calls new Stock
 					new Stock();
 				} else if (selected.equals("Check Out")) {
-					//Destroy frame
+					// Destroy frame
 					frame.dispose();
-					//Calls new CheckOut
+					// Calls new CheckOut
 					new CheckOut();
 				} else if (selected.equals("Sales Reports")) {
-					//Destroy frame
+					// Destroy frame
 					frame.dispose();
-					//Calls new SalesReport
+					// Calls new SalesReport
 					new SalesReport();
 				} else if (selected.equals("Register Customer")) {
-					//Calls new RegisterCustomer
+					// Calls new RegisterCustomer
 					new RegisterCustomer();
 				}
 			}
@@ -248,7 +289,7 @@ public class SalesReport implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		//Calls new SalesReport
+		// Calls new SalesReport
 		new SalesReport();
 		;
 

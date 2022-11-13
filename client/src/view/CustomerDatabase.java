@@ -64,7 +64,7 @@ public class CustomerDatabase extends JPanel {
 		searchLabelPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		logoutBtn = new JButton("Logout");
 		navigationLabel = new JLabel("Navigation");
-		customerDatabaseLabel = new JLabel("Customer Staff Database");
+		customerDatabaseLabel = new JLabel("Customer Database");
 		searchTextField = new TextField(40);
 		searchBtn = new JButton("Search");
 		searchLabel = new JLabel("Search");

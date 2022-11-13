@@ -142,4 +142,9 @@ public class Controller {
 		return (boolean) client.receiveResponse();
 	}
 
+	public List<Staff> getAllStaff() {
+		client.sendCommand(ServerCommands.GETALLSTAFF);
+		return (List<Staff>) client.receiveResponse();
+	}
+
 }
