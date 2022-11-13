@@ -172,8 +172,8 @@ public class SalesReport implements ActionListener {
 		frame.add(printButton, gbc);
 
 		gbc = new GridBagConstraints();
-		gbc.gridx = 2;
-		gbc.gridy = 8;
+		gbc.gridx = 1;
+		gbc.gridy = 9;
 		gbc.gridwidth = 1;
 		gbc.ipadx = 20;
 		gbc.ipady = 10;
@@ -181,8 +181,8 @@ public class SalesReport implements ActionListener {
 		frame.add(table.getTableHeader(), gbc);
 
 		gbc = new GridBagConstraints();
-		gbc.gridx = 2;
-		gbc.gridy = 18;
+		gbc.gridx = 1;
+		gbc.gridy = 10;
 		gbc.gridwidth = 1;
 		gbc.ipadx = 20;
 		gbc.ipady = 10;
